@@ -11,6 +11,9 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+
+library(fontawesome)
+
 ```
 
 # ggtex
