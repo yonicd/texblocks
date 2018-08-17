@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
   fig.path = "README-"
 )
 
-library(fontawesome)
+library(icon)
 
 ```
 
@@ -34,17 +34,38 @@ Defining a new class of R element `tabular` that is the basic structure of the l
 
 Let `t1` and `t2` be two objects of class tabular.
 
-|  syntax| output  |
+|  |   |
 |:--:|:--:|
-| `t1 + t2`  |`r paste(fontawesome::fa('square'),fontawesome::fa('square'))`|
-| `t1 | t2` |`r fontawesome::fa('square')` `|` `r fontawesome::fa('square')`|
-| `t1 || t2` |`r fontawesome::fa('square')` `||` `r fontawesome::fa('square')`|
-| `t1 / t2`  |`r paste(fontawesome::fa('square'),fontawesome::fa('square'),sep='<br>')`|
-| `t1 - t2`  |`r paste(fontawesome::fa('square'),fontawesome::fa('square'),sep='<br>-<br>')`|
+| `t1 + t2`  |`r icon::fa("square")` `r icon::fa("square")`|
+
+
+|  |   |
+|:--:|:--:|
+| `t1 | t2` |`r icon::fa('square')` `|` `r icon::fa('square')`|
+
+
+|  |   |
+|:--:|:--:|
+| `t1 || t2` |`r icon::fa('square')` `||` `r icon::fa('square')`|
+
+
+|  |   |
+|:--:|:--:|
+||`r icon::fa('square')`|
+|`t1 / t2`||
+||`r icon::fa('square')`|
+
+
+|  |   |
+|:--:|:--:|
+| |`r icon::fa('square')`|
+|`t1 - t2`| - |
+||`r icon::fa('square')`|
+
 
 Using this language creating a table can be broken down to cell level
 
-`t1 =(``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')``) / (``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')``)`
+`t1 =(``r icon::fa('square')`` + ``r icon::fa('square')`` + ``r icon::fa('square')``) / (``r icon::fa('square')`` + ``r icon::fa('square')`` + ``r icon::fa('square')``)`
 
 would be translated to 
 
@@ -53,7 +74,7 @@ would be translated to
 4 & 5 & 6
 ```
 
-`t2 = (``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')``)` `-` `(``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')`` + ``r fontawesome::fa('square')``)`
+`t2 = (``r icon::fa('square')`` + ``r icon::fa('square')`` + ``r icon::fa('square')``)` `-` `(``r icon::fa('square')`` + ``r icon::fa('square')`` + ``r icon::fa('square')``)`
 
 would be translated to 
 

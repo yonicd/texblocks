@@ -24,20 +24,36 @@ of the language.
 Let `t1` and `t2` be two objects of class
 tabular.
 
-|    syntax    |                                                                                                                                                                                                          output                                                                                                                                                                                                           |
-| :----------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|  `t1 + t2`   |     <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg> <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>     |
-|  `t1 \| t2`  |  <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg> `\|` <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>   |
-| `t1 \|\| t2` | <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg> `\|\|` <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>  |
-|  `t1 / t2`   |   <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg><br><svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>    |
-|  `t1 - t2`   | <svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg><br>-<br><svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg> |
+|           |                                                                                                                                                   |
+| :-------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
+| `t1 + t2` | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
+
+|            |                                                                                                                                                        |
+| :--------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `t1 \| t2` | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> `\|` <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
+
+|              |                                                                                                                                                          |
+| :----------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `t1 \|\| t2` | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> `\|\|` <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
+
+|           |                                                                          |
+| :-------: | :----------------------------------------------------------------------: |
+|           | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
+| `t1 / t2` |                                                                          |
+|           | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
+
+|           |                                                                          |
+| :-------: | :----------------------------------------------------------------------: |
+|           | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
+| `t1 - t2` |                                    \-                                    |
+|           | <!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve--> |
 
 Using this language creating a table can be broken down to cell level
 
 `t1
-=(`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`)
+=(`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`)
 /
-(`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`)`
+(`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`)`
 
 would be translated to
 
@@ -45,9 +61,9 @@ would be translated to
     4 & 5 & 6
 
 `t2 =
-(`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`)`
+(`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`)`
 `-`
-`(`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`+`<svg style="height:0.8em;top:.04em;position:relative;" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"/></svg>`)`
+`(`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`+`<!--html_preserve--><i class="fas  fa-square "></i><!--/html_preserve-->`)`
 
 would be translated to
 
