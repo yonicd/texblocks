@@ -9,9 +9,6 @@
 #' x1 <- x+x
 #' as.data.frame(x1)
 #' 
-#' @seealso 
-#'  \code{\link[purrr]{map}},\code{\link[purrr]{transpose}},\code{\link[purrr]{set_names}},\code{\link[purrr]{flatten}}
-#'  \code{\link[dplyr]{reexports}},\code{\link[dplyr]{summarise_all}},\code{\link[dplyr]{mutate}}
 #' @rdname as.data.frame.tb
 #' @export 
 #' @importFrom purrr map transpose set_names flatten_chr

@@ -19,13 +19,15 @@
 #' 
 #' @details
 #'  
-#' \tabular{lc}{
-#'   + \tab joins e1 to e2 horizontally \cr
-#'   / \tab joins e1 to e2 vertically with no hline betweet them  \cr
-#'   - \tab joins e1 to e2 vertically with an hline between them
-#'  }
+#'  + : joins e1 to e2 horizontally
+#'  
+#'  / : joins e1 to e2 vertically with no hline betweet them
+#'  
+#'  - : joins e1 to e2 vertically with an hline between them
+
 #' 
 #' @return texblock object
+#' @name operators
 #' @rdname texblocks_opts
 #' @export
 '+.tb' <- function(e1,e2){

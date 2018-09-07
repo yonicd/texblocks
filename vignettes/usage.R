@@ -8,7 +8,7 @@ knitr::opts_chunk$set(
   comment = "#>",
   warning = FALSE,
   message = FALSE,
-  fig.path = 'figures'
+  fig.path = '.'
 )
 
 ## ------------------------------------------------------------------------
