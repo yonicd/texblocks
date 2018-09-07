@@ -1,10 +1,14 @@
 ## ----setup, include = FALSE----------------------------------------------
+
+if(!dir.exists('figures'))
+  dir.create('figures')
+
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   warning = FALSE,
   message = FALSE,
-  fig.path = "figures"
+  fig.path = 'figures'
 )
 
 ## ------------------------------------------------------------------------
@@ -13,10 +17,6 @@ library(texPreview)
 
 
 ## ----include=FALSE-------------------------------------------------------
-
-if(!dir.exists('figures'))
-  dir.create('figures')
-
 tex_opts$set(returnType= 'html',
              resizebox = FALSE,
              fileDir = 'figures',
@@ -80,4 +80,7 @@ texPreview::texPreview(tabular(x3 + x3,'c|c|c|c|c|c'),stem = "tb6")
 ## ---- echo=TRUE,results='asis'-------------------------------------------
 texPreview::texPreview(tabular((x1+x1)-(x3 + x3)/(x3 + x3) ,'|c|ccccc'),stem = "tb7")
 
+
+## ----include=FALSE-------------------------------------------------------
+file.copy('figures','../inst/doc',overwrite = dir.exists('../inst/doc'),recursive = TRUE)
 

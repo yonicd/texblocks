@@ -139,3 +139,5 @@ texPreview::texPreview(tabular((x1+x1)-(x3 + x3)/(x3 + x3) ,'|c|ccccc'),stem = "
 ```
 
 <img src="figures/tb7.png" height="50%" width="50%" />
+
+
