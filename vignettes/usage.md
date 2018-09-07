@@ -96,48 +96,48 @@ texblocks::tabular( x2 + x3,align = 'c|c|c|c|c|c')
 texPreview::texPreview(tabular(x1 ,'c|c|c'),stem = "tb1")
 ```
 
-<img src="figures/tb1.png" height="50%" width="50%" />
+<img src="./tb1.png" height="50%" width="50%" />
  
 
 ```r
 texPreview::texPreview(tabular(x2 ,'c|c|c'),stem = "tb2")
 ```
 
-<img src="figures/tb2.png" height="50%" width="50%" />
+<img src="./tb2.png" height="50%" width="50%" />
  
 
 ```r
 texPreview::texPreview(tabular(x3 ,'c|c|c'),stem = "tb3")
 ```
 
-<img src="figures/tb3.png" height="50%" width="50%" />
+<img src="./tb3.png" height="50%" width="50%" />
  
 
 ```r
 texPreview::texPreview(tabular(x2-x2 ,'c|c|c'),stem = "tb4")
 ```
 
-<img src="figures/tb4.png" height="50%" width="50%" />
+<img src="./tb4.png" height="50%" width="50%" />
  
 
 ```r
 texPreview::texPreview(tabular(x2 + x3 ,'c|c|c|c|c|c'),stem = "tb5")
 ```
 
-<img src="figures/tb5.png" height="50%" width="50%" />
+<img src="./tb5.png" height="50%" width="50%" />
  
 
 ```r
 texPreview::texPreview(tabular(x3 + x3,'c|c|c|c|c|c'),stem = "tb6")
 ```
 
-<img src="figures/tb6.png" height="50%" width="50%" />
+<img src="./tb6.png" height="50%" width="50%" />
  
 
 ```r
 texPreview::texPreview(tabular((x1+x1)-(x3 + x3)/(x3 + x3) ,'|c|ccccc'),stem = "tb7")
 ```
 
-<img src="figures/tb7.png" height="50%" width="50%" />
+<img src="./tb7.png" height="50%" width="50%" />
 
 

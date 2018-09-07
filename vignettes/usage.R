@@ -1,8 +1,5 @@
 ## ----setup, include = FALSE----------------------------------------------
 
-if(!dir.exists('figures'))
-  dir.create('figures')
-
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -19,7 +16,7 @@ library(texPreview)
 ## ----include=FALSE-------------------------------------------------------
 tex_opts$set(returnType= 'html',
              resizebox = FALSE,
-             fileDir = 'figures',
+             fileDir = '.',
              opts.html = list(width='50%',height='50%'))
 
 tex_opts$append(list(cleanup='tex'))
@@ -82,5 +79,13 @@ texPreview::texPreview(tabular((x1+x1)-(x3 + x3)/(x3 + x3) ,'|c|ccccc'),stem = "
 
 
 ## ----include=FALSE-------------------------------------------------------
-file.copy('figures','../inst/doc',overwrite = dir.exists('../inst/doc'),recursive = TRUE)
+pngs <- list.files(pattern = 'png$')
+invisible(
+  sapply(list.files(pattern = 'png$',full.names = TRUE),function(x){
+    fp <- file.path('../inst/doc',basename(x))
+    fd <- file.path('../docs/articles/',basename(x))
+    file.copy(x,to = fp,overwrite = file.exists(fp))
+    file.copy(x,to = fd,overwrite = file.exists(fd))
+  })
+)
 
