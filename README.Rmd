@@ -9,33 +9,97 @@ always_allow_html: yes
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "tools/README",
+  warning = FALSE,
+  message = FALSE
 )
 ```
-[![Build Status](https://travis.metrumrg.com/yoni/texblocks.svg?token=tfrDuc83e84K9CqJKyCs&branch=master)](https://travis.metrumrg.com/yoni/texblocks)
 
-# texblocks
 
-Building blocks for TeX tables
+```{r}
+library(texblocks)
+library(texPreview)
 
-## Idea
+```
+ 
+```{r,include=FALSE}
+tex_opts$set(returnType= 'html',
+             resizebox = FALSE,
+             fileDir = 'tools/README',
+             opts.html = list(width='50%',height='50%'))
 
-Assemble LaTeX tabular environments using simple operations.
+tex_opts$append(list(cleanup='tex'))
+```
 
-This would enable us to create any table layout with a consistent user API.
+```{r}
+x <- '$\\alpha$'
+y <- 'cindy'
+class(x) <- 'tb'
+class(y) <- 'tb'
+```
+ 
+```{r}
+x1 <- x+y+x
+x1
+```
+ 
+```{r}
+x1 + x1
+x1 / x1
+x1 - x1
+```
+ 
+```{r}
+x2 <- x1 / x1
+x2 + x2
+```
+ 
+```{r}
+x3 <- x2/x2
+x2 + x3
+```
 
-Defining a new class of R element `tabular` that is the basic structure of the language.
+```{r}
+as.data.frame( x2 + x3 )
+```
 
-For Syntax: see [pdf](https://ghe.metrumrg.com/yoni/texblocks/blob/master/Syntax.pdf).
+```{r}
+texblocks::tabular( x2 + x3,align = 'c|c|c|c|c|c')
+```
 
-  - Joining elements
-    - appending columnwise
-    - appending rowwise
-  
-  - Mutations
-    - multirow
-    - multicolumn
-  
-  - Aesthetics
-    - font: colour, size, face
-    - background colour
+# Compiled
+
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular(x1 ,'c|c|c'),stem = "tb1")
+
+```
+ 
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular(x2 ,'c|c|c'),stem = "tb2")
+
+```
+ 
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular(x3 ,'c|c|c'),stem = "tb3")
+
+```
+ 
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular(x2-x2 ,'c|c|c'),stem = "tb4")
+
+```
+ 
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular(x2 + x3 ,'c|c|c|c|c|c'),stem = "tb5")
+
+```
+ 
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular(x3 + x3,'c|c|c|c|c|c'),stem = "tb6")
+
+```
+ 
+```{r, echo=TRUE,results='asis'}
+texPreview::texPreview(tabular((x1+x1)-(x3 + x3)/(x3 + x3) ,'|c|ccccc'),stem = "tb7")
+
+```
