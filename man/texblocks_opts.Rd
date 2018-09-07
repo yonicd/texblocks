@@ -25,10 +25,14 @@ combine texblock object into bigger texblock objects
 }
 \details{
 \tabular{lc}{
-  + \tab joins e1 to e2 horizontally \cr
-  / \tab joins e1 to e2 vertically with no hline betweet them  \cr
-  - \tab joins e1 to e2 vertically with an hline between them
- }
+\itemize{
+\item \tab joins e1 to e2 horizontally \cr
+/ \tab joins e1 to e2 vertically with no hline betweet them  \cr
+}
+\itemize{
+\item \tab joins e1 to e2 vertically with an hline between them
+}
+}
 }
 \examples{
 
