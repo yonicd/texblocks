@@ -169,13 +169,13 @@
 <h2 class="hasAnchor">
 <a href="#converting-to-a-data-frame" class="anchor"></a>Converting to a data.frame</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">as.data.frame</span>( x2 <span class="op">+</span><span class="st"> </span>x3 )</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; # A tibble: 4 x 7</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt;   `1`         `2`   `3`   `4`         `5`   `6`       r</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;int&gt;</span></a>
-<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; 1 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb       1</span></a>
-<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; 2 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb       2</span></a>
-<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt; 3 ""          ""    ""    "$\\alpha$" aaa   bbb       3</span></a>
-<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; 4 ""          ""    ""    "$\\alpha$" aaa   bbb       4</span></a></code></pre></div>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="co">#&gt; # A tibble: 4 x 6</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="co">#&gt;   `1`         `2`   `3`   `4`         `5`   `6`  </span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb18-5" data-line-number="5"><span class="co">#&gt; 1 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb  </span></a>
+<a class="sourceLine" id="cb18-6" data-line-number="6"><span class="co">#&gt; 2 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb  </span></a>
+<a class="sourceLine" id="cb18-7" data-line-number="7"><span class="co">#&gt; 3 ""          ""    ""    "$\\alpha$" aaa   bbb  </span></a>
+<a class="sourceLine" id="cb18-8" data-line-number="8"><span class="co">#&gt; 4 ""          ""    ""    "$\\alpha$" aaa   bbb</span></a></code></pre></div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb19-2" data-line-number="2">title &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'param'</span>,<span class="kw">sprintf</span>(<span class="st">'col%s'</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb19-3" data-line-number="3"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(as.tb)<span class="op">%&gt;%</span></a>

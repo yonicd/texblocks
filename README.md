@@ -143,13 +143,13 @@ texPreview::texPreview(tabular(k,'ccc'),stem = "tb7")
 
 ``` r
 as.data.frame( x2 + x3 )
-#> # A tibble: 4 x 7
-#>   `1`         `2`   `3`   `4`         `5`   `6`       r
-#>   <chr>       <chr> <chr> <chr>       <chr> <chr> <int>
-#> 1 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb       1
-#> 2 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb       2
-#> 3 ""          ""    ""    "$\\alpha$" aaa   bbb       3
-#> 4 ""          ""    ""    "$\\alpha$" aaa   bbb       4
+#> # A tibble: 4 x 6
+#>   `1`         `2`   `3`   `4`         `5`   `6`  
+#>   <chr>       <chr> <chr> <chr>       <chr> <chr>
+#> 1 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb  
+#> 2 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb  
+#> 3 ""          ""    ""    "$\\alpha$" aaa   bbb  
+#> 4 ""          ""    ""    "$\\alpha$" aaa   bbb
 ```
 
 ``` r

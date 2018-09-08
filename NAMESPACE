@@ -3,6 +3,7 @@
 S3method("+",tb)
 S3method("/",tb)
 S3method(as.data.frame,tb)
+S3method(as.tb,data.frame)
 S3method(as.tb,default)
 S3method(print,tb)
 export("%>%")

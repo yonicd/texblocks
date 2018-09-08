@@ -23,13 +23,16 @@ as.data.frame.tb <- function(x,...){
   ret <- l%>%
     purrr::set_names(seq_along(l))%>%
     dplyr::as_tibble()%>%
-    dplyr::mutate_all(purrr::flatten_chr)%>%
-    dplyr::mutate(r=1:n())
+    dplyr::mutate_all(purrr::flatten_chr)
   
   return(ret)
 }
 
 parse_tb <- function(x){
+  
+  x <- x%>%
+    revmultirow()%>%
+    revmulticol()
   
   y <- gsub('&',
             '_NEWCOL_',

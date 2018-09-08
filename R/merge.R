@@ -26,3 +26,35 @@ multicol <- function(content,ncol,align = 'c'){
   ret <- sprintf('\\multicolumn{%s}{%s}{%s}',ncol,align,content)
   as.tb(ret)
 }
+
+revmulticol <- function(x){
+  mc <- regmatches(x, gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', x))
+  if(length(mc[[1]])==0)
+    return(x)
+  ns <- lapply(mc,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]])
+  for(i in seq_along(ns)){
+    x <- gsub(mc[[i]],
+              sprintf('%s%s',
+                      ns[[i]][4],
+                      strrep('& ',as.numeric(ns[[i]][2])-1)
+                      ),
+              x,
+              fixed = TRUE) 
+  }
+  x
+  
+}
+
+revmultirow <- function(x){
+  mr <- regmatches(x, gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', x))
+  if(length(mr[[1]])==0)
+    return(x)
+  ns <- lapply(mr,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]])
+  for(i in seq_along(ns)){
+    x <- gsub(mr[[i]],
+              ns[[i]][4],
+              x,
+              fixed = TRUE)  
+  }
+  x
+}
