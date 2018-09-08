@@ -179,6 +179,16 @@
 <a class="sourceLine" id="cb19-6" data-line-number="6">texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="kw"><a href="reference/tabular.html">tabular</a></span>(title<span class="op">-</span>(x2<span class="op">+</span>x3) ,<span class="st">'|c|ccccc|'</span>),<span class="dt">stem =</span> <span class="st">"tb8"</span>)</a></code></pre></div>
 <p><img src="tools/README/tb8.png" height="25%" width="25%"></p>
 </div>
+<div id="multicolmultirow" class="section level1">
+<h1 class="hasAnchor">
+<a href="#multicolmultirow" class="anchor"></a>Multicol/Multirow</h1>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">title &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>(<span class="st">'param'</span>)<span class="op">+</span><span class="kw"><a href="reference/mergecells.html">multicol</a></span>(<span class="st">'vals'</span>,<span class="dv">3</span>,<span class="st">'c|'</span>)</a>
+<a class="sourceLine" id="cb20-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb20-3" data-line-number="3">tab &lt;-<span class="st"> </span>title<span class="op">-</span>(<span class="kw"><a href="reference/mergecells.html">multirow</a></span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta$'</span>,<span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>k)</a>
+<a class="sourceLine" id="cb20-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb20-5" data-line-number="5">texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="kw"><a href="reference/tabular.html">tabular</a></span>(tab,<span class="st">'|cccc|'</span>),<span class="dt">stem=</span><span class="st">'tb9'</span>)</a></code></pre></div>
+<p><img src="tools/README/tb9.png" height="25%" width="25%"></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

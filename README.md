@@ -157,6 +157,8 @@ texPreview::texPreview(tabular(title-(x2+x3) ,'|c|ccccc|'),stem = "tb8")
 
 <img src="tools/README/tb8.png" height="25%" width="25%" />
 
+# Multicol/Multirow
+
 ``` r
 title <- as.tb('param')+multicol('vals',3,'c|')
 

@@ -152,6 +152,8 @@ texPreview::texPreview(tabular(title-(x2+x3) ,'|c|ccccc|'),stem = "tb8")
 
 ```
 
+# Multicol/Multirow
+
 ```{r,echo=TRUE,results='asis'}
 title <- as.tb('param')+multicol('vals',3,'c|')
 
