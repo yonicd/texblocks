@@ -2,7 +2,6 @@
 #' @description Wrap tabular syntax around a texblock object
 #' @param x texblock object
 #' @param align character, tabular alignment
-#' @param ... PARAM_DESCRIPTION
 #' @return texblock object
 #' @rdname tabular
 #' @export 

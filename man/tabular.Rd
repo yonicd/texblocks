@@ -10,8 +10,6 @@ tabular(x, align)
 \item{x}{texblock object}
 
 \item{align}{character, tabular alignment}
-
-\item{...}{PARAM_DESCRIPTION}
 }
 \value{
 texblock object

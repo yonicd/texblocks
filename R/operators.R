@@ -32,22 +32,49 @@
 #' @export
 '+.tb' <- function(e1,e2){
   ret <- join(e1,e2)
-  class(ret) <- 'tb'
-  ret
+  as.tb(ret)
 }
 
 #' @rdname texblocks_opts
 #' @export
 '/.tb' <- function(e1,e2){
   ret <- sprintf('%s\\\\\n%s',e1,e2)
-  class(ret) <- 'tb'
-  ret
+  as.tb(ret)
 }
 
 #' @rdname texblocks_opts
 #' @export
 '-.tb' <- function(e1,e2){
   ret <- sprintf('%s\\\\ \\hline\n%s',e1,e2)
-  class(ret) <- 'tb'
-  ret
+  as.tb(ret)
 }
+
+#' @title Try to coerce an object into a texblock object
+#' @description coerce objects into a tb class object
+#' @param x object
+#' @return an object of class tb
+#' @export
+as.tb <- function(x){
+  UseMethod('as.tb')
+}
+
+#' @export
+as.tb.default <- function(x){
+  class(x) <- 'tb'
+  return(x)
+}
+
+#' @title Is the object of class tb
+#' @export
+#' @description Is the object of class tb Very basic for many functions
+#'  in the package.
+#' @param x an object
+#' @return logical - is the object of class tb
+is.tb <- function(x) inherits(x, 'tb')
+
+#' @inherit purrr::'%>%'
+#' @importFrom purrr %>%
+#' @name %>%
+#' @rdname pipe
+#' @export
+NULL
