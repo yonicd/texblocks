@@ -15,7 +15,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Load Library
+# texblocks
+
+## Load Library
 
 ```{r}
 library(texblocks)
@@ -32,9 +34,9 @@ tex_opts$set(returnType= 'html',
 tex_opts$append(list(cleanup='tex'))
 ```
 
-# Initialize basic texblocks
+## Initialize basic texblocks
 
-## Single blocks
+### Single blocks
 
 ```{r}
 x <- as.tb('$\\alpha$')
@@ -43,7 +45,7 @@ z <- as.tb('bbb')
 
 ```
 
-## Vectors
+### Vectors
 
 ```{r}
 k1 <- lapply(1:3,as.tb)
@@ -51,36 +53,35 @@ k2 <- lapply(4:6,as.tb)
 
 ```
 
-# Operators 
+## Operators 
 
-## Horizontal Concatentation
+### Horizontal Concatentation
 
 ```{r}
 x1 <- x+y+z
 x1
 ```
 
-## Vertical Concatentation
+### Vertical Concatentation
 
 ```{r}
 x/y
-x-y
 ```
 
-# Creating a tabular object
+## Creating a tabular object
 
 ```{r}
 texblocks::tabular( x1 ,align = 'c|c|c')
 ```
 
-# Compiling with texPreview
+## Compiling with texPreview
 
 ```{r, echo=TRUE,results='asis'}
 texPreview::texPreview(tabular(x1 ,'c|c|c'),stem = "tb1")
 
 ```
 
-## Combining blocks
+### Combining blocks
 
 ```{r}
 x1 + x1
@@ -96,7 +97,7 @@ texPreview::texPreview(tabular(x2 ,'c|c|c'),stem = "tb2")
 
 ```
 
-## Unequal blocks
+### Unequal blocks
  
 ```{r}
 x3 <- x2/x2
@@ -109,7 +110,7 @@ texPreview::texPreview(tabular(x3 ,'c|c|c'),stem = "tb3")
 ```
 
 ```{r, echo=TRUE,results='asis'}
-texPreview::texPreview(tabular(x2-x2 ,'c|c|c'),stem = "tb4")
+texPreview::texPreview(tabular(x2 / x2 ,'c|c|c'),stem = "tb4")
 
 ```
  
@@ -123,10 +124,15 @@ texPreview::texPreview(tabular(x3 + x3,'c|c|c|c|c|c'),stem = "tb6")
 
 ```
 
-## Reducing vectors
+### Reducing vectors
+
+(Not sure if this needs to be wrapped into a single function instead of having users apply reduce)
 
 ```{r}
+purrr::reduce(k1,`+`)
+
 k <- purrr::reduce(k1,`+`) / purrr::reduce(k2,`+`)
+
 k
 ```
 
@@ -135,7 +141,7 @@ texPreview::texPreview(tabular(k,'ccc'),stem = "tb7")
 
 ``` 
 
-# Converting to a data.frame
+## Converting to a data.frame
 
 ```{r}
 as.data.frame( x2 + x3 )
@@ -148,16 +154,16 @@ title <- c('param',sprintf('col%s',1:5))%>%
   purrr::map(as.tb)%>%
   purrr::reduce(`+`)
 
-texPreview::texPreview(tabular(title-(x2+x3) ,'|c|ccccc|'),stem = "tb8")
+texPreview::texPreview(tabular(title / (x2 + x3) ,'|c|ccccc|'),stem = "tb8")
 
 ```
 
-# Multicol/Multirow
+## Multicol/Multirow
 
 ```{r,echo=TRUE,results='asis'}
-title <- as.tb('param')+multicol('vals',3,'c|')
+title <- as.tb('param') + multicol('vals',3,'c|')
 
-tab <- title-(multirow('$\\beta$',2) + k)
+tab <- title / (multirow('$\\beta$',2) + k)
 
 texPreview::texPreview(tabular(tab,'|cccc|'),stem='tb9')
 
@@ -166,3 +172,70 @@ texPreview::texPreview(tabular(tab,'|cccc|'),stem='tb9')
 ```{r,include=FALSE}
 file.copy('tools',to = 'docs',overwrite = TRUE,recursive = TRUE)
 ```
+
+# Design/Specs
+
+Building blocks for TeX tables
+
+## Idea
+
+Assemble LaTeX tabular environments using simple operations.
+
+This would enable us to create any table layout with a consistent user API.
+
+Defining a new class of R element `tabular` that is the basic structure of the language.
+
+## Proposed Syntax
+
+Defining a new class of R element `tb` that is the basic structure of the language.
+
+### Joining elements
+
+Let `t1` and `t2` be two objects of class tb.
+
+|  |   |
+|:--:|:--:|
+| `t1 + t2`  |`r '\u2b1b'` `r '\u2b1b'`|
+
+
+|  |   |
+|:--:|:--:|
+||`r '\u2b1b'`|
+|`t1 / t2`||
+||`r '\u2b1b'`|
+
+
+Using this language creating a table can be broken down to cell level
+
+`t1 =(``r '\u2b1b'`` + ``r '\u2b1b'`` + ``r '\u2b1b'``) / (``r '\u2b1b'`` + ``r '\u2b1b'`` + ``r '\u2b1b'``)`
+
+would be translated to 
+
+```
+1 & 2 & 3 \\
+4 & 5 & 6
+```
+
+making their combination a natural extension
+
+`t1 + t1`
+
+would translate to 
+
+```
+1 & 2 & 3 & 1 & 2 & 3 \\
+4 & 5 & 6 & 1 & 2 & 3
+```
+
+### Mutations
+
+  - multirow
+  - multicolumn
+  
+### Aesthetics
+
+A set of aesthetic elements can be defined to control the table and cell level attributes, eg
+
+  - font: colour, size, face
+  - background colour
+  - grid: hline, cline

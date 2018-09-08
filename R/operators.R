@@ -42,12 +42,12 @@
   as.tb(ret)
 }
 
-#' @rdname texblocks_opts
-#' @export
-'-.tb' <- function(e1,e2){
-  ret <- sprintf('%s\\\\ \\hline\n%s',e1,e2)
-  as.tb(ret)
-}
+# @rdname texblocks_opts
+# @export
+# '-.tb' <- function(e1,e2){
+#   ret <- sprintf('%s\\\\ \\hline\n%s',e1,e2)
+#   as.tb(ret)
+# }
 
 #' @title Try to coerce an object into a texblock object
 #' @description coerce objects into a tb class object
@@ -56,6 +56,11 @@
 #' @export
 as.tb <- function(x){
   UseMethod('as.tb')
+}
+
+#' @export
+print.tb <- function(x,...){
+  cat(x,sep='\n')
 }
 
 #' @export

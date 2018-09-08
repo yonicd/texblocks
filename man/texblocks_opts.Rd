@@ -4,14 +4,11 @@
 \alias{operators}
 \alias{+.tb}
 \alias{/.tb}
-\alias{-.tb}
 \title{texblock operators}
 \usage{
 \method{+}{tb}(e1, e2)
 
 \method{/}{tb}(e1, e2)
-
-\method{-}{tb}(e1, e2)
 }
 \arguments{
 \item{e1}{texblock object, right hand side object}

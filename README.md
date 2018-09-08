@@ -1,16 +1,18 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Build Status](https://travis.metrumrg.com/yoni/texblocks.svg?token=tfrDuc83e84K9CqJKyCs&branch=master)](https://travis.metrumrg.com/yoni/texblocks)
-# Load Library
+# texblocks
+
+## Load Library
 
 ``` r
 library(texblocks)
 library(texPreview)
 ```
 
-# Initialize basic texblocks
+## Initialize basic texblocks
 
-## Single blocks
+### Single blocks
 
 ``` r
 x <- as.tb('$\\alpha$')
@@ -18,16 +20,16 @@ y <- as.tb('aaa')
 z <- as.tb('bbb')
 ```
 
-## Vectors
+### Vectors
 
 ``` r
 k1 <- lapply(1:3,as.tb)
 k2 <- lapply(4:6,as.tb)
 ```
 
-# Operators
+## Operators
 
-## Horizontal Concatentation
+### Horizontal Concatentation
 
 ``` r
 x1 <- x+y+z
@@ -35,18 +37,15 @@ x1
 #> $\alpha$&aaa&bbb
 ```
 
-## Vertical Concatentation
+### Vertical Concatentation
 
 ``` r
 x/y
 #> $\alpha$\\
 #> aaa
-x-y
-#> $\alpha$\\ \hline
-#> aaa
 ```
 
-# Creating a tabular object
+## Creating a tabular object
 
 ``` r
 texblocks::tabular( x1 ,align = 'c|c|c')
@@ -55,7 +54,7 @@ texblocks::tabular( x1 ,align = 'c|c|c')
 #> \end{tabular}
 ```
 
-# Compiling with texPreview
+## Compiling with texPreview
 
 ``` r
 texPreview::texPreview(tabular(x1 ,'c|c|c'),stem = "tb1")
@@ -63,7 +62,7 @@ texPreview::texPreview(tabular(x1 ,'c|c|c'),stem = "tb1")
 
 <img src="tools/README/tb1.png" height="25%" width="25%" />
 
-## Combining blocks
+### Combining blocks
 
 ``` r
 x1 + x1
@@ -83,7 +82,7 @@ texPreview::texPreview(tabular(x2 ,'c|c|c'),stem = "tb2")
 
 <img src="tools/README/tb2.png" height="25%" width="25%" />
 
-## Unequal blocks
+### Unequal blocks
 
 ``` r
 x3 <- x2/x2
@@ -101,7 +100,7 @@ texPreview::texPreview(tabular(x3 ,'c|c|c'),stem = "tb3")
 <img src="tools/README/tb3.png" height="25%" width="25%" />
 
 ``` r
-texPreview::texPreview(tabular(x2-x2 ,'c|c|c'),stem = "tb4")
+texPreview::texPreview(tabular(x2 / x2 ,'c|c|c'),stem = "tb4")
 ```
 
 <img src="tools/README/tb4.png" height="25%" width="25%" />
@@ -118,10 +117,17 @@ texPreview::texPreview(tabular(x3 + x3,'c|c|c|c|c|c'),stem = "tb6")
 
 <img src="tools/README/tb6.png" height="25%" width="25%" />
 
-## Reducing vectors
+### Reducing vectors
+
+(Not sure if this needs to be wrapped into a single function instead of
+having users apply reduce)
 
 ``` r
+purrr::reduce(k1,`+`)
+#> 1&2&3
+
 k <- purrr::reduce(k1,`+`) / purrr::reduce(k2,`+`)
+
 k
 #> 1&2&3\\
 #> 4&5&6
@@ -133,7 +139,7 @@ texPreview::texPreview(tabular(k,'ccc'),stem = "tb7")
 
 <img src="tools/README/tb7.png" height="25%" width="25%" />
 
-# Converting to a data.frame
+## Converting to a data.frame
 
 ``` r
 as.data.frame( x2 + x3 )
@@ -152,19 +158,84 @@ title <- c('param',sprintf('col%s',1:5))%>%
   purrr::map(as.tb)%>%
   purrr::reduce(`+`)
 
-texPreview::texPreview(tabular(title-(x2+x3) ,'|c|ccccc|'),stem = "tb8")
+texPreview::texPreview(tabular(title / (x2 + x3) ,'|c|ccccc|'),stem = "tb8")
 ```
 
 <img src="tools/README/tb8.png" height="25%" width="25%" />
 
-# Multicol/Multirow
+## Multicol/Multirow
 
 ``` r
-title <- as.tb('param')+multicol('vals',3,'c|')
+title <- as.tb('param') + multicol('vals',3,'c|')
 
-tab <- title-(multirow('$\\beta$',2) + k)
+tab <- title / (multirow('$\\beta$',2) + k)
 
 texPreview::texPreview(tabular(tab,'|cccc|'),stem='tb9')
 ```
 
 <img src="tools/README/tb9.png" height="25%" width="25%" />
+
+# Design/Specs
+
+Building blocks for TeX tables
+
+## Idea
+
+Assemble LaTeX tabular environments using simple operations.
+
+This would enable us to create any table layout with a consistent user
+API.
+
+Defining a new class of R element `tabular` that is the basic structure
+of the language.
+
+## Proposed Syntax
+
+Defining a new class of R element `tb` that is the basic structure of
+the language.
+
+### Joining elements
+
+Let `t1` and `t2` be two objects of class tb.
+
+|           |     |
+| :-------: | :-: |
+| `t1 + t2` | ⬛ ⬛ |
+
+|           |   |
+| :-------: | :-: |
+|           | ⬛ |
+| `t1 / t2` |   |
+|           | ⬛ |
+
+Using this language creating a table can be broken down to cell level
+
+`t1 =(`⬛`+`⬛`+`⬛`) / (`⬛`+`⬛`+`⬛`)`
+
+would be translated to
+
+    1 & 2 & 3 \\
+    4 & 5 & 6
+
+making their combination a natural extension
+
+`t1 + t1`
+
+would translate to
+
+    1 & 2 & 3 & 1 & 2 & 3 \\
+    4 & 5 & 6 & 1 & 2 & 3
+
+### Mutations
+
+  - multirow
+  - multicolumn
+
+### Aesthetics
+
+A set of aesthetic elements can be defined to control the table and cell
+level attributes, eg
+
+  - font: colour, size, face
+  - background colour
+  - grid: hline, cline
