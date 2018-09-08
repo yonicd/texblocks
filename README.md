@@ -1,7 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 [![Build Status](https://travis.metrumrg.com/yoni/texblocks.svg?token=tfrDuc83e84K9CqJKyCs&branch=master)](https://travis.metrumrg.com/yoni/texblocks)
-
 # Load Library
 
 ``` r
@@ -157,3 +156,13 @@ texPreview::texPreview(tabular(title-(x2+x3) ,'|c|ccccc|'),stem = "tb8")
 ```
 
 <img src="tools/README/tb8.png" height="25%" width="25%" />
+
+``` r
+title <- as.tb('param')+multicol('vals',3,'c|')
+
+tab <- title-(multirow('$\\beta$',2) + k)
+
+texPreview::texPreview(tabular(tab,'|cccc|'),stem='tb9')
+```
+
+<img src="tools/README/tb9.png" height="25%" width="25%" />

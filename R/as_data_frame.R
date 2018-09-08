@@ -15,17 +15,22 @@
 #' @import dplyr
 as.data.frame.tb <- function(x,...){
   
-  a <- gsub('_NEWROW_ \\\\hline','_NEW_ROW_LINE_',gsub('&','_NEWCOL_',gsub('\\n','',gsub('\\\\','_NEWROW_',x,fixed=TRUE))))
-  aa <- strsplit(a,'_NEWROW_')[[1]]
+  a <- gsub('_NEWROW_ \\\\hline','_NEWROW_LINE_',gsub('&','_NEWCOL_',gsub('\\n','',gsub('\\\\','_NEWROW_',x,fixed=TRUE))))
+  
+  aa <- strsplit(a,'_NEWROW_|_NEWROW_LINE_')[[1]]
   
   l <- aa%>%
     purrr::map(function(x) strsplit(x,split = '_NEWCOL_')[[1]])%>%
     purrr::transpose()
   
-  l%>%purrr::set_names(seq_along(l))%>%
+  ret <- l%>%purrr::set_names(seq_along(l))%>%
     dplyr::as_tibble()%>%
     dplyr::mutate_all(purrr::flatten_chr)%>%
     dplyr::mutate(r=1:n())
+  
+  attr(ret,'line') <- grepl('NEWROW_LINE',a)
+  
+  return(ret)
 }
 
 #' @export

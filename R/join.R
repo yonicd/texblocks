@@ -9,6 +9,8 @@ join <- function(e1,e2){
   e1 <- as.data.frame(e1)
   e2 <- as.data.frame(e2)
   
+  LINES <- lapply(list(e1,e2),attr,which = 'line')
+  
   e3 <- e1%>%
     dplyr::full_join(e2,by='r')%>%
     dplyr::select(-!!rlang::sym('r'))

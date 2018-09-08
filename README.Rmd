@@ -4,9 +4,7 @@ always_allow_html: yes
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 [![Build Status](https://travis.metrumrg.com/yoni/texblocks.svg?token=tfrDuc83e84K9CqJKyCs&branch=master)](https://travis.metrumrg.com/yoni/texblocks)
-
 ```{r, echo = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -151,6 +149,15 @@ title <- c('param',sprintf('col%s',1:5))%>%
   purrr::reduce(`+`)
 
 texPreview::texPreview(tabular(title-(x2+x3) ,'|c|ccccc|'),stem = "tb8")
+
+```
+
+```{r,echo=TRUE,results='asis'}
+title <- as.tb('param')+multicol('vals',3,'c|')
+
+tab <- title-(multirow('$\\beta$',2) + k)
+
+texPreview::texPreview(tabular(tab,'|cccc|'),stem='tb9')
 
 ```
 
