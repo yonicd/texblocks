@@ -4,12 +4,12 @@
 \alias{tabular}
 \title{TeX tabular object}
 \usage{
-tabular(x, align)
+tabular(x, align = NULL)
 }
 \arguments{
 \item{x}{texblock object}
 
-\item{align}{character, tabular alignment}
+\item{align}{character, tabular alignment, Default: NULL}
 }
 \value{
 texblock object

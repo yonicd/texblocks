@@ -27,10 +27,15 @@ multicol <- function(content,ncol,align = 'c'){
   as.tb(ret)
 }
 
-revmulticol <- function(x){
+revmulticol <- function(x,skip = FALSE){
+  if(skip)
+    return(x)
+  
   mc <- regmatches(x, gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', x))
+  
   if(length(mc[[1]])==0)
     return(x)
+  
   ns <- lapply(mc,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]])
   for(i in seq_along(ns)){
     x <- gsub(mc[[i]],
@@ -45,10 +50,16 @@ revmulticol <- function(x){
   
 }
 
-revmultirow <- function(x){
+revmultirow <- function(x,skip = FALSE){
+  
+  if(skip)
+    return(x)
+  
   mr <- regmatches(x, gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', x))
+  
   if(length(mr[[1]])==0)
     return(x)
+  
   ns <- lapply(mr,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]])
   for(i in seq_along(ns)){
     x <- gsub(mr[[i]],

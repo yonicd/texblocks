@@ -49,55 +49,6 @@
 #   as.tb(ret)
 # }
 
-#' @title Try to coerce an object into a texblock object
-#' @description coerce objects into a tb class object
-#' @param x object
-#' @return an object of class tb
-#' @export
-as.tb <- function(x){
-  UseMethod('as.tb')
-}
-
-#' @export
-print.tb <- function(x,...){
-  cat(x,sep='\n')
-}
-
-#' @export
-as.tb.default <- function(x){
-  class(x) <- 'tb'
-  return(x)
-}
-
-#' @import dplyr
-#' @importFrom tidyr gather
-#' @importFrom rlang !! sym
-#' @export
-as.tb.data.frame <- function(x){
-  
-  ret <- x%>%
-    dplyr::mutate(r=1:n())%>%
-    dplyr::mutate_if(is.character, dplyr::coalesce, ... = '')%>%
-    tidyr::gather(key='c',value='val',-!!rlang::sym('r'))%>%
-    dplyr::mutate_at(dplyr::vars(!!rlang::sym('r'),c),dplyr::funs(as.numeric))%>%
-    dplyr::arrange(!!rlang::sym('r'),c)%>%
-    dplyr::group_by(!!rlang::sym('r'))%>%
-    dplyr::summarise(val=paste0(!!rlang::sym('val'),collapse = '&'))%>%
-    dplyr::ungroup()%>%
-    dplyr::summarise(val=paste0(!!rlang::sym('val'),collapse = '\\\\\n'))%>%
-    dplyr::pull(!!rlang::sym('val'))
-  
-  as.tb(ret)
-}
-
-#' @title Is the object of class tb
-#' @export
-#' @description Is the object of class tb Very basic for many functions
-#'  in the package.
-#' @param x an object
-#' @return logical - is the object of class tb
-is.tb <- function(x) inherits(x, 'tb')
-
 #' @inherit purrr::'%>%'
 #' @importFrom purrr %>%
 #' @name %>%

@@ -1,6 +1,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!--
 [![Build Status](https://travis.metrumrg.com/yoni/texblocks.svg?token=tfrDuc83e84K9CqJKyCs&branch=master)](https://travis.metrumrg.com/yoni/texblocks)
+--->
+
 # texblocks
 
 ## Load Library
@@ -48,7 +52,14 @@ x/y
 ## Creating a tabular object
 
 ``` r
-texblocks::tabular( x1 ,align = 'c|c|c')
+x1%>%
+  texblocks::tabular()
+#> \begin{tabular}{ccc}
+#> $\alpha$&aaa&bbb
+#> \end{tabular}
+
+x1%>%
+  texblocks::tabular(align = 'c|c|c')
 #> \begin{tabular}{c|c|c}
 #> $\alpha$&aaa&bbb
 #> \end{tabular}
@@ -57,7 +68,9 @@ texblocks::tabular( x1 ,align = 'c|c|c')
 ## Compiling with texPreview
 
 ``` r
-texPreview::texPreview(tabular(x1 ,'c|c|c'),stem = "tb1")
+x1%>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb1")
 ```
 
 <img src="tools/README/tb1.png" height="25%" width="25%" />
@@ -73,11 +86,13 @@ x1 + x1
 x2 <- x1 / x1
 x2 + x2
 #> $\alpha$&aaa&bbb&$\alpha$&aaa&bbb\\
-#> $\alpha$&aaa&bbb&$\alpha$&aaa&bbb
+#> $\alpha$&aaa&bbb&$\alpha$&aaa&bbb\\
 ```
 
 ``` r
-texPreview::texPreview(tabular(x2 ,'c|c|c'),stem = "tb2")
+x2%>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb2")
 ```
 
 <img src="tools/README/tb2.png" height="25%" width="25%" />
@@ -90,29 +105,37 @@ x2 + x3
 #> $\alpha$&aaa&bbb&$\alpha$&aaa&bbb\\
 #> $\alpha$&aaa&bbb&$\alpha$&aaa&bbb\\
 #> &&&$\alpha$&aaa&bbb\\
-#> &&&$\alpha$&aaa&bbb
+#> &&&$\alpha$&aaa&bbb\\
 ```
 
 ``` r
-texPreview::texPreview(tabular(x3 ,'c|c|c'),stem = "tb3")
+x3%>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb3")
 ```
 
 <img src="tools/README/tb3.png" height="25%" width="25%" />
 
 ``` r
-texPreview::texPreview(tabular(x2 / x2 ,'c|c|c'),stem = "tb4")
+(x2 / x2)%>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb4")
 ```
 
 <img src="tools/README/tb4.png" height="25%" width="25%" />
 
 ``` r
-texPreview::texPreview(tabular(x2 + x3 ,'c|c|c|c|c|c'),stem = "tb5")
+(x2 + x3)%>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb5")
 ```
 
 <img src="tools/README/tb5.png" height="25%" width="25%" />
 
 ``` r
-texPreview::texPreview(tabular(x3 + x3,'c|c|c|c|c|c'),stem = "tb6")
+(x3 + x3)%>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb6")
 ```
 
 <img src="tools/README/tb6.png" height="25%" width="25%" />
@@ -134,7 +157,9 @@ k
 ```
 
 ``` r
-texPreview::texPreview(tabular(k,'ccc'),stem = "tb7")
+k %>%
+  texblocks::tabular()%>%
+  texPreview::texPreview(stem = "tb7")
 ```
 
 <img src="tools/README/tb7.png" height="25%" width="25%" />
@@ -158,10 +183,35 @@ title <- c('param',sprintf('col%s',1:5))%>%
   purrr::map(as.tb)%>%
   purrr::reduce(`+`)
 
-texPreview::texPreview(tabular(title / (x2 + x3) ,'|c|ccccc|'),stem = "tb8")
+title / (x2 + x3)%>%
+  tabular(align = '|c|ccccc|')%>%
+  texPreview::texPreview(stem = "tb8")
 ```
 
 <img src="tools/README/tb8.png" height="25%" width="25%" />
+
+## hline
+
+add hlines into the table using `tb_hline`
+
+``` r
+title / (x2 + x3)%>%
+  tb_hline()%>%
+  tabular(align = '|c|ccccc|')%>%
+  texPreview::texPreview(stem = "tb9")
+```
+
+<img src="tools/README/tb9.png" height="25%" width="25%" />
+
+``` r
+
+title / (x2 + x3)%>%
+  tb_hline(lines = c(2,3))%>%
+  tabular(align = '|c|ccccc|')%>%
+  texPreview::texPreview(stem = "tb10")
+```
+
+<img src="tools/README/tb10.png" height="25%" width="25%" />
 
 ## Multicol/Multirow
 
@@ -170,10 +220,12 @@ title <- as.tb('param') + multicol('vals',3,'c|')
 
 tab <- title / (multirow('$\\beta$',2) + k)
 
-texPreview::texPreview(tabular(tab,'|cccc|'),stem='tb9')
+tab%>%
+  tabular(align = '|cccc|')%>%
+  texPreview::texPreview(stem='tb11')
 ```
 
-<img src="tools/README/tb9.png" height="25%" width="25%" />
+<img src="tools/README/tb11.png" height="25%" width="25%" />
 
 # Design/Specs
 
