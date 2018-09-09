@@ -4,10 +4,10 @@
 #' @param lines lines to add hline, Default: NULL
 #' @return texblock
 #' @details if NULL then all lines have hline added to them
-#' @rdname tb_hline
+#' @rdname hline
 #' @export 
 
-tb_hline <- function(x,lines=NULL){
+hline <- function(x,lines=NULL){
 
   x1 <- as.data.frame(x)
   if(is.null(lines))

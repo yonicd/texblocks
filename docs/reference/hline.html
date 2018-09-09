@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>texblock operators — operators • texblocks</title>
+<title>add hlines — hline • texblocks</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="texblock operators — operators" />
+<meta property="og:title" content="add hlines — hline" />
 
-<meta property="og:description" content="combine texblock object into bigger texblock objects" />
+<meta property="og:description" content="add hlines to texblock object" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,66 +92,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>texblock operators</h1>
+    <h1>add hlines</h1>
     
-    <div class="hidden name"><code>texblocks_opts.Rd</code></div>
+    <div class="hidden name"><code>hline.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>combine texblock object into bigger texblock objects</p>
+    <p>add hlines to texblock object</p>
     
     </div>
 
-    <pre class="usage"># S3 method for tb
-+(e1, e2)
-
-# S3 method for tb
-/(e1, e2)</pre>
+    <pre class="usage"><span class='fu'>hline</span>(<span class='no'>x</span>, <span class='kw'>lines</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>e1</th>
-      <td><p>texblock object, right hand side object</p></td>
+      <th>x</th>
+      <td><p>texblock</p></td>
     </tr>
     <tr>
-      <th>e2</th>
-      <td><p>texblock object, left hand side object</p></td>
+      <th>lines</th>
+      <td><p>lines to add hline, Default: NULL</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>texblock object</p>
+    <p>texblock</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <ul>
-<li><p>: joins e1 to e2 horizontally</p></li>
-</ul>
-    <p>/ : joins e1 to e2 vertically with no hline betweet them</p><ul>
-<li><p>: joins e1 to e2 vertically with an hline between them</p></li>
-</ul>
+    <p>if NULL then all lines have hline added to them</p>
     
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='st'>'$\\alpha$'</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='st'>'cindy'</span>
-<span class='fu'>class</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='st'>'tb'</span>
-<span class='fu'>class</span>(<span class='no'>y</span>) <span class='kw'>&lt;-</span> <span class='st'>'tb'</span>
-<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>+<span class='no'>y</span>+<span class='no'>x</span>
-<span class='no'>x1</span></div><div class='output co'>#&gt; $\alpha$&amp;cindy&amp;$\alpha$</div><div class='input'><span class='no'>x1</span> + <span class='no'>x1</span></div><div class='output co'>#&gt; $\alpha$&amp;cindy&amp;$\alpha$&amp;$\alpha$&amp;cindy&amp;$\alpha$</div><div class='input'><span class='no'>x1</span> / <span class='no'>x1</span></div><div class='output co'>#&gt; $\alpha$&amp;cindy&amp;$\alpha$\\
-#&gt; $\alpha$&amp;cindy&amp;$\alpha$</div><div class='input'><span class='no'>x2</span> <span class='kw'>&lt;-</span> <span class='no'>x1</span> / <span class='no'>x1</span>
-<span class='no'>x2</span> + <span class='no'>x2</span></div><div class='output co'>#&gt; $\alpha$&amp;cindy&amp;$\alpha$&amp;$\alpha$&amp;cindy&amp;$\alpha$\\
-#&gt; $\alpha$&amp;cindy&amp;$\alpha$&amp;$\alpha$&amp;cindy&amp;$\alpha$\\</div><div class='input'><span class='no'>x3</span> <span class='kw'>&lt;-</span> <span class='no'>x2</span>/<span class='no'>x2</span>
-<span class='no'>x2</span> + <span class='no'>x3</span></div><div class='output co'>#&gt; $\alpha$&amp;cindy&amp;$\alpha$&amp;$\alpha$&amp;cindy&amp;$\alpha$\\
-#&gt; $\alpha$&amp;cindy&amp;$\alpha$&amp;$\alpha$&amp;cindy&amp;$\alpha$\\
-#&gt; &amp;&amp;&amp;$\alpha$&amp;cindy&amp;$\alpha$\\
-#&gt; &amp;&amp;&amp;$\alpha$&amp;cindy&amp;$\alpha$\\</div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -161,9 +136,7 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
+          </ul>
 
   </div>
 </div>

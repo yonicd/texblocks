@@ -192,11 +192,11 @@ title / (x2 + x3)%>%
 
 ## hline
 
-add hlines into the table using `tb_hline`
+add hlines into the table using `hline`
 
 ``` r
 title / (x2 + x3)%>%
-  tb_hline()%>%
+  hline()%>%
   tabular(align = '|c|ccccc|')%>%
   texPreview::texPreview(stem = "tb9")
 ```
@@ -206,7 +206,7 @@ title / (x2 + x3)%>%
 ``` r
 
 title / (x2 + x3)%>%
-  tb_hline(lines = c(2,3))%>%
+  hline(lines = c(2,3))%>%
   tabular(align = '|c|ccccc|')%>%
   texPreview::texPreview(stem = "tb10")
 ```
