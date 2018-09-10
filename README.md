@@ -27,8 +27,38 @@ z <- as.tb('bbb')
 ### Vectors
 
 ``` r
+k0 <- rep(x,3)
+k0
+#> [[1]]
+#> $\alpha$
+#> 
+#> [[2]]
+#> $\alpha$
+#> 
+#> [[3]]
+#> $\alpha$
+
 k1 <- lapply(1:3,as.tb)
+k1
+#> [[1]]
+#> 1
+#> 
+#> [[2]]
+#> 2
+#> 
+#> [[3]]
+#> 3
+
 k2 <- lapply(4:6,as.tb)
+k2
+#> [[1]]
+#> 4
+#> 
+#> [[2]]
+#> 5
+#> 
+#> [[3]]
+#> 6
 ```
 
 ## Operators
@@ -192,7 +222,11 @@ title / (x2 + x3)%>%
 
 ## hline
 
-add hlines into the table using `hline`
+Add hlines into the table using `hline`.
+
+hline expects the lines to add hline to, where 0 is a possible value for
+lines which a line will be added to the top of the table. When lines are
+left empty then all the lines will have hline attached to them.
 
 ``` r
 title / (x2 + x3)%>%
@@ -213,6 +247,54 @@ title / (x2 + x3)%>%
 
 <img src="tools/README/tb10.png" height="25%" width="25%" />
 
+## cline
+
+Add clines into the table using `hline`.
+
+Define where to put in the clines with a `spec` object. The spec can be
+either a list or data.frame either of which containing the elements
+`line,i,j`, where line is the line to apply the cline, i,j is the
+starting end ending columns respectivley.
+
+cline expects the lines to add hline to, where 0 is a possible value for
+lines which a line will be added to the top of the table.
+
+``` r
+l <- list(c(line=1,i=2,j=3),c(line=2,i=1,j=2),c(line=3,i=2,j=3))
+d <- data.frame(line=1:3,i=c(1,2,3),j=c(1,2,3))
+```
+
+``` r
+purrr::reduce(rep(x1,4),`/`)%>%
+  cline(l)%>%
+  tabular()%>%
+  texPreview::texPreview(stem = "tb11")
+```
+
+<img src="tools/README/tb11.png" height="25%" width="25%" />
+
+``` r
+
+purrr::reduce(rep(x1,4),`/`)%>%
+  cline(d)%>%
+  tabular()%>%
+  texPreview::texPreview(stem = "tb12")
+```
+
+<img src="tools/README/tb12.png" height="25%" width="25%" />
+
+you can also combine hline and cline in a pipe
+
+``` r
+purrr::reduce(rep(x1,4),`/`)%>%
+  cline(d)%>%
+  hline(c(0,4))%>%
+  tabular()%>%
+  texPreview::texPreview(stem = "tb13")
+```
+
+<img src="tools/README/tb13.png" height="25%" width="25%" />
+
 ## Multicol/Multirow
 
 ``` r
@@ -222,10 +304,10 @@ tab <- title / (multirow('$\\beta$',2) + k)
 
 tab%>%
   tabular(align = '|cccc|')%>%
-  texPreview::texPreview(stem='tb11')
+  texPreview::texPreview(stem='tb14')
 ```
 
-<img src="tools/README/tb11.png" height="25%" width="25%" />
+<img src="tools/README/tb14.png" height="25%" width="25%" />
 
 # Design/Specs
 

@@ -38,22 +38,47 @@ as.tb.data.frame <- function(x){
   ret <- ret%>%
     mutate(line_end=line_end)
     
-  if(!is.null(attr(x,'HLINE'))){
-    ret$line_end[attr(x,'HLINE')] <- gsub(line_end,
+  if(!is.null(attr(x,'HLINES'))){
+    ret$line_end[attr(x,'HLINES')] <- gsub(line_end,
                                           '\\\\ \\hline',
-                                          ret$line_end[attr(x,'HLINE')],
+                                          ret$line_end[attr(x,'HLINES')],
                                           fixed = TRUE)
     }
   
+  if(!is.null(attr(x,'CLINES'))){
+    
+    cl <- attr(x,'CLINES')
+    
+    for(i in seq_along(cl)){
+      ret$line_end[cl[[i]]['line']] <- gsub(line_end,sprintf('\\\\ \\cline{%s-%s}',
+                                                        cl[[i]]['i'],cl[[i]]['j']),
+                                       ret$line_end[cl[[i]]['line']],
+                                       fixed = TRUE)
+    }
+
+  }
+  
    ret <- ret%>%
-     dplyr::mutate(val = sprintf('%s%s',val,line_end))%>%
+     dplyr::mutate(val = sprintf('%s%s',!!rlang::sym('val'),line_end))%>%
       dplyr::summarise(val=paste0(!!rlang::sym('val'),
                                 collapse = '\n'))%>%
       dplyr::pull(!!rlang::sym('val'))
   
-   if(!is.null(attr(x,'HLINE'))){
-     if(0%in%attr(x,'HLINE')){
-       ret <- sprintf('\\hline %s',ret)
+   if(!is.null(attr(x,'HLINES'))){
+     if(0%in%attr(x,'HLINES')){
+       ret <- sprintf('\\hline\n%s',ret)
+     }
+   }
+   
+   if(!is.null(attr(x,'CLINES'))){
+     
+     cl <- attr(x,'CLINES')
+     
+     cl_idx <- sapply(cl,'[[',1)
+     cl_idx0 <- which(cl_idx==0)
+     
+     if(length(cl_idx0)>0){
+       ret <- sprintf('\\cline{%s-%s}\n%s',cl[[cl_idx0]]['i'],cl[[cl_idx0]]['j'],ret)
      }
    }
    
@@ -81,6 +106,16 @@ as.data.frame.tb <- function(x,...){
   if(length(l)==0)
     l$skip <- FALSE
   
+  hlines <- find_hline(x)
+  clines <- find_cline(x)
+  
+  if(!is.null(hlines)){
+    x <- strip_hline(x)
+  }
+  
+  if(!is.null(clines)){
+    x <- strip_cline(x)
+  }
   
   l <- x%>%
     parse_tb(skip=l$skip)%>%
@@ -91,6 +126,14 @@ as.data.frame.tb <- function(x,...){
     purrr::set_names(seq_along(l))%>%
     dplyr::as_tibble()%>%
     dplyr::mutate_all(purrr::flatten_chr)
+  
+  if(!is.null(hlines)){
+    attr(ret,'HLINES') <- hlines
+  }
+  
+  if(!is.null(clines)){
+    attr(ret,'CLINES') <- clines
+  }
   
   return(ret)
 }
@@ -132,3 +175,9 @@ print.tb <- function(x,...){
 #' @param x an object
 #' @return logical - is the object of class tb
 is.tb <- function(x) inherits(x, 'tb')
+
+#' @export
+rep.tb <- function(x,...){
+  y <- NextMethod()
+  lapply(y,as.tb)
+}
