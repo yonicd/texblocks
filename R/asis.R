@@ -13,6 +13,18 @@ as.tb.default <- function(x){
   return(x)
 }
 
+#' @export
+as.tb.matrix <- function(x,...){
+  as.tb(as.data.frame(x))
+}
+
+#' @export
+as.tb.dgCMatrix <- function(x,...){
+  x <- as.matrix(x)
+  x[which(x==0,arr.ind = TRUE)] <- ' '
+  as.tb(x)
+}
+
 #' @import dplyr
 #' @importFrom tidyr gather
 #' @importFrom rlang !! sym
@@ -24,6 +36,7 @@ as.tb.data.frame <- function(x){
   ah <- attr(x,'HLINE')
   ac <- attr(x,'CLINE')
   
+  suppressWarnings(
   ret <- x%>%
     dplyr::mutate(r=1:n())%>%
     dplyr::mutate_if(is.character, dplyr::coalesce, ... = '')%>%
@@ -33,6 +46,7 @@ as.tb.data.frame <- function(x){
     dplyr::group_by(!!rlang::sym('r'))%>%
     dplyr::summarise(val=paste0(!!rlang::sym('val'),collapse = '&'))%>%
     dplyr::ungroup()
+  )
   
   # multirows
   

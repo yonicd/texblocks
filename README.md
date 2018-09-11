@@ -170,6 +170,19 @@ x3%>%
 
 <img src="tools/README/tb6.png" height="25%" width="25%" />
 
+``` r
+
+title <- c('param',sprintf('col%s',1:5))%>%
+  purrr::map(as.tb)%>%
+  purrr::reduce(`+`)
+
+title / (x2 + x3)%>%
+  tabular(align = '|c|ccccc|')%>%
+  texPreview::texPreview(stem = "tb8")
+```
+
+<img src="tools/README/tb8.png" height="25%" width="25%" />
+
 ### Reducing vectors
 
 (Not sure if this needs to be wrapped into a single function instead of
@@ -194,7 +207,45 @@ k %>%
 
 <img src="tools/README/tb7.png" height="25%" width="25%" />
 
-## Converting to a data.frame
+## as.tb
+
+``` r
+
+#data.frame
+
+iris%>%
+  head(5)%>%
+  as.tb()%>%
+  tabular()%>%
+  texPreview(stem='tb16')
+```
+
+<img src="tools/README/tb16.png" height="25%" width="25%" />
+
+``` r
+
+#matrix
+
+matrix(0,3,3)%>%
+  as.tb()%>%
+  tabular()%>%
+  texPreview(stem='tb17')
+```
+
+<img src="tools/README/tb17.png" height="25%" width="25%" />
+
+``` r
+
+#sparse matrix
+
+Matrix::bdiag(Matrix::Diagonal(2), matrix(1:3, 3,4), diag(3:2))%>%
+  as.tb()%>%tabular()%>%
+  texPreview(stem='tb18')
+```
+
+<img src="tools/README/tb18.png" height="25%" width="25%" />
+
+## as.data.frame
 
 ``` r
 as.data.frame( x2 + x3 )
@@ -206,19 +257,6 @@ as.data.frame( x2 + x3 )
 #> 3 ""          ""    ""    "$\\alpha$" aaa   bbb  
 #> 4 ""          ""    ""    "$\\alpha$" aaa   bbb
 ```
-
-``` r
-
-title <- c('param',sprintf('col%s',1:5))%>%
-  purrr::map(as.tb)%>%
-  purrr::reduce(`+`)
-
-title / (x2 + x3)%>%
-  tabular(align = '|c|ccccc|')%>%
-  texPreview::texPreview(stem = "tb8")
-```
-
-<img src="tools/README/tb8.png" height="25%" width="25%" />
 
 ## hline
 

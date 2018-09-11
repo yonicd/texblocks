@@ -55,3 +55,11 @@
 #' @rdname pipe
 #' @export
 NULL
+
+#' @export
+t.tb <- function (x) 
+{
+  x <- as.data.frame(x)
+  xt <- as.data.frame(t(x))
+  as.tb(xt)
+}
