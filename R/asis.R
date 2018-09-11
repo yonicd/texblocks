@@ -19,6 +19,11 @@ as.tb.default <- function(x){
 #' @export
 as.tb.data.frame <- function(x){
 
+  mr <- attr(x,'MULTIROW')
+  mc <- attr(x,'MULTICOL')
+  ah <- attr(x,'HLINE')
+  ac <- attr(x,'CLINE')
+  
   ret <- x%>%
     dplyr::mutate(r=1:n())%>%
     dplyr::mutate_if(is.character, dplyr::coalesce, ... = '')%>%
@@ -29,6 +34,35 @@ as.tb.data.frame <- function(x){
     dplyr::summarise(val=paste0(!!rlang::sym('val'),collapse = '&'))%>%
     dplyr::ungroup()
   
+  # multirows
+  
+  if(!is.null(mr)){
+    if(nrow(mr)>0){
+      for(i in 1:nrow(mr)){
+        nr <- as.numeric(mr$row[i])
+        ret$val[nr] <- gsub(mr$new_val[i],
+                                 mr$old_val[i],
+                                 ret$val[nr],
+                                 fixed = TRUE)    
+      }
+    }
+  }
+  
+  
+  # multicols
+
+  if(!is.null(mc)){
+    if(nrow(mc)>0){
+      for(i in 1:nrow(mc)){
+        nr <- as.numeric(mc$row[i])
+        ret$val[nr] <- gsub(sprintf('%s%s',mc$new_val[i],strrep('& ',mc$ncol[i])),
+                                   mc$old_val[1],
+                                   ret$val[nr],
+                                   fixed = TRUE)
+      }
+    }
+  }
+  
   if(nrow(ret)==1){
     line_end <- ''
   }else{
@@ -38,21 +72,19 @@ as.tb.data.frame <- function(x){
   ret <- ret%>%
     mutate(line_end=line_end)
     
-  if(!is.null(attr(x,'HLINES'))){
-    ret$line_end[attr(x,'HLINES')] <- gsub(line_end,
-                                          '\\\\ \\hline',
-                                          ret$line_end[attr(x,'HLINES')],
-                                          fixed = TRUE)
+  if(!is.null(ah)){
+    ret$line_end[ah] <- gsub(line_end,
+                             '\\\\ \\hline',
+                             ret$line_end[ah],
+                             fixed = TRUE)
     }
   
-  if(!is.null(attr(x,'CLINES'))){
+  if(!is.null(ac)){
     
-    cl <- attr(x,'CLINES')
-    
-    for(i in seq_along(cl)){
-      ret$line_end[cl[[i]]['line']] <- gsub(line_end,sprintf('\\\\ \\cline{%s-%s}',
-                                                        cl[[i]]['i'],cl[[i]]['j']),
-                                       ret$line_end[cl[[i]]['line']],
+    for(i in seq_along(ac)){
+      ret$line_end[ac[[i]]['line']] <- gsub(line_end,sprintf('\\\\ \\cline{%s-%s}',
+                                                        ac[[i]]['i'],ac[[i]]['j']),
+                                       ret$line_end[ac[[i]]['line']],
                                        fixed = TRUE)
     }
 
@@ -64,21 +96,19 @@ as.tb.data.frame <- function(x){
                                 collapse = '\n'))%>%
       dplyr::pull(!!rlang::sym('val'))
   
-   if(!is.null(attr(x,'HLINES'))){
-     if(0%in%attr(x,'HLINES')){
+   if(!is.null(ah)){
+     if(0%in%ah){
        ret <- sprintf('\\hline\n%s',ret)
      }
    }
    
-   if(!is.null(attr(x,'CLINES'))){
+   if(!is.null(ac)){
+
+     ac_idx <- sapply(ac,'[[',1)
+     ac_idx0 <- which(ac_idx==0)
      
-     cl <- attr(x,'CLINES')
-     
-     cl_idx <- sapply(cl,'[[',1)
-     cl_idx0 <- which(cl_idx==0)
-     
-     if(length(cl_idx0)>0){
-       ret <- sprintf('\\cline{%s-%s}\n%s',cl[[cl_idx0]]['i'],cl[[cl_idx0]]['j'],ret)
+     if(length(ac_idx0)>0){
+       ret <- sprintf('\\cline{%s-%s}\n%s',ac[[ac_idx0]]['i'],ac[[ac_idx0]]['j'],ret)
      }
    }
    
@@ -102,23 +132,12 @@ as.tb.data.frame <- function(x){
 #' @import dplyr
 as.data.frame.tb <- function(x,...){
 
-  l <- list(...)
-  if(length(l)==0)
-    l$skip <- FALSE
+  attr_env <- new.env()
   
-  hlines <- find_hline(x)
-  clines <- find_cline(x)
-  
-  if(!is.null(hlines)){
-    x <- strip_hline(x)
-  }
-  
-  if(!is.null(clines)){
-    x <- strip_cline(x)
-  }
+  x <- strip(x,attr_env)
   
   l <- x%>%
-    parse_tb(skip=l$skip)%>%
+    parse_tb()%>%
     purrr::map(function(x) strsplit(x,split = '_NEWCOL_')[[1]])%>%
     purrr::transpose()
   
@@ -127,23 +146,14 @@ as.data.frame.tb <- function(x,...){
     dplyr::as_tibble()%>%
     dplyr::mutate_all(purrr::flatten_chr)
   
-  if(!is.null(hlines)){
-    attr(ret,'HLINES') <- hlines
-  }
-  
-  if(!is.null(clines)){
-    attr(ret,'CLINES') <- clines
-  }
+  ret <- ret%>%
+    restore(attr_env)
   
   return(ret)
 }
 
 parse_tb <- function(x,skip){
-  
-  x <- x%>%
-    revmultirow(skip)%>%
-    revmulticol(skip)
-  
+
   y <- gsub('&',
             '_NEWCOL_',
             gsub('\\n',

@@ -27,9 +27,7 @@ multicol <- function(content,ncol,align = 'c'){
   as.tb(ret)
 }
 
-revmulticol <- function(x,skip = FALSE){
-  if(skip)
-    return(x)
+strip_multicol <- function(x){
   
   mc <- regmatches(x, gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', x))
   
@@ -50,11 +48,8 @@ revmulticol <- function(x,skip = FALSE){
   
 }
 
-revmultirow <- function(x,skip = FALSE){
-  
-  if(skip)
-    return(x)
-  
+strip_multirow <- function(x){
+
   mr <- regmatches(x, gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', x))
   
   if(length(mr[[1]])==0)
@@ -68,4 +63,65 @@ revmultirow <- function(x,skip = FALSE){
               fixed = TRUE)  
   }
   x
+}
+
+find_multicol <- function(x){
+  x <- as.character(x)
+  sx <- strsplit(x,'\\n')[[1]]
+  idx <- gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', sx)
+  
+  if(identical(idx, integer(0)))
+    return(NULL)
+  
+  midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
+  sidx <- setNames(midx,seq_along(sx))
+  found <- sapply(sidx,function(x)!identical(x,character(0)))
+  sidy <- sidx[found]
+  ns <- lapply(sidy,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]]) 
+  
+  ret <- lapply(names(ns),function(nm){
+    this <- strsplit(sx[as.numeric(nm)],'&')[[1]]
+    start_col <- grep(sidy[[nm]],this,fixed = TRUE)
+    c(row = as.numeric(nm),
+      col = start_col,
+      ncol = as.numeric(ns[[nm]][2])-1,
+      new_val = ns[[nm]][4],
+      old_val = sidy[[nm]]
+      # setNames(ns[[nm]],
+      #          c('command','ncol','align','value')
+      #          )
+      ) 
+  })
+  
+  data.frame(do.call('rbind',ret),stringsAsFactors = FALSE)
+}
+
+find_multirow <- function(x){
+  x <- as.character(x)
+  sx <- strsplit(x,'\\n')[[1]]
+  idx <- gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', sx)
+  
+  if(identical(idx, integer(0)))
+    return(NULL)
+  
+  midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
+  sidx <- setNames(midx,seq_along(sx))
+  found <- sapply(sidx,function(x)!identical(x,character(0)))
+  sidy <- sidx[found]
+  ns <- lapply(sidy,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]]) 
+  
+  ret <- lapply(names(ns),function(nm){
+    this <- strsplit(sx[as.numeric(nm)],'&')[[1]]
+    start_col <- grep(sidy[[nm]],this,fixed = TRUE)
+    c(row = as.numeric(nm),
+      col = start_col,
+      new_val = ns[[nm]][4],
+      old_val = sidy[[nm]]
+      # setNames(ns[[nm]],
+      #          c('command','nrow','width','value')
+      # )
+    )
+  })
+  
+  data.frame(do.call('rbind',ret),stringsAsFactors = FALSE)
 }

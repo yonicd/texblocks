@@ -287,8 +287,8 @@ you can also combine hline and cline in a pipe
 
 ``` r
 purrr::reduce(rep(x1,4),`/`)%>%
-  cline(d)%>%
   hline(c(0,4))%>%
+  cline(d)%>%
   tabular()%>%
   texPreview::texPreview(stem = "tb13")
 ```
@@ -308,6 +308,30 @@ tab%>%
 ```
 
 <img src="tools/README/tb14.png" height="25%" width="25%" />
+
+## Putting it all Together
+
+``` r
+tab%>%
+  hline(c(0,3))%>%
+  cline(data.frame(line=1,i=2,j=4))%>%
+  tabular(align = '|c|ccc|')%>%
+  texPreview::texPreview(stem='tb14')
+```
+
+<img src="tools/README/tb14.png" height="25%" width="25%" />
+
+``` r
+
+title <- as.tb('param') + multicol('vals',3,'c')
+tab <- purrr::map(1:4,function(x) multirow(sprintf('$\\beta_%s$',x),2) +k )
+
+(title / purrr::reduce(tab,`/`))%>%
+  tabular()%>%
+  texPreview::texPreview(stem='tb15')
+```
+
+<img src="tools/README/tb15.png" height="25%" width="25%" />
 
 # Design/Specs
 
