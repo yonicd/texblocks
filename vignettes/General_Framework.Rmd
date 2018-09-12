@@ -1,0 +1,84 @@
+---
+title: "Design and Specs"
+author: "Jonathan Sidi"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Design/Specs
+
+Building blocks for TeX tables
+
+## Idea
+
+Assemble LaTeX tabular environments using simple operations.
+
+This would enable us to create any table layout with a consistent user API.
+
+Defining a new class of R element `tabular` that is the basic structure of the language.
+
+## Proposed Syntax
+
+Defining a new class of R element `tb` that is the basic structure of the language.
+
+### Joining elements
+
+Let `t1` and `t2` be two objects of class tb.
+
+|  |   |
+|:--:|:--:|
+| `t1 + t2`  |`r '\u2b1b'` `r '\u2b1b'`|
+
+
+|  |   |
+|:--:|:--:|
+||`r '\u2b1b'`|
+|`t1 / t2`||
+||`r '\u2b1b'`|
+
+
+Using this language creating a table can be broken down to cell level
+
+`t1 =(``r '\u2b1b'`` + ``r '\u2b1b'`` + ``r '\u2b1b'``) / (``r '\u2b1b'`` + ``r '\u2b1b'`` + ``r '\u2b1b'``)`
+
+would be translated to 
+
+```
+1 & 2 & 3 \\
+4 & 5 & 6
+```
+
+making their combination a natural extension
+
+`t1 + t1`
+
+would translate to 
+
+```
+1 & 2 & 3 & 1 & 2 & 3 \\
+4 & 5 & 6 & 1 & 2 & 3
+```
+
+### Mutations
+
+  - multirow
+  - multicolumn
+  
+### Aesthetics
+
+A set of aesthetic elements can be defined to control the table and cell level attributes, eg
+
+  - font: colour, size, face
+  - background colour
+  - grid: hline, cline

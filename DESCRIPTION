@@ -13,5 +13,7 @@ BugReports: https://ghe.metrumrg.com/yoni/texblocks/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    Matrix,
+    texPreview
 VignetteBuilder: knitr
