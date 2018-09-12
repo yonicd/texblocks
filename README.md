@@ -29,9 +29,6 @@ Assemble LaTeX tabular environments using simple operations.
 This would enable us to create any table layout with a consistent user
 API.
 
-Defining a new class of R element `tabular` that is the basic structure
-of the language.
-
 ## Proposed Syntax
 
 For a rendered vingette see
