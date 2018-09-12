@@ -1,9 +1,9 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<!--
-[![Build Status](https://travis.metrumrg.com/yoni/texblocks.svg?token=tfrDuc83e84K9CqJKyCs&branch=master)](https://travis.metrumrg.com/yoni/texblocks)
---->
+[![Build
+Status](https://travis-ci.org/metrumresearchgroup/texblocks.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texblocks)
+![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)
 
 # texblocks
 

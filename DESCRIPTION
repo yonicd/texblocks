@@ -8,8 +8,8 @@ Imports: purrr,dplyr,tidyr,rlang
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://ghe.metrumrg.com/yoni/texblocks
-BugReports: https://ghe.metrumrg.com/yoni/texblocks/issues
+URL: https://github.com/metrumresearchgroup/texblocks
+BugReports: https://github.com/metrumresearchgroup/texblocks/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 Suggests: knitr,
