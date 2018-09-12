@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 
 Lets be frank, it is not fun to create TeX tables from scratch.
 
-![](https://goo.gl/DM4TVT)
+![](tools/README/readme.gif)
 
 In `R` there are a few ways to get around this task by converting a data.frame into latex tables via [huxtable](https://github.com/hughjonesd/huxtable), [pixiedust](https://github.com/nutterb/pixiedust) and [knitr](https://github.com/yihui/knitr). 
 

@@ -3,7 +3,5 @@
 ^_pkgdown\.yml$
 ^docs$
 README.Rmd
-README.pdf
-Syntax.Rmd
-Syntax.pdf
 ^\.travis\.yml$
+misc
