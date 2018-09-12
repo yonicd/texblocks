@@ -33,17 +33,8 @@ tex_opts$set(fileDir = 'figures',returnType = 'html',
 tex_opts$append(list(cleanup='tex'))
 ```
 
-```{r}
-x <- as.tb('$\\alpha$')
-y <- as.tb('aaa')
-z <- as.tb('bbb')
-```
 
 ```{r}
-x1 <- x + y + z
-x2 <- x1 / x1 # 2x3 object
-x3 <- x2 / x2 # 4x3 object
-
 k1 <- lapply(1:3,as.tb)
 k2 <- lapply(4:6,as.tb)
 
