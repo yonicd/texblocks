@@ -9,7 +9,7 @@ Status](https://travis-ci.org/metrumresearchgroup/texblocks.svg?branch=master)](
 
 Lets be frank, it is not fun to create TeX tables from scratch.
 
-![](https://media.giphy.com/media/cz314BBYiCkiA/giphy.gif)
+![](https://goo.gl/DM4TVT)
 
 In `R` there are a few ways to get around this task by converting a
 data.frame into latex tables via

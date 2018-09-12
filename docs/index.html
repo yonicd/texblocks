@@ -93,285 +93,10 @@
 <div id="texblocks" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#texblocks" class="anchor"></a>texblocks</h1></div>
-<div id="load-library" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load-library" class="anchor"></a>Load Library</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(texblocks)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(texPreview)</a></code></pre></div>
-</div>
-<div id="initialize-basic-texblocks" class="section level2">
-<h2 class="hasAnchor">
-<a href="#initialize-basic-texblocks" class="anchor"></a>Initialize basic texblocks</h2>
-<div id="single-blocks" class="section level3">
-<h3 class="hasAnchor">
-<a href="#single-blocks" class="anchor"></a>Single blocks</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">alpha$'</span>)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>(<span class="st">'aaa'</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">z &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>(<span class="st">'bbb'</span>)</a></code></pre></div>
-</div>
-<div id="vectors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#vectors" class="anchor"></a>Vectors</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">k0 &lt;-<span class="st"> </span><span class="kw">rep</span>(x,<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">k0</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; $\alpha$</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; $\alpha$</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; $\alpha$</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12">k1 &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,as.tb)</a>
-<a class="sourceLine" id="cb3-13" data-line-number="13">k1</a>
-<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; 1</span></a>
-<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt; 2</span></a>
-<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; 3</span></a>
-<a class="sourceLine" id="cb3-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb3-23" data-line-number="23">k2 &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,as.tb)</a>
-<a class="sourceLine" id="cb3-24" data-line-number="24">k2</a>
-<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; [[1]]</span></a>
-<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; 4</span></a>
-<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; [[2]]</span></a>
-<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">#&gt; 5</span></a>
-<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="co">#&gt; [[3]]</span></a>
-<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="co">#&gt; 6</span></a></code></pre></div>
-</div>
-</div>
-<div id="operators" class="section level2">
-<h2 class="hasAnchor">
-<a href="#operators" class="anchor"></a>Operators</h2>
-<div id="horizontal-concatentation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#horizontal-concatentation" class="anchor"></a>Horizontal Concatentation</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x1 &lt;-<span class="st"> </span>x<span class="op">+</span>y<span class="op">+</span>z</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">x1</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb</span></a></code></pre></div>
-</div>
-<div id="vertical-concatentation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#vertical-concatentation" class="anchor"></a>Vertical Concatentation</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">x<span class="op">/</span>y</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; $\alpha$\\</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; aaa</span></a></code></pre></div>
-</div>
-</div>
-<div id="creating-a-tabular-object" class="section level2">
-<h2 class="hasAnchor">
-<a href="#creating-a-tabular-object" class="anchor"></a>Creating a tabular object</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">x1<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; \begin{tabular}{ccc}</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb</span></a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; \end{tabular}</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">x1<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>(<span class="dt">align =</span> <span class="st">'c|c|c'</span>)</a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; \begin{tabular}{c|c|c}</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt; \end{tabular}</span></a></code></pre></div>
-</div>
-<div id="compiling-with-texpreview" class="section level2">
-<h2 class="hasAnchor">
-<a href="#compiling-with-texpreview" class="anchor"></a>Compiling with texPreview</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x1<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb1"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb1.png" height="25%" width="25%"></p>
-<div id="combining-blocks" class="section level3">
-<h3 class="hasAnchor">
-<a href="#combining-blocks" class="anchor"></a>Combining blocks</h3>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">x1 <span class="op">+</span><span class="st"> </span>x1</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb&amp;$\alpha$&amp;aaa&amp;bbb</span></a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">x2 &lt;-<span class="st"> </span>x1 <span class="op">/</span><span class="st"> </span>x1</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">x2 <span class="op">+</span><span class="st"> </span>x2</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb&amp;$\alpha$&amp;aaa&amp;bbb\\</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb&amp;$\alpha$&amp;aaa&amp;bbb\\</span></a></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">x2<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb2"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb2.png" height="25%" width="25%"></p>
-</div>
-<div id="unequal-blocks" class="section level3">
-<h3 class="hasAnchor">
-<a href="#unequal-blocks" class="anchor"></a>Unequal blocks</h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">x3 &lt;-<span class="st"> </span>x2<span class="op">/</span>x2</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">x2 <span class="op">+</span><span class="st"> </span>x3</a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb&amp;$\alpha$&amp;aaa&amp;bbb\\</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; $\alpha$&amp;aaa&amp;bbb&amp;$\alpha$&amp;aaa&amp;bbb\\</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; &amp;&amp;&amp;$\alpha$&amp;aaa&amp;bbb\\</span></a>
-<a class="sourceLine" id="cb11-6" data-line-number="6"><span class="co">#&gt; &amp;&amp;&amp;$\alpha$&amp;aaa&amp;bbb\\</span></a></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">x3<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb3"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb3.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">(x2 <span class="op">/</span><span class="st"> </span>x2)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb4"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb4.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">(x2 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb5"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb5.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">(x3 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb6"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb6.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">title &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'param'</span>,<span class="kw">sprintf</span>(<span class="st">'col%s'</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(as.tb)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb16-6" data-line-number="6">title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>(<span class="dt">align =</span> <span class="st">'|c|ccccc|'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb8"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb8.png" height="25%" width="25%"></p>
-</div>
-<div id="reducing-vectors" class="section level3">
-<h3 class="hasAnchor">
-<a href="#reducing-vectors" class="anchor"></a>Reducing vectors</h3>
-<p>(Not sure if this needs to be wrapped into a single function instead of having users apply reduce)</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(k1,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="co">#&gt; 1&amp;2&amp;3</span></a>
-<a class="sourceLine" id="cb17-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb17-4" data-line-number="4">k &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(k1,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>) <span class="op">/</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(k2,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a>
-<a class="sourceLine" id="cb17-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb17-6" data-line-number="6">k</a>
-<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#&gt; 1&amp;2&amp;3\\</span></a>
-<a class="sourceLine" id="cb17-8" data-line-number="8"><span class="co">#&gt; 4&amp;5&amp;6</span></a></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">k <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb7"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb7.png" height="25%" width="25%"></p>
-</div>
-</div>
-<div id="as-tb" class="section level2">
-<h2 class="hasAnchor">
-<a href="#as-tb" class="anchor"></a>as.tb</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"><span class="co">#data.frame</span></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4">iris<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb19-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem=</span><span class="st">'tb16'</span>)</a></code></pre></div>
-<p><img src="tools/README/tb16.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="co">#matrix</span></a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">3</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb20-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem=</span><span class="st">'tb17'</span>)</a></code></pre></div>
-<p><img src="tools/README/tb17.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="co">#sparse matrix</span></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4">Matrix<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Matrix/topics/bdiag">bdiag</a></span>(Matrix<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Matrix/topics/Diagonal">Diagonal</a></span>(<span class="dv">2</span>), <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">3</span>,<span class="dv">4</span>), <span class="kw">diag</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">2</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>()<span class="op">%&gt;%</span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem=</span><span class="st">'tb18'</span>)</a></code></pre></div>
-<p><img src="tools/README/tb18.png" height="25%" width="25%"></p>
-</div>
-<div id="as-data-frame" class="section level2">
-<h2 class="hasAnchor">
-<a href="#as-data-frame" class="anchor"></a>as.data.frame</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw">as.data.frame</span>( x2 <span class="op">+</span><span class="st"> </span>x3 )</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="co">#&gt; # A tibble: 4 x 6</span></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="co">#&gt;   `1`         `2`   `3`   `4`         `5`   `6`  </span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co">#&gt;   &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="co">#&gt; 1 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb  </span></a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="co">#&gt; 2 "$\\alpha$" aaa   bbb   "$\\alpha$" aaa   bbb  </span></a>
-<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="co">#&gt; 3 ""          ""    ""    "$\\alpha$" aaa   bbb  </span></a>
-<a class="sourceLine" id="cb22-8" data-line-number="8"><span class="co">#&gt; 4 ""          ""    ""    "$\\alpha$" aaa   bbb</span></a></code></pre></div>
-</div>
-<div id="hline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#hline" class="anchor"></a>hline</h2>
-<p>Add hlines into the table using <code>hline</code>.</p>
-<p>hline expects the lines to add hline to, where 0 is a possible value for lines which a line will be added to the top of the table. When lines are left empty then all the lines will have hline attached to them.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hline.html">hline</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>(<span class="dt">align =</span> <span class="st">'|c|ccccc|'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb9"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb9.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb24-2" data-line-number="2">title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/hline.html">hline</a></span>(<span class="dt">lines =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>(<span class="dt">align =</span> <span class="st">'|c|ccccc|'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb24-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb10"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb10.png" height="25%" width="25%"></p>
-</div>
-<div id="cline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#cline" class="anchor"></a>cline</h2>
-<p>Add clines into the table using <code>hline</code>.</p>
-<p>Define where to put in the clines with a <code>spec</code> object. The spec can be either a list or data.frame either of which containing the elements <code>line,i,j</code>, where line is the line to apply the cline, i,j is the starting end ending columns respectivley.</p>
-<p>cline expects the lines to add hline to, where 0 is a possible value for lines which a line will be added to the top of the table.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">i=</span><span class="dv">2</span>,<span class="dt">j=</span><span class="dv">3</span>),<span class="kw">c</span>(<span class="dt">line=</span><span class="dv">2</span>,<span class="dt">i=</span><span class="dv">1</span>,<span class="dt">j=</span><span class="dv">2</span>),<span class="kw">c</span>(<span class="dt">line=</span><span class="dv">3</span>,<span class="dt">i=</span><span class="dv">2</span>,<span class="dt">j=</span><span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">line=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">i=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">j=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/cline.html">cline</a></span>(l)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb26-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb11"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb11.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb12"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb12.png" height="25%" width="25%"></p>
-<p>you can also combine hline and cline in a pipe</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hline.html">hline</a></span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">"tb13"</span>)</a></code></pre></div>
-<p><img src="tools/README/tb13.png" height="25%" width="25%"></p>
-</div>
-<div id="multicolmultirow" class="section level2">
-<h2 class="hasAnchor">
-<a href="#multicolmultirow" class="anchor"></a>Multicol/Multirow</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">title &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>(<span class="st">'param'</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/mergecells.html">multicol</a></span>(<span class="st">'vals'</span>,<span class="dv">3</span>,<span class="st">'c|'</span>)</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb29-3" data-line-number="3">tab &lt;-<span class="st"> </span>title <span class="op">/</span><span class="st"> </span>(<span class="kw"><a href="reference/mergecells.html">multirow</a></span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta$'</span>,<span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>k)</a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb29-5" data-line-number="5">tab<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>(<span class="dt">align =</span> <span class="st">'|cccc|'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb29-7" data-line-number="7"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem=</span><span class="st">'tb14'</span>)</a></code></pre></div>
-<p><img src="tools/README/tb14.png" height="25%" width="25%"></p>
-</div>
-<div id="putting-it-all-together" class="section level2">
-<h2 class="hasAnchor">
-<a href="#putting-it-all-together" class="anchor"></a>Putting it all Together</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">tab<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="reference/hline.html">hline</a></span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="reference/cline.html">cline</a></span>(<span class="kw">data.frame</span>(<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">i=</span><span class="dv">2</span>,<span class="dt">j=</span><span class="dv">4</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>(<span class="dt">align =</span> <span class="st">'|c|ccc|'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb30-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem=</span><span class="st">'tb14'</span>)</a></code></pre></div>
-<p><img src="tools/README/tb14.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">title &lt;-<span class="st"> </span><span class="kw"><a href="reference/as.tb.html">as.tb</a></span>(<span class="st">'param'</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="reference/mergecells.html">multicol</a></span>(<span class="st">'vals'</span>,<span class="dv">3</span>,<span class="st">'c'</span>)</a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">tab &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>,<span class="cf">function</span>(x) <span class="kw"><a href="reference/mergecells.html">multirow</a></span>(<span class="kw">sprintf</span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta_%s$'</span>,x),<span class="dv">2</span>) <span class="op">+</span>k )</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb31-5" data-line-number="5">(title <span class="op">/</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(tab,<span class="st">`</span><span class="dt">/</span><span class="st">`</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb31-7" data-line-number="7"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem=</span><span class="st">'tb15'</span>)</a></code></pre></div>
-<p><img src="tools/README/tb15.png" height="25%" width="25%"></p>
-</div>
-</div>
-<div id="designspecs" class="section level1">
-<h1 class="hasAnchor">
-<a href="#designspecs" class="anchor"></a>Design/Specs</h1>
-<p>Building blocks for TeX tables</p>
+<p>Lets be frank, it is not fun to create TeX tables from scratch.</p>
+<p><img src="https://goo.gl/DM4TVT"></p>
+<p>In <code>R</code> there are a few ways to get around this task by converting a data.frame into latex tables via <a href="https://github.com/hughjonesd/huxtable">huxtable</a>, <a href="https://github.com/nutterb/pixiedust">pixiedust</a> and <a href="https://github.com/yihui/knitr">knitr</a>.</p>
+<p>But many times you either don’t have or don’t want to go through a data.frame to get to your table. <code>{texblocks}</code> is an attempt to create a natural language with simple operators to quickly create reproducible TeX tables.</p>
 <div id="idea" class="section level2">
 <h2 class="hasAnchor">
 <a href="#idea" class="anchor"></a>Idea</h2>
@@ -382,6 +107,7 @@
 <div id="proposed-syntax" class="section level2">
 <h2 class="hasAnchor">
 <a href="#proposed-syntax" class="anchor"></a>Proposed Syntax</h2>
+<p>For a rendered vingette see <a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html">basics</a></p>
 <p>Defining a new class of R element <code>tb</code> that is the basic structure of the language.</p>
 <div id="joining-elements" class="section level3">
 <h3 class="hasAnchor">
@@ -416,22 +142,41 @@
 <pre><code>1 &amp; 2 &amp; 3 &amp; 1 &amp; 2 &amp; 3 \\
 4 &amp; 5 &amp; 6 &amp; 1 &amp; 2 &amp; 3</code></pre>
 </div>
-<div id="mutations" class="section level3">
+<div id="recasting" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mutations" class="anchor"></a>Mutations</h3>
+<a href="#recasting" class="anchor"></a>Recasting</h3>
+<p>Converting to <code>tb</code> class</p>
 <ul>
-<li>multirow</li>
-<li>multicolumn</li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#single-blocks">numeric</a></li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#single-blocks">character</a></li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#matrix">matrix</a></li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#sparse-matrix">sparse matrix</a></li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#data-frame">data.frame/tibble</a></li>
+</ul>
+<p>texblocks can also be converted back into <a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#as-data-frame"><code>tibbles</code></a> for further data manipulation.</p>
+</div>
+<div id="vectorizing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#vectorizing" class="anchor"></a>Vectorizing</h3>
+<p>texblocks can also be <a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#replicate">replicated</a> and used as a list with <code>purrr</code> verbs and base R <a href="https://metrumresearchgroup.github.io/texblocks/articles/basics.html#list"><code>*apply</code></a> functions.</p>
+</div>
+<div id="mutations-aesthetics" class="section level3">
+<h3 class="hasAnchor">
+<a href="#mutations-aesthetics" class="anchor"></a>Mutations &amp; Aesthetics</h3>
+<p>For a rendered vingette see <a href="https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html">aesthetics</a></p>
+<ul>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html#multicolmultirow">multirow/multicolumn</a></li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html#hline">hline</a></li>
+<li><a href="https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html#cline">cline</a></li>
 </ul>
 </div>
-<div id="aesthetics" class="section level3">
+<div id="todo" class="section level3">
 <h3 class="hasAnchor">
-<a href="#aesthetics" class="anchor"></a>Aesthetics</h3>
-<p>A set of aesthetic elements can be defined to control the table and cell level attributes, eg</p>
+<a href="#todo" class="anchor"></a>TODO</h3>
+<p>A set of elements can be defined to control the table and cell level attributes, eg</p>
 <ul>
 <li>font: colour, size, face</li>
 <li>background colour</li>
-<li>grid: hline, cline</li>
 </ul>
 </div>
 </div>
