@@ -34,13 +34,13 @@ of the language.
 
 ## Proposed Syntax
 
-For a rendered vingette see
-[basics](https://metrumresearchgroup.github.io/texblocks/articles/basics.html)
-
 Defining a new class of R element `tb` that is the basic structure of
 the language.
 
 ### Joining elements
+
+For a rendered vingette see
+[basics](https://metrumresearchgroup.github.io/texblocks/articles/basics.html)
 
 Let `t1` and `t2` be two objects of class tb.
 
@@ -72,38 +72,15 @@ would translate to
     1 & 2 & 3 & 1 & 2 & 3 \\
     4 & 5 & 6 & 1 & 2 & 3
 
-### Recasting
-
-Converting to `tb`
-    class
-
-  - [numeric](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#single-blocks)
-  - [character](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#single-blocks)
-  - [matrix](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#matrix)
-  - [sparse
-    matrix](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#sparse-matrix)
-  - [data.frame/tibble](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#data-frame)
-
-texblocks can also be converted back into
-[`tibbles`](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#as-data-frame)
-for further data manipulation.
-
-### Vectorizing
-
-texblocks can also be
-[replicated](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#replicate)
-and used as a list with `purrr` verbs and base R
-[`*apply`](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#list)
-functions.
-
 ### Mutations & Aesthetics
 
 For a rendered vingette see
 [aesthetics](https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html)
 
-  - [multirow/multicolumn](https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html#multicolmultirow)
-  - [hline](https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html#hline)
-  - [cline](https://metrumresearchgroup.github.io/texblocks/articles/aesthetics.html#cline)
+  - multirow
+  - multicolumn
+  - hline
+  - cline
 
 ### TODO
 
