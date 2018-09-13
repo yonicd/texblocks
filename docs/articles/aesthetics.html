@@ -88,7 +88,7 @@
       <h1>Aesthetics</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2018-09-12</h4>
+            <h4 class="date">2018-09-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texblocks/blob/master/vignettes/aesthetics.Rmd"><code>vignettes/aesthetics.Rmd</code></a></small>
       <div class="hidden name"><code>aesthetics.Rmd</code></div>
@@ -119,17 +119,16 @@
 <a href="#hline" class="anchor"></a>hline</h2>
 <p>Add hlines into the table using <code>hline</code>.</p>
 <p>hline expects the lines to add hline to, where 0 is a possible value for lines which a line will be added to the top of the table. When lines are left empty then all the lines will have hline attached to them.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">(title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>()<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">'aes-01'</span>)</a></code></pre></div>
-<p><img src="figures/aes-01.png" height="25%" width="25%"></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>(<span class="dt">lines =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">'aes-02'</span>)</a></code></pre></div>
-<p><img src="figures/aes-02.png" height="25%" width="25%"></p>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="aesthetics_files/figure-html/hline-1.png" width="223"></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">(title <span class="op">/</span><span class="st"> </span>(x2 <span class="op">+</span><span class="st"> </span>x3))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>(<span class="dt">lines =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="aesthetics_files/figure-html/hline2-1.png" width="223"></p>
 </div>
 <div id="cline" class="section level2">
 <h2 class="hasAnchor">
@@ -142,21 +141,21 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(l)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">'aes-03'</span>)</a></code></pre></div>
-<p><img src="figures/aes-03.png" height="25%" width="25%"></p>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="aesthetics_files/figure-html/cline-1.png" width="102"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">'aes-04'</span>)</a></code></pre></div>
-<p><img src="figures/aes-04.png" height="25%" width="25%"></p>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="aesthetics_files/figure-html/cline-2.png" width="102"></p>
 <p>you can also combine hline and cline in a pipe</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">'aes-05'</span>)</a></code></pre></div>
-<p><img src="figures/aes-05.png" height="25%" width="25%"></p>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="aesthetics_files/figure-html/lines_pipe-1.png" width="102"></p>
 </div>
 <div id="multicolmultirow" class="section level2">
 <h2 class="hasAnchor">
@@ -165,8 +164,8 @@
 <a class="sourceLine" id="cb10-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3">(title <span class="op">/</span><span class="st"> </span>(<span class="kw"><a href="../reference/mergecells.html">multirow</a></span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta$'</span>,<span class="dv">2</span>) <span class="op">+</span><span class="st"> </span>k))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>(<span class="dt">stem =</span> <span class="st">'aes-06'</span>)</a></code></pre></div>
-<p><img src="figures/aes-06.png" height="25%" width="25%"></p>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="aesthetics_files/figure-html/multirow-1.png" width="120"></p>
 </div>
   </div>
 

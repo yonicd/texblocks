@@ -23,8 +23,7 @@ tabular <- function(x,align = NULL){
                    uncol,nchar_align)
            )
   }
-  
-  ret <- sprintf('\\begin{tabular}{%s}\n%s\n\\end{tabular}',align,x)
-  class(ret) <- 'tb'
-  ret
+
+  as.tb(sprintf('\\begin{tabular}{%s}\n%s\n\\end{tabular}',align,x))
+
 }

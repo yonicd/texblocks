@@ -16,4 +16,6 @@ Suggests: knitr,
     rmarkdown,
     Matrix,
     texPreview
+Remotes:
+  metrumresearchgroup/texPreview@refactor_return
 VignetteBuilder: knitr

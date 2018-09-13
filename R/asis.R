@@ -14,6 +14,12 @@ as.tb.default <- function(x){
 }
 
 #' @export
+as.tb.tb <- function(x){
+  return(x)
+}
+
+
+#' @export
 as.tb.matrix <- function(x,...){
   as.tb(as.data.frame(x))
 }

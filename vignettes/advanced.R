@@ -1,11 +1,8 @@
 ## ----setup, include = FALSE----------------------------------------------
 
-dir.create('figures')
-
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>",
-  fig.path = 'figures'
+  comment = "#>"
 )
 
 ## ------------------------------------------------------------------------
@@ -14,8 +11,7 @@ library(texPreview)
 
 
 ## ----include=FALSE-------------------------------------------------------
-tex_opts$set(fileDir = 'figures',returnType = 'html',
-             opts.html=list(width='25%',height='25%'))
+tex_opts$set(returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'))
 tex_opts$append(list(cleanup='tex'))
 
 ## ------------------------------------------------------------------------
@@ -29,7 +25,7 @@ title <- c('param',sprintf('col%s',1:5))%>%
   purrr::reduce(`+`)
 
 
-## ----echo=TRUE,results='asis'--------------------------------------------
+## ----adv-----------------------------------------------------------------
 title <- as.tb('param') + multicol('vals',3,'c|')
 
 tab <- title / (multirow('$\\beta$',2) + k )
@@ -38,18 +34,13 @@ tab%>%
   hline(c(0,3))%>%
   cline(data.frame(line=1,i=2,j=4))%>%
   tabular(align = '|c|ccc|')%>%
-  texPreview::texPreview(stem = 'adv-01')
+  texPreview::texPreview()
 
 title <- as.tb('param') + multicol('vals',3,'c')
 tab <- purrr::map(1:4,function(x) multirow(sprintf('$\\beta_%s$',x),2) + k )
 
 (title / purrr::reduce(tab,`/`))%>%
   tabular()%>%
-  texPreview::texPreview(stem = 'adv-02')
+  texPreview::texPreview()
 
-
-## ----include=FALSE-------------------------------------------------------
-if(knitr::opts_knit$get('rmarkdown.pandoc.to')=='html'){
-file.copy('figures','../docs/articles',recursive=TRUE)
-}
 

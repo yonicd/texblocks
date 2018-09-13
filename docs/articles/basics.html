@@ -88,7 +88,7 @@
       <h1>Building Blocks</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2018-09-12</h4>
+            <h4 class="date">2018-09-13</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texblocks/blob/master/vignettes/basics.Rmd"><code>vignettes/basics.Rmd</code></a></small>
       <div class="hidden name"><code>basics.Rmd</code></div>
@@ -97,7 +97,8 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(texblocks)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(texblocks)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">library</span>(texPreview)</a></code></pre></div>
 <div id="single-blocks" class="section level2">
 <h2 class="hasAnchor">
 <a href="#single-blocks" class="anchor"></a>Single blocks</h2>
@@ -146,20 +147,31 @@
 <a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 4.7&amp;3.2&amp;1.3&amp;0.2&amp;setosa\\</span></a>
 <a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 4.6&amp;3.1&amp;1.5&amp;0.2&amp;setosa\\</span></a>
 <a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; 5&amp;3.6&amp;1.4&amp;0.2&amp;setosa\\</span></a></code></pre></div>
+<p><img src="basics_files/figure-html/dataframe-1.png" width="174"></p>
 </div>
 <div id="matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#matrix" class="anchor"></a>matrix</h3>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">matrix</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">3</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/as.tb.html">as.tb</a></span>()</a></code></pre></div>
-<p>0&amp;0&amp;0\ 0&amp;0&amp;0\ 0&amp;0&amp;0\</p>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/as.tb.html">as.tb</a></span>()</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co">#&gt; 0&amp;0&amp;0\\</span></a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; 0&amp;0&amp;0\\</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; 0&amp;0&amp;0\\</span></a></code></pre></div>
+<p><img src="basics_files/figure-html/matrix-1.png" width="78"></p>
 </div>
 <div id="sparse-matrix" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sparse-matrix" class="anchor"></a>sparse matrix</h3>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">Matrix<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Matrix/topics/bdiag">bdiag</a></span>(Matrix<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/Matrix/topics/Diagonal">Diagonal</a></span>(<span class="dv">2</span>), <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">3</span>,<span class="dv">4</span>), <span class="kw">diag</span>(<span class="dv">3</span><span class="op">:</span><span class="dv">2</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/as.tb.html">as.tb</a></span>()</a></code></pre></div>
-<p>1&amp; &amp; &amp; &amp; &amp; &amp; &amp; \ &amp;1&amp; &amp; &amp; &amp; &amp; &amp; \ &amp; &amp;1&amp;1&amp;1&amp;1&amp; &amp; \ &amp; &amp;2&amp;2&amp;2&amp;2&amp; &amp; \ &amp; &amp;3&amp;3&amp;3&amp;3&amp; &amp; \ &amp; &amp; &amp; &amp; &amp; &amp;3&amp; \ &amp; &amp; &amp; &amp; &amp; &amp; &amp;2\</p>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/as.tb.html">as.tb</a></span>()</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; 1&amp; &amp; &amp; &amp; &amp; &amp; &amp; \\</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;  &amp;1&amp; &amp; &amp; &amp; &amp; &amp; \\</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;  &amp; &amp;1&amp;1&amp;1&amp;1&amp; &amp; \\</span></a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;  &amp; &amp;2&amp;2&amp;2&amp;2&amp; &amp; \\</span></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  &amp; &amp;3&amp;3&amp;3&amp;3&amp; &amp; \\</span></a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  &amp; &amp; &amp; &amp; &amp; &amp;3&amp; \\</span></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  &amp; &amp; &amp; &amp; &amp; &amp; &amp;2\\</span></a></code></pre></div>
+<p><img src="basics_files/figure-html/smatrix-1.png" width="170"></p>
 </div>
 </div>
 <div id="converting-to-different-classes" class="section level2">
@@ -190,6 +202,7 @@
 <a class="sourceLine" id="cb9-3" data-line-number="3">z &lt;-<span class="st"> </span><span class="kw"><a href="../reference/as.tb.html">as.tb</a></span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta$'</span>)</a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"></a>
 <a class="sourceLine" id="cb9-5" data-line-number="5">x1 &lt;-<span class="st"> </span>x<span class="op">+</span>y<span class="op">+</span>z</a></code></pre></div>
+<p><img src="basics_files/figure-html/horizontal-1.png" width="92"></p>
 </div>
 <div id="vertical" class="section level3">
 <h3 class="hasAnchor">
@@ -198,11 +211,13 @@
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; $\alpha$\\</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; aaa\\</span></a>
 <a class="sourceLine" id="cb10-4" data-line-number="4"><span class="co">#&gt; $\beta$</span></a></code></pre></div>
+<p><img src="basics_files/figure-html/vertical-1.png" width="54"></p>
 <p>Combined texblocks are texblocks themselves, thus can be further combined.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">x2 &lt;-<span class="st"> </span>x1 <span class="op">/</span><span class="st"> </span>x1 <span class="co"># 2x3 object</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">x2 <span class="op">+</span><span class="st"> </span>x2</a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="co">#&gt; $\alpha$&amp;aaa&amp;$\beta$&amp;$\alpha$&amp;aaa&amp;$\beta$\\</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="co">#&gt; $\alpha$&amp;aaa&amp;$\beta$&amp;$\alpha$&amp;aaa&amp;$\beta$\\</span></a></code></pre></div>
+<p><img src="basics_files/figure-html/vertical2-1.png" width="159"></p>
 </div>
 <div id="unequal-blocks" class="section level3">
 <h3 class="hasAnchor">
@@ -215,6 +230,7 @@
 <a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; $\alpha$&amp;aaa&amp;$\beta$&amp;$\alpha$&amp;aaa&amp;$\beta$\\</span></a>
 <a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; &amp;&amp;&amp;$\alpha$&amp;aaa&amp;$\beta$\\</span></a>
 <a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; &amp;&amp;&amp;$\alpha$&amp;aaa&amp;$\beta$\\</span></a></code></pre></div>
+<p><img src="basics_files/figure-html/unequal-1.png" width="159"></p>
 </div>
 </div>
 <div id="creating-a-tabular-object" class="section level2">
@@ -222,17 +238,14 @@
 <a href="#creating-a-tabular-object" class="anchor"></a>Creating a tabular object</h2>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># default alignment</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">x1<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()</a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt; \begin{tabular}{ccc}</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; $\alpha$&amp;aaa&amp;$\beta$</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; \end{tabular}</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8"><span class="co"># manual alignment</span></a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">x1<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>(<span class="dt">align =</span> <span class="st">'c|c|c'</span>)</a>
-<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; \begin{tabular}{c|c|c}</span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt; $\alpha$&amp;aaa&amp;$\beta$</span></a>
-<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt; \end{tabular}</span></a></code></pre></div>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="basics_files/figure-html/tabular-1.png" width="92"></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># manual alignment</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">x1<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span>texblocks<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texblocks/topics/tabular">tabular</a></span>(<span class="dt">align =</span> <span class="st">'c|c|c'</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/texPreview">texPreview</a></span>()</a></code></pre></div>
+<p><img src="basics_files/figure-html/unequaltabular-1.png" width="92"></p>
 </div>
   </div>
 

@@ -7,3 +7,5 @@ addons:
   apt:
     packages:
       - libmagick++-dev
+#r_github_packages:
+#- metrumresearchgroup/texPreview@refactor_return
