@@ -25,7 +25,7 @@ title <- c('param',sprintf('col%s',1:5))%>%
   purrr::reduce(`+`)
 
 
-## ----adv-----------------------------------------------------------------
+## ----adv1----------------------------------------------------------------
 title <- as.tb('param') + multicol('vals',3,'c|')
 
 tab <- title / (multirow('$\\beta$',2) + k )
@@ -36,6 +36,8 @@ tab%>%
   tabular(align = '|c|ccc|')%>%
   texPreview::texPreview()
 
+
+## ----adv2----------------------------------------------------------------
 title <- as.tb('param') + multicol('vals',3,'c')
 tab <- purrr::map(1:4,function(x) multirow(sprintf('$\\beta_%s$',x),2) + k )
 
