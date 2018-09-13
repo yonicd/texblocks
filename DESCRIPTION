@@ -14,8 +14,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
-    Matrix,
-    texPreview
+    Matrix
 Remotes:
   metrumresearchgroup/texPreview@refactor_return
 VignetteBuilder: knitr
