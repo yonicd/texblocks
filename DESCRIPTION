@@ -1,6 +1,6 @@
 Package: texblocks
 Title: Simple language to build TeX tables
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre"))
 Description: Build TeX tables using simple mathematical operators. 
 Depends: R (>= 3.2.0)
@@ -14,7 +14,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.0.1
 Suggests: knitr,
     rmarkdown,
-    Matrix
+    Matrix,
+    texPreview
 Remotes:
   metrumresearchgroup/texPreview@refactor_return
 VignetteBuilder: knitr

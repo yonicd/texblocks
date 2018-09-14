@@ -23,13 +23,10 @@ combine texblock object into bigger texblock objects
 }
 \details{
 \itemize{
-\item : joins e1 to e2 horizontally
+\item : joins e1 to e2 horizontally (cbind)
 }
 
-/ : joins e1 to e2 vertically with no hline betweet them
-\itemize{
-\item : joins e1 to e2 vertically with an hline between them
-}
+/ : joins e1 to e2 vertically with no hline betweet them (rbind)
 }
 \examples{
 

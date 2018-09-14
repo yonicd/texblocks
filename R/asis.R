@@ -31,6 +31,11 @@ as.tb.dgCMatrix <- function(x,...){
   as.tb(x)
 }
 
+#' @export
+as.tb.list <- function(x,...){
+  lapply(x,as.tb)
+}
+
 #' @import dplyr
 #' @importFrom tidyr gather
 #' @importFrom rlang !! sym
@@ -91,7 +96,7 @@ as.tb.data.frame <- function(x){
 
   ret <- ret%>%
     mutate(line_end=line_end)
-    
+  
   if(!is.null(ah)){
     ret$line_end[ah] <- gsub(line_end,
                              '\\\\ \\hline',
@@ -109,6 +114,8 @@ as.tb.data.frame <- function(x){
     }
 
   }
+  
+   #ret$line_end[nrow(ret)] <- gsub('^\\\\\\\\','',ret$line_end[nrow(ret)])
   
    ret <- ret%>%
      dplyr::mutate(val = sprintf('%s%s',!!rlang::sym('val'),line_end))%>%
@@ -210,4 +217,17 @@ is.tb <- function(x) inherits(x, 'tb')
 rep.tb <- function(x,...){
   y <- NextMethod()
   lapply(y,as.tb)
+}
+
+#' @export
+t.tb <- function (x) 
+{
+  x <- as.data.frame(x)
+  xt <- as.data.frame(t(x))
+  as.tb(xt)
+}
+
+#' @export
+dim.tb <- function(x){
+  dim(as.data.frame(x))
 }
