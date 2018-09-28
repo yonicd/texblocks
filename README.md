@@ -5,7 +5,7 @@
 Status](https://travis-ci.org/metrumresearchgroup/texblocks.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texblocks)
 ![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)
 
-# texblocks <img src="inst/logo_small.png" align="right" />
+# texblocks
 
 Lets be frank, it is not fun to create TeX tables from scratch.
 

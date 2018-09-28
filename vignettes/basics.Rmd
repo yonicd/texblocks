@@ -182,3 +182,4 @@ x1%>%
 x1%>%
   texblocks::tabular(align = 'c|c|c')%>%
   texPreview::texPreview()
+```

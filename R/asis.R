@@ -18,7 +18,6 @@ as.tb.tb <- function(x){
   return(x)
 }
 
-
 #' @export
 as.tb.matrix <- function(x,...){
   as.tb(as.data.frame(x))
@@ -220,8 +219,7 @@ rep.tb <- function(x,...){
 }
 
 #' @export
-t.tb <- function (x) 
-{
+t.tb <- function (x) {
   x <- as.data.frame(x)
   xt <- as.data.frame(t(x))
   as.tb(xt)

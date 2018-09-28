@@ -36,13 +36,15 @@ strip_multicol <- function(x){
   
   ns <- lapply(mc,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]])
   for(i in seq_along(ns)){
-    x <- gsub(mc[[i]],
-              sprintf('%s%s',
-                      ns[[i]][4],
-                      strrep('& ',as.numeric(ns[[i]][2])-1)
-                      ),
-              x,
-              fixed = TRUE) 
+    for(ii in seq_along(mc[[i]])){
+      x <- gsub(mc[[i]][ii],
+                sprintf('%s%s',
+                        ns[[i]][4],
+                        strrep('& ',as.numeric(ns[[i]][2])-1)
+                ),
+                x,
+                fixed = TRUE)   
+    }
   }
   x
   
@@ -57,10 +59,12 @@ strip_multirow <- function(x){
   
   ns <- lapply(mr,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]])
   for(i in seq_along(ns)){
-    x <- gsub(mr[[i]],
+    for(ii in seq_along(mr[[i]])){
+    x <- gsub(mr[[i]][ii],
               ns[[i]][4],
               x,
-              fixed = TRUE)  
+              fixed = TRUE)
+    }
   }
   x
 }
