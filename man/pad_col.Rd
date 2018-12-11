@@ -4,12 +4,14 @@
 \alias{pad_col}
 \title{pad columns of texblock}
 \usage{
-pad_col(x, cols = 1)
+pad_col(x, cols = 1, side = 1)
 }
 \arguments{
 \item{x}{tb}
 
-\item{cols}{number of columns to pad, Default: 1}
+\item{cols}{numeric, number of columns to pad, Default: 1}
+
+\item{side}{numeric, which side to pad, 1='left' 2='right', Default: 1}
 }
 \value{
 tb

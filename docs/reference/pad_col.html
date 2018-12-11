@@ -132,7 +132,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>pad_col</span>(<span class='no'>x</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
+    <pre class="usage"><span class='fu'>pad_col</span>(<span class='no'>x</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>side</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -143,7 +143,11 @@
     </tr>
     <tr>
       <th>cols</th>
-      <td><p>number of columns to pad, Default: 1</p></td>
+      <td><p>numeric, number of columns to pad, Default: 1</p></td>
+    </tr>
+    <tr>
+      <th>side</th>
+      <td><p>numeric, which side to pad, 1='left' 2='right', Default: 1</p></td>
     </tr>
     </table>
     

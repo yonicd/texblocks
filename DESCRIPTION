@@ -17,5 +17,5 @@ Suggests: knitr,
     Matrix,
     texPreview
 Remotes:
-  metrumresearchgroup/texPreview@refactor_return
+  metrumresearchgroup/texPreview
 VignetteBuilder: knitr

@@ -90,7 +90,7 @@
       <h1>Aesthetics</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2018-12-10</h4>
+            <h4 class="date">2018-12-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texblocks/blob/master/vignettes/aesthetics.Rmd"><code>vignettes/aesthetics.Rmd</code></a></small>
       <div class="hidden name"><code>aesthetics.Rmd</code></div>
@@ -111,11 +111,11 @@
 <a class="sourceLine" id="cb3-5" data-line-number="5">k1 &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,as.tb)</a>
 <a class="sourceLine" id="cb3-6" data-line-number="6">k2 &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">4</span><span class="op">:</span><span class="dv">6</span>,as.tb)</a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8">k &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(k1,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>) <span class="op">/</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(k2,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a>
+<a class="sourceLine" id="cb3-8" data-line-number="8">k &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(k1,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>) <span class="op">/</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(k2,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a>
 <a class="sourceLine" id="cb3-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb3-10" data-line-number="10">title &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">'param'</span>,<span class="kw">sprintf</span>(<span class="st">'col%s'</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/map">map</a></span>(as.tb)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span>(as.tb)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="st">  </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)</a></code></pre></div>
 <div id="hline" class="section level2">
 <h2 class="hasAnchor">
 <a href="#hline" class="anchor"></a>hline</h2>
@@ -140,7 +140,7 @@
 <p>cline expects the lines to add hline to, where 0 is a possible value for lines which a line will be added to the top of the table.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">i=</span><span class="dv">2</span>,<span class="dt">j=</span><span class="dv">3</span>),<span class="kw">c</span>(<span class="dt">line=</span><span class="dv">2</span>,<span class="dt">i=</span><span class="dv">1</span>,<span class="dt">j=</span><span class="dv">2</span>),<span class="kw">c</span>(<span class="dt">line=</span><span class="dv">3</span>,<span class="dt">i=</span><span class="dv">2</span>,<span class="dt">j=</span><span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb6-2" data-line-number="2">d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">line=</span><span class="dv">1</span><span class="op">:</span><span class="dv">3</span>,<span class="dt">i=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),<span class="dt">j=</span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(l)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a>
@@ -154,7 +154,7 @@
 <a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; introduced by coercion</span></a></code></pre></div>
 <p><img src="aesthetics_files/figure-html/cline-1.png" width="379"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a>
@@ -168,7 +168,7 @@
 <a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt; introduced by coercion</span></a></code></pre></div>
 <p><img src="aesthetics_files/figure-html/cline-2.png" width="379"></p>
 <p>you can also combine hline and cline in a pipe</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/purrr/topics/reduce">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
