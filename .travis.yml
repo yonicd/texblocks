@@ -8,4 +8,4 @@ addons:
     packages:
       - libmagick++-dev
 r_github_packages:
-- metrumresearchgroup/texPreview@refactor_return
+- metrumresearchgroup/texPreview
