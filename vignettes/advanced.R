@@ -11,7 +11,7 @@ library(texPreview)
 
 
 ## ----include=FALSE-------------------------------------------------------
-tex_opts$set(returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'))
+tex_opts$set(returnType = 'html')
 tex_opts$append(list(cleanup='tex'))
 
 ## ------------------------------------------------------------------------
@@ -34,15 +34,15 @@ tab%>%
   hline(c(0,3))%>%
   cline(data.frame(line=1,i=2,j=4))%>%
   tabular(align = '|c|ccc|')%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ----adv2----------------------------------------------------------------
 title <- as.tb('param') + multicol('vals',3,'c')
-tab <- purrr::map(1:4,function(x) multirow(sprintf('$\\beta_%s$',x),2) + k )
+tab <- purrr::map2(1:2,c(1,3),function(x,y) multirow(sprintf('$\\beta_%s$',x),y) + k )
 
 (title / purrr::reduce(tab,`/`))%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 

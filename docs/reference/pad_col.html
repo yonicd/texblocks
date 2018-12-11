@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Is the object of class tb — is.tb • texblocks</title>
+<title>pad columns of texblock — pad_col • texblocks</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,10 +32,9 @@
 
 
 
-<meta property="og:title" content="Is the object of class tb — is.tb" />
+<meta property="og:title" content="pad columns of texblock — pad_col" />
 
-<meta property="og:description" content="Is the object of class tb Very basic for many functions
-in the package." />
+<meta property="og:description" content="add columns to texblock to the left" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,32 +121,35 @@ in the package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Is the object of class tb</h1>
-    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/asis.R'><code>R/asis.R</code></a></small>
-    <div class="hidden name"><code>is.tb.Rd</code></div>
+    <h1>pad columns of texblock</h1>
+    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/pad_col.R'><code>R/pad_col.R</code></a></small>
+    <div class="hidden name"><code>pad_col.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Is the object of class tb Very basic for many functions
-in the package.</p>
+    <p>add columns to texblock to the left</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>is.tb</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>pad_col</span>(<span class='no'>x</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>an object</p></td>
+      <td><p>tb</p></td>
+    </tr>
+    <tr>
+      <th>cols</th>
+      <td><p>number of columns to pad, Default: 1</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>logical - is the object of class tb</p>
+    <p>tb</p>
     
 
   </div>

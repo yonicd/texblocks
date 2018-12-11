@@ -10,7 +10,7 @@ library(texPreview)
 
 
 ## ----include=FALSE-------------------------------------------------------
-tex_opts$set(returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'))
+tex_opts$set(returnType = 'html')
 tex_opts$append(list(cleanup='tex'))
 
 ## ------------------------------------------------------------------------
@@ -36,7 +36,7 @@ iris%>%
   head(5)%>%
   as.tb()%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ## ------------------------------------------------------------------------
 matrix(0,3,3)%>%
@@ -47,7 +47,7 @@ matrix(0,3,3)%>%
 matrix(0,3,3)%>%
   as.tb()%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ------------------------------------------------------------------------
@@ -59,7 +59,7 @@ Matrix::bdiag(Matrix::Diagonal(2), matrix(1:3, 3,4), diag(3:2))%>%
 Matrix::bdiag(Matrix::Diagonal(2), matrix(1:3, 3,4), diag(3:2))%>%
   as.tb()%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ------------------------------------------------------------------------
@@ -75,9 +75,9 @@ z <- as.tb('$\\beta$')
 x1 <- x+y+z
 
 ## ----horizontal, echo=FALSE----------------------------------------------
-(x1)%>%
+x1%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ## ------------------------------------------------------------------------
 x/y/z
@@ -85,7 +85,7 @@ x/y/z
 ## ----vertical, echo=FALSE------------------------------------------------
 (x/y/z)%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ## ------------------------------------------------------------------------
 x2 <- x1 / x1 # 2x3 object
@@ -94,7 +94,7 @@ x2 + x2
 ## ----vertical2, echo=FALSE-----------------------------------------------
 (x2 + x2)%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ## ------------------------------------------------------------------------
 x3 <- x2/x2 # 4x3 object
@@ -105,18 +105,18 @@ x2 + x3
 ## ----unequal, echo=FALSE-------------------------------------------------
 (x2 + x3)%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ## ----tabular-------------------------------------------------------------
 # default alignment
 x1%>%
   texblocks::tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ----unequaltabular------------------------------------------------------
 # manual alignment
 x1%>%
-  texblocks::tabular(align = 'c|c|c')%>%
-  texPreview::texPreview()
+  texblocks::tabular(align = '|cc|c')%>%
+  texPreview::tex_preview()
 

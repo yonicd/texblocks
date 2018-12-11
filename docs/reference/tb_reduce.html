@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Is the object of class tb — is.tb • texblocks</title>
+<title>reduce dimension of list of texblocks — tb_reduce • texblocks</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,10 +32,9 @@
 
 
 
-<meta property="og:title" content="Is the object of class tb — is.tb" />
+<meta property="og:title" content="reduce dimension of list of texblocks — tb_reduce" />
 
-<meta property="og:description" content="Is the object of class tb Very basic for many functions
-in the package." />
+<meta property="og:description" content="reduce a list of texblock by rows or columns" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -122,32 +121,35 @@ in the package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Is the object of class tb</h1>
-    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/asis.R'><code>R/asis.R</code></a></small>
-    <div class="hidden name"><code>is.tb.Rd</code></div>
+    <h1>reduce dimension of list of texblocks</h1>
+    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/pad_col.R'><code>R/pad_col.R</code></a></small>
+    <div class="hidden name"><code>tb_reduce.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Is the object of class tb Very basic for many functions
-in the package.</p>
+    <p>reduce a list of texblock by rows or columns</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>is.tb</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>tb_reduce</span>(<span class='no'>...</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>margin</th>
+      <td><p>how to reduce 1 by rows, 2 by columns, Default: 1</p></td>
+    </tr>
+    <tr>
       <th>x</th>
-      <td><p>an object</p></td>
+      <td><p>tb</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>logical - is the object of class tb</p>
+    <p>tb</p>
     
 
   </div>
