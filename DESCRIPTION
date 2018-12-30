@@ -1,10 +1,10 @@
 Package: texblocks
 Title: Simple language to build TeX tables
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre"))
 Description: Build TeX tables using simple mathematical operators. 
 Depends: R (>= 3.2.0)
-Imports: purrr,dplyr,tidyr,rlang
+Imports: purrr,dplyr,tidyr,rlang,utils
 License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true

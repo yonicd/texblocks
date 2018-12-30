@@ -15,6 +15,8 @@ find_attr  <- function(x,.f,env = NULL){
 
 strip <- function(x,env){
   
+  x <- strip_tabular(x)
+  
   find_attr(x,'hline',env)
   find_attr(x,'cline',env)
   
@@ -43,4 +45,8 @@ restore <- function(x,env){
     
   }
   x
+}
+
+strip_tabular <- function(x){
+  gsub('\\\\begin\\{tabular\\}(.*?)\\n|\\\\end\\{tabular\\}','',x)
 }

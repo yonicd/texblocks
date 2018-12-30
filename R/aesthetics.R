@@ -92,7 +92,7 @@ find_hline <- function(x){
 }
 
 strip_hline <- function(x){
-  gsub('^\\\\hline\\n| \\\\hline$','',x)
+  gsub('\\\\hline\\n| \\\\hline$','',x)
 }
 
 find_cline <- function(x){

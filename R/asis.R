@@ -156,6 +156,7 @@ as.tb.data.frame <- function(x){
 #' @export 
 #' @importFrom purrr map transpose set_names flatten_chr
 #' @import dplyr
+#' @importFrom utils type.convert
 as.data.frame.tb <- function(x,...){
 
   attr_env <- new.env()
@@ -168,9 +169,12 @@ as.data.frame.tb <- function(x,...){
     purrr::transpose()
   
   ret <- l%>%
-    purrr::set_names(seq_along(l))%>%
+    purrr::set_names(sprintf('V%s',seq_along(l)))%>%
     dplyr::as_tibble()%>%
-    dplyr::mutate_all(purrr::flatten_chr)
+    dplyr::mutate_all(purrr::flatten_chr)%>%
+    dplyr::mutate_all(.funs = function(x) gsub('^\\s+|\\s+$','',x))%>%
+    dplyr::mutate_all(utils::type.convert)%>%
+    dplyr::mutate_if(is.factor,as.character)
   
   ret <- ret%>%
     restore(attr_env)
