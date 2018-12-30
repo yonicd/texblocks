@@ -9,7 +9,7 @@
 \arguments{
 \item{x}{texblock object}
 
-\item{\dots}{not used}
+\item{\dots}{pass convert as a boolean argument to apply type.convert to the output columns}
 }
 \value{
 data.frame
@@ -18,9 +18,10 @@ data.frame
 convert a texblock class into a data.frame
 }
 \examples{
-x <- 'a'
+x <- '1'
 class(x) <- 'tb'
 x1 <- x+x
 as.data.frame(x1)
+as.data.frame(x1,convert = TRUE)
 
 }

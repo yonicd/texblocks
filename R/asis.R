@@ -144,13 +144,14 @@ as.tb.data.frame <- function(x){
 #' @title convert texblock to data.frame
 #' @description convert a texblock class into a data.frame
 #' @param x texblock object
-#' @param \dots not used
+#' @param \dots pass convert as a boolean argument to apply type.convert to the output columns
 #' @return data.frame
 #' @examples 
-#' x <- 'a'
+#' x <- '1'
 #' class(x) <- 'tb'
 #' x1 <- x+x
 #' as.data.frame(x1)
+#' as.data.frame(x1,convert = TRUE)
 #' 
 #' @rdname as.data.frame.tb
 #' @export 
@@ -159,22 +160,31 @@ as.tb.data.frame <- function(x){
 #' @importFrom utils type.convert
 as.data.frame.tb <- function(x,...){
 
+  convert <- FALSE
+  
+  list2env(list(...),envir = environment())
+  
   attr_env <- new.env()
   
   x <- strip(x,attr_env)
   
   l <- x%>%
     parse_tb()%>%
-    purrr::map(function(x) strsplit(x,split = '_NEWCOL_')[[1]])%>%
+    purrr::map(function(x) gsub('^_|_$','',strsplit(x,split = 'NEWCOL')[[1]]))%>%
     purrr::transpose()
   
   ret <- l%>%
-    purrr::set_names(sprintf('V%s',seq_along(l)))%>%
+    purrr::set_names(seq_along(l))%>%
     dplyr::as_tibble()%>%
-    dplyr::mutate_all(purrr::flatten_chr)%>%
-    dplyr::mutate_all(.funs = function(x) gsub('^\\s+|\\s+$','',x))%>%
-    dplyr::mutate_all(utils::type.convert)%>%
-    dplyr::mutate_if(is.factor,as.character)
+    dplyr::mutate_all(purrr::flatten_chr)#%>%
+    #dplyr::mutate_all(.funs = function(x) gsub('^\\s+|\\s+$','',x))
+  
+  if(convert){
+    ret <- ret %>%
+     dplyr::mutate_all(utils::type.convert)%>%
+     dplyr::mutate_if(is.factor,as.character)    
+  }
+
   
   ret <- ret%>%
     restore(attr_env)
@@ -195,12 +205,9 @@ parse_tb <- function(x,skip){
             )
   )
   
-  # y <- gsub('_NEWROW_ \\\\hline',
-  #           '_NEWROW_LINE_',
-  #           y
-  #           )
+  ret <- strsplit(y,'_NEWROW_')[[1]]
   
-  strsplit(y,'_NEWROW_')[[1]]
+  ret
 }
 
 #' @export

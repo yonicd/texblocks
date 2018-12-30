@@ -103,7 +103,7 @@ find_cline <- function(x){
   if(identical(clines, integer(0)))
     return(NULL)
   
-  l <- strsplit(gsub('^(.*?)cline\\n|[\\{\\}]','',sx[clines]),'-')
+  l <- strsplit(gsub('^(.*?)cline|[\\{\\}]','',sx[clines]),'-')
   
   clines <- mapply(function(x,y){
     stats::setNames(c(y,as.numeric(x)),c('line','i','j'))

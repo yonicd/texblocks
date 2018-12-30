@@ -57,7 +57,14 @@ tab%>%
  
 ```{r adv2}
 title <- as.tb('param') + multicol('vals',3,'c')
-tab <- purrr::map2(1:2,c(1,3),function(x,y) multirow(sprintf('$\\beta_%s$',x),y) + k )
+
+tab <- list(
+  purrr::reduce(k1,`+`)%>%rep(3)%>%purrr::reduce(`/`),
+  purrr::reduce(k2,`+`))
+
+tab <- purrr::map2(1:2,tab,function(x,y){
+ multirow(sprintf('$\\beta_%s$',x),nrow(y)) + y 
+})
 
 (title / purrr::reduce(tab,`/`))%>%
   tabular()%>%
