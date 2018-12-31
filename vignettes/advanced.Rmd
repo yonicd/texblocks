@@ -51,7 +51,7 @@ tab%>%
   hline(c(0,3))%>%
   cline(data.frame(line=1,i=2,j=4))%>%
   tabular(align = '|c|ccc|')%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ```
  
@@ -68,7 +68,7 @@ tab <- purrr::map2(1:2,tab,function(x,y){
 
 (title / purrr::reduce(tab,`/`))%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ```
 
