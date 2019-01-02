@@ -1,4 +1,3 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 language: r
 cache: packages
 os:
@@ -13,8 +12,21 @@ addons:
     update:
     - true
     sources:
-    - sourceline: 'ppa:opencpu/imagemagick'
+    - sourceline: ppa:opencpu/imagemagick
     packages:
     - libmagick++-dev
 r_github_packages:
 - metrumresearchgroup/texPreview
+after_success:
+- Rscript -e 'pkgdown::build_site()'
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: "$GITHUB_PAT"
+  keep-history: true
+  local-dir: docs
+  on:
+    branch: master
+env:
+  global:
+    secure: gYSG262c2/rP9QROp5+9zHDXyJDlCD8gPqHrwD+ka4DqfqRzG1VvX6iJv9CPARUb4Mzyu5caLHXZxPhp3dTI7P7LnfKVpXWQ/rRSY5saGWWyHiPAmmDviWQ3rC3hJXMeSEqzHH+zWcmJ8xo+S03g0A6BEC6UWQEs1w1tNB5UoAa8MJwYZHOFTKM0U1BoauIL8kYQVZqC9EFzLSGfLNhh+yn1d5U/Rmqvb0yPUeD56DP93V0E1uONFqVQUtMjxo4TiKfXCfZo8tQ1W2F6MiL88m8PmP3wcTe1Q8gACPQ35rVnWhDOxeSQSUB27fSlfah8Mv++A/simoR090tbLD4/VQCqamAoaTGlo18Jk9yeZthdAV8cFipVqDqbfy/4f1Isbesa0UMLM1oqXUYaJPb7DGdjqSGKFbulWgfIwqnGSIvxIE2+2inBClXy6FMWvvSFoU8TXDPbmznO1aT0O83w9GKWbPSCCtgd0XtYQ4D9Cfey9hl24vyP7vTSphXQlkd02JMjDxdxL3aDoKADdXTzNNQvZgGvmav+Cp/v64J+6qLew4Di8CcpJByd/4nqfqv7PwIrY58py9k0Q3fIc1yJBXT02KBOd9pDevXwk1BxYSiTjxSJURYoYVoAzkoWbvWUsezLsJAEGiN7CaD/80FbMb10zHtCvvctLSFi3fuh7Zc=

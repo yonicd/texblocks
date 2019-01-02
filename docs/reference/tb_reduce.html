@@ -64,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texblocks</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -97,6 +97,9 @@
     </li>
     <li>
       <a href="../articles/basics.html">Building Blocks</a>
+    </li>
+    <li>
+      <a href="../articles/recasting.html">Recasting texblocks</a>
     </li>
   </ul>
 </li>
@@ -132,18 +135,22 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>tb_reduce</span>(<span class='no'>...</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='fl'>1</span>, <span class='fl'>2</span>))</pre>
+    <pre class="usage"><span class='fu'>tb_reduce</span>(<span class='no'>...</span>, <span class='kw'>margin</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>merge</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>margin</th>
-      <td><p>how to reduce 1 by rows, 2 by columns, Default: 1</p></td>
+      <th>&#8230;</th>
+      <td><p>values to reduce</p></td>
     </tr>
     <tr>
-      <th>x</th>
-      <td><p>tb</p></td>
+      <th>margin</th>
+      <td><p>numeric, how to reduce 1 by rows, 2 by columns, Default: 1</p></td>
+    </tr>
+    <tr>
+      <th>merge</th>
+      <td><p>boolean, merge duplicated values into a multirow/multicolumn, Default: FALSE</p></td>
     </tr>
     </table>
     

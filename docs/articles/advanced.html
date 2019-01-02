@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texblocks</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -65,6 +65,9 @@
     <li>
       <a href="../articles/basics.html">Building Blocks</a>
     </li>
+    <li>
+      <a href="../articles/recasting.html">Recasting texblocks</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -90,7 +93,7 @@
       <h1>Advanced</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2018-12-11</h4>
+            <h4 class="date">2019-01-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texblocks/blob/master/vignettes/advanced.Rmd"><code>vignettes/advanced.Rmd</code></a></small>
       <div class="hidden name"><code>advanced.Rmd</code></div>
@@ -117,16 +120,21 @@
 <a class="sourceLine" id="cb3-6" data-line-number="6"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">3</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-7" data-line-number="7"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(<span class="kw">data.frame</span>(<span class="dt">line=</span><span class="dv">1</span>,<span class="dt">i=</span><span class="dv">2</span>,<span class="dt">j=</span><span class="dv">4</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb3-8" data-line-number="8"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>(<span class="dt">align =</span> <span class="st">'|c|ccc|'</span>)<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a>
-<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; introduced by coercion</span></a></code></pre></div>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
 <p><img src="advanced_files/figure-html/adv1-1.png" width="379"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">title &lt;-<span class="st"> </span><span class="kw"><a href="../reference/as.tb.html">as.tb</a></span>(<span class="st">'param'</span>) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="../reference/mergecells.html">multicol</a></span>(<span class="st">'vals'</span>,<span class="dv">3</span>,<span class="st">'c'</span>)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">tab &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>),<span class="cf">function</span>(x,y) <span class="kw"><a href="../reference/mergecells.html">multirow</a></span>(<span class="kw">sprintf</span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta_%s$'</span>,x),y) <span class="op">+</span><span class="st"> </span>k )</a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4">(title <span class="op">/</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(tab,<span class="st">`</span><span class="dt">/</span><span class="st">`</span>))<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">tab &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(k1,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>)<span class="op">%&gt;%</span><span class="kw">rep</span>(<span class="dv">3</span>)<span class="op">%&gt;%</span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="st">`</span><span class="dt">/</span><span class="st">`</span>),</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(k2,<span class="st">`</span><span class="dt">+</span><span class="st">`</span>))</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">tab &lt;-<span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map2.html">map2</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,tab,<span class="cf">function</span>(x,y){</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"> <span class="kw"><a href="../reference/mergecells.html">multirow</a></span>(<span class="kw">sprintf</span>(<span class="st">'$</span><span class="ch">\\</span><span class="st">beta_%s$'</span>,x),<span class="kw">nrow</span>(y)) <span class="op">+</span><span class="st"> </span>y </a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">})</a>
+<a class="sourceLine" id="cb4-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb4-11" data-line-number="11">(title <span class="op">/</span><span class="st"> </span>purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(tab,<span class="st">`</span><span class="dt">/</span><span class="st">`</span>))<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-12" data-line-number="12"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-13" data-line-number="13"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
 <p><img src="advanced_files/figure-html/adv2-1.png" width="379"></p>
   </div>
 

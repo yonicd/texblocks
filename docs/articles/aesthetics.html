@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texblocks</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -65,6 +65,9 @@
     <li>
       <a href="../articles/basics.html">Building Blocks</a>
     </li>
+    <li>
+      <a href="../articles/recasting.html">Recasting texblocks</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -90,7 +93,7 @@
       <h1>Aesthetics</h1>
                         <h4 class="author">Jonathan Sidi</h4>
             
-            <h4 class="date">2018-12-11</h4>
+            <h4 class="date">2019-01-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/metrumresearchgroup/texblocks/blob/master/vignettes/aesthetics.Rmd"><code>vignettes/aesthetics.Rmd</code></a></small>
       <div class="hidden name"><code>aesthetics.Rmd</code></div>
@@ -143,44 +146,20 @@
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(l)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt; introduced by coercion</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt; introduced by coercion</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt; introduced by coercion</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
 <p><img src="aesthetics_files/figure-html/cline-1.png" width="379"></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"></a>
 <a class="sourceLine" id="cb8-2" data-line-number="2">purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt; introduced by coercion</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt; introduced by coercion</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt; introduced by coercion</span></a></code></pre></div>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
 <p><img src="aesthetics_files/figure-html/cline-2.png" width="379"></p>
 <p>you can also combine hline and cline in a pipe</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/reduce.html">reduce</a></span>(<span class="kw">rep</span>(x1,<span class="dv">4</span>),<span class="st">`</span><span class="dt">/</span><span class="st">`</span>)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/hline.html">hline</a></span>(<span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">4</span>))<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/cline.html">cline</a></span>(d)<span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/tabular.html">tabular</a></span>()<span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt; introduced by coercion</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt; introduced by coercion</span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt; Warning in stats::setNames(c(y, as.numeric(x)), c("line", "i", "j")): NAs</span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt; introduced by coercion</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span>texPreview<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/texPreview/topics/tex_preview">tex_preview</a></span>()</a></code></pre></div>
 <p><img src="aesthetics_files/figure-html/lines_pipe-1.png" width="379"></p>
 </div>
 <div id="multicolmultirow" class="section level2">
