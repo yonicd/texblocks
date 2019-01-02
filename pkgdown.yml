@@ -1,0 +1,10 @@
+pandoc: '2.2'
+pkgdown: 1.1.0.9000
+pkgdown_sha: 3836984197179dd712138dbc2396527e4cb3131a
+articles:
+  General_Framework: General_Framework.html
+  advanced: advanced.html
+  aesthetics: aesthetics.html
+  basics: basics.html
+  recasting: recasting.html
+
