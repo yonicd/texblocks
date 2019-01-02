@@ -52,14 +52,14 @@ hline <- function(x,lines=NULL){
 #' cline(d)
 #' 
 #' @rdname cline
-#' @importFrom stats setNames
+#' @importFrom purrr set_names
 #' @export 
 
 cline <- function(x,specs){
 
   if(inherits(specs,'data.frame')){
     specs <- split(specs,specs$line)
-    specs <- lapply(specs,function(y) stats::setNames(as.numeric(y),names(y)))
+    specs <- lapply(specs,function(y) purrr::set_names(as.numeric(y),names(y)))
   }
     
   x1 <- as.data.frame(x)
@@ -69,7 +69,7 @@ cline <- function(x,specs){
   as.tb(x1)
 }
 
-#' @importFrom stats setNames
+#' @importFrom purrr set_names
 find_hline <- function(x){
   sx <- strsplit(as.character(x),'\n')[[1]]
   
@@ -106,7 +106,7 @@ find_cline <- function(x){
   l <- strsplit(gsub('^(.*?)cline|[\\{\\}]','',sx[clines]),'-')
   
   clines <- mapply(function(x,y){
-    stats::setNames(c(y,as.numeric(x)),c('line','i','j'))
+    purrr::set_names(c(y,as.numeric(x)),c('line','i','j'))
   },x=l,y=clines,SIMPLIFY = FALSE)
   
   clines <- data.frame(do.call('rbind',clines))
@@ -122,7 +122,7 @@ find_cline <- function(x){
   }
   
   specs <- split(clines,clines$line)
-  specs <- lapply(specs,function(y) stats::setNames(as.numeric(y),names(y)))
+  specs <- lapply(specs,function(y) purrr::set_names(as.numeric(y),names(y)))
   
   specs
 }

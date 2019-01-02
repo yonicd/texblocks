@@ -7,15 +7,15 @@
 #' @export 
 tabular <- function(x,align = NULL){
   
-  ncol <- dim(x)[2]
+  nc <- ncol(x)
   
   if(is.null(align)){
-    align <- strrep('c',ncol)
+    align <- strrep('c',nc)
   }else{
     nchar_align <- nchar(gsub('[|]','',align))
-    if(nchar_align!=ncol)
+    if(nchar_align!=nc)
       stop(sprintf('align has wrong number of columns: actual (%s) supplied (%s)',
-                   ncol,nchar_align)
+                   nc,nchar_align)
            )
   }
 

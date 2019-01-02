@@ -4,12 +4,14 @@
 \alias{tb_reduce}
 \title{reduce dimension of list of texblocks}
 \usage{
-tb_reduce(..., margin = c(1, 2))
+tb_reduce(..., margin = 1, merge = FALSE)
 }
 \arguments{
-\item{margin}{how to reduce 1 by rows, 2 by columns, Default: 1}
+\item{\dots}{values to reduce}
 
-\item{x}{tb}
+\item{margin}{numeric, how to reduce 1 by rows, 2 by columns, Default: 1}
+
+\item{merge}{boolean, merge duplicated values into a multirow/multicolumn, Default: FALSE}
 }
 \value{
 tb

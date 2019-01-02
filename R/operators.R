@@ -37,8 +37,8 @@
 #' @export
 '/.tb' <- function(e1,e2){
 
-  d1 <- dim(e1)[2]
-  d2 <- dim(e2)[2]
+  d1 <- ncol(e1)
+  d2 <- ncol(e2)
   
   if(d1<d2){
     e1 <- pad_col(e1,d2-d1)
@@ -48,18 +48,11 @@
     e2 <- pad_col(e2,d1-d2)
   }
   
-  e1 <- gsub('\\\\$','',e1)
+  e1 <- gsub('\\\\\\\\$','',e1)
     
   ret <- sprintf('%s\\\\\n%s',e1,e2)
   as.tb(ret)
 }
-
-# @rdname texblocks_opts
-# @export
-# '-.tb' <- function(e1,e2){
-#   ret <- sprintf('%s\\\\ \\hline\n%s',e1,e2)
-#   as.tb(ret)
-# }
 
 #' @inherit purrr::'%>%'
 #' @importFrom purrr %>%

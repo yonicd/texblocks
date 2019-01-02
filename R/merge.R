@@ -62,6 +62,7 @@ strip_multirow <- function(x){
     for(ii in seq_along(mr[[i]])){
     x <- gsub(mr[[i]][ii],
               ns[[i]][4],
+              #gsub('\\\\\\\\$','',as.tb(ns[[i]][4])%>%pad(ns[[i]][2],'b')%>%as.character()),
               x,
               fixed = TRUE)
     }
@@ -69,16 +70,23 @@ strip_multirow <- function(x){
   x
 }
 
+#' @importFrom purrr set_names
 find_multicol <- function(x){
   x <- as.character(x)
+  
+  if(!nzchar(x))
+    return(NULL)
+  
   sx <- strsplit(x,'\\n')[[1]]
+  
   idx <- gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', sx)
   
   if(identical(idx, integer(0)))
     return(NULL)
+
   
   midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
-  sidx <- setNames(midx,seq_along(sx))
+  sidx <- purrr::set_names(midx,seq_along(sx))
   found <- sapply(sidx,function(x)!identical(x,character(0)))
   sidy <- sidx[found]
   ns <- lapply(sidy,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]]) 
@@ -91,25 +99,27 @@ find_multicol <- function(x){
       ncol = as.numeric(ns[[nm]][2])-1,
       new_val = ns[[nm]][4],
       old_val = sidy[[nm]]
-      # setNames(ns[[nm]],
-      #          c('command','ncol','align','value')
-      #          )
       ) 
   })
   
   data.frame(do.call('rbind',ret),stringsAsFactors = FALSE)
 }
 
+#' @importFrom purrr set_names
 find_multirow <- function(x){
   x <- as.character(x)
+  
+  if(!nzchar(x))
+    return(NULL)
+  
   sx <- strsplit(x,'\\n')[[1]]
   idx <- gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', sx)
   
   if(identical(idx, integer(0)))
     return(NULL)
-  
+
   midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
-  sidx <- setNames(midx,seq_along(sx))
+  sidx <- purrr::set_names(midx,seq_along(sx))
   found <- sapply(sidx,function(x)!identical(x,character(0)))
   sidy <- sidx[found]
   ns <- lapply(sidy,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]]) 
@@ -120,10 +130,8 @@ find_multirow <- function(x){
     c(row = as.numeric(nm),
       col = start_col,
       new_val = ns[[nm]][4],
-      old_val = sidy[[nm]]
-      # setNames(ns[[nm]],
-      #          c('command','nrow','width','value')
-      # )
+      old_val = sidy[[nm]],
+      nr = ns[[nm]][2]
     )
   })
   

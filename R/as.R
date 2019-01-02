@@ -1,44 +1,58 @@
+# as.tb roxy [sinew] ---- 
 #' @title Try to coerce an object into a texblock object
 #' @description coerce objects into a tb class object
 #' @param x object
 #' @return an object of class tb
 #' @export
+# as.tb function [sinew] ----
 as.tb <- function(x){
   UseMethod('as.tb')
 }
 
+# as.tb.default roxy [sinew] ---- 
 #' @export
+# as.tb.default function [sinew] ----
 as.tb.default <- function(x){
   class(x) <- 'tb'
   return(x)
 }
 
+# as.tb.tb roxy [sinew] ---- 
 #' @export
+# as.tb.tb function [sinew] ----
 as.tb.tb <- function(x){
   return(x)
 }
 
+# as.tb.matrix roxy [sinew] ---- 
 #' @export
+# as.tb.matrix function [sinew] ----
 as.tb.matrix <- function(x,...){
   as.tb(as.data.frame(x))
 }
 
+# as.tb.dgCMatrix roxy [sinew] ---- 
 #' @export
+# as.tb.dgCMatrix function [sinew] ----
 as.tb.dgCMatrix <- function(x,...){
   x <- as.matrix(x)
   x[which(x==0,arr.ind = TRUE)] <- ' '
   as.tb(x)
 }
 
+# as.tb.list roxy [sinew] ---- 
 #' @export
+# as.tb.list function [sinew] ----
 as.tb.list <- function(x,...){
   lapply(x,as.tb)
 }
 
+# as.tb.data.frame roxy [sinew] ---- 
 #' @import dplyr
 #' @importFrom tidyr gather
 #' @importFrom rlang !! sym
 #' @export
+# as.tb.data.frame function [sinew] ----
 as.tb.data.frame <- function(x){
 
   mr <- attr(x,'MULTIROW')
@@ -97,11 +111,13 @@ as.tb.data.frame <- function(x){
     mutate(line_end=line_end)
   
   if(!is.null(ah)){
-    ret$line_end[ah] <- gsub(line_end,
-                             '\\\\ \\hline',
-                             ret$line_end[ah],
-                             fixed = TRUE)
+    for(i in seq_along(ah)){
+      ret$line_end[ah[i]] <- gsub(line_end,
+                               '\\\\ \\hline',
+                               ret$line_end[ah[i]],
+                               fixed = TRUE)   
     }
+  }
   
   if(!is.null(ac)){
     
@@ -141,6 +157,7 @@ as.tb.data.frame <- function(x){
   as.tb(ret)
 }
 
+# as.data.frame.tb roxy [sinew] ---- 
 #' @title convert texblock to data.frame
 #' @description convert a texblock class into a data.frame
 #' @param x texblock object
@@ -158,6 +175,7 @@ as.tb.data.frame <- function(x){
 #' @importFrom purrr map transpose set_names flatten_chr
 #' @import dplyr
 #' @importFrom utils type.convert
+# as.data.frame.tb function [sinew] ----
 as.data.frame.tb <- function(x,...){
 
   convert <- FALSE
@@ -170,7 +188,13 @@ as.data.frame.tb <- function(x,...){
   
   l <- x%>%
     parse_tb()%>%
-    purrr::map(function(x) gsub('^_|_$','',strsplit(x,split = 'NEWCOL')[[1]]))%>%
+    purrr::map(function(x) {
+      ret <- gsub('^_|_$','',strsplit(x,split = 'NEWCOL')[[1]]) 
+      if(length(ret)==0)
+        ret <- ''
+      
+      ret
+    })%>%
     purrr::transpose()
   
   ret <- l%>%
@@ -192,51 +216,11 @@ as.data.frame.tb <- function(x,...){
   return(ret)
 }
 
-parse_tb <- function(x,skip){
-
-  y <- gsub('&',
-            '_NEWCOL_',
-            gsub('\\n',
-                 '',
-                 gsub('\\\\',
-                      '_NEWROW_',
-                      x,
-                      fixed=TRUE)
-            )
-  )
-  
-  ret <- strsplit(y,'_NEWROW_')[[1]]
-  
+# as.matrix.tb roxy [sinew] ---- 
+#' @export
+# as.matrix.tb function [sinew] ----
+as.matrix.tb <- function(x,...){
+  ret <- x%>%as.data.frame(convert=TRUE)%>%as.matrix()
+  ret[which(is.na(ret),arr.ind = TRUE)] <- 0
   ret
-}
-
-#' @export
-print.tb <- function(x,...){
-  cat(x,sep='\n')
-}
-
-#' @title Is the object of class tb
-#' @export
-#' @description Is the object of class tb Very basic for many functions
-#'  in the package.
-#' @param x an object
-#' @return logical - is the object of class tb
-is.tb <- function(x) inherits(x, 'tb')
-
-#' @export
-rep.tb <- function(x,...){
-  y <- NextMethod()
-  lapply(y,as.tb)
-}
-
-#' @export
-t.tb <- function (x) {
-  x <- as.data.frame(x)
-  xt <- as.data.frame(t(x))
-  as.tb(xt)
-}
-
-#' @export
-dim.tb <- function(x){
-  dim(as.data.frame(x))
 }
