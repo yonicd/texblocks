@@ -17,6 +17,7 @@ addons:
     - libmagick++-dev
 r_github_packages:
 - metrumresearchgroup/texPreview
+- metrumresearchgroup/pkgdown
 after_success:
 - Rscript -e 'pkgdown::build_site()'
 deploy:
