@@ -85,7 +85,7 @@ Converting to `tb` class
   - [sparse matrix](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#sparse-matrix)
   - [data.frame/tibble](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#data-frame)
   
-texblocks can also be converted back into [`tibbles`](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#as-data-frame) for further data manipulation. 
+texblocks can also be converted back into [`tibbles`](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#as-data-frame) and matrices for further data manipulation. 
 
 ### Vectorizing
 

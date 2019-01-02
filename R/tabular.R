@@ -7,20 +7,15 @@
 #' @export 
 tabular <- function(x,align = NULL){
   
-  ncol <- sapply(gsub('[^&]','',strsplit(x,'\n')[[1]]),nchar)
-  
-  uncol <- max(ncol) + 1
-  
-  if(length(uncol)>1)
-    stop('unequal number of columns in table')
+  nc <- ncol(x)
   
   if(is.null(align)){
-    align <- strrep('c',uncol)
+    align <- strrep('c',nc)
   }else{
     nchar_align <- nchar(gsub('[|]','',align))
-    if(nchar_align!=uncol)
-      stop(sprintf('align has wroing number of columns: actual (%s) supplied (%s)',
-                   uncol,nchar_align)
+    if(nchar_align!=nc)
+      stop(sprintf('align has wrong number of columns: actual (%s) supplied (%s)',
+                   nc,nchar_align)
            )
   }
 

@@ -10,7 +10,7 @@ library(texPreview)
 
 
 ## ----include=FALSE-------------------------------------------------------
-tex_opts$set(returnType = knitr::opts_knit$get('rmarkdown.pandoc.to'))
+tex_opts$set(returnType = 'html')
 tex_opts$append(list(cleanup='tex'))
 
 ## ------------------------------------------------------------------------
@@ -37,14 +37,14 @@ title <- c('param',sprintf('col%s',1:5))%>%
 (title / (x2 + x3))%>%
   hline()%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ----hline2--------------------------------------------------------------
 (title / (x2 + x3))%>%
   hline(lines = c(2,3))%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ------------------------------------------------------------------------
@@ -55,12 +55,12 @@ d <- data.frame(line=1:3,i=c(1,2,3),j=c(1,2,3))
 purrr::reduce(rep(x1,4),`/`)%>%
   cline(l)%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 purrr::reduce(rep(x1,4),`/`)%>%
   cline(d)%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 
 ## ----lines_pipe----------------------------------------------------------
@@ -68,13 +68,13 @@ purrr::reduce(rep(x1,4),`/`)%>%
   hline(c(0,4))%>%
   cline(d)%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 ## ----multirow,echo=TRUE,results='asis'-----------------------------------
 title <- as.tb('param') + multicol('vals',3,'c')
 
 (title / (multirow('$\\beta$',2) + k))%>%
   tabular()%>%
-  texPreview::texPreview()
+  texPreview::tex_preview()
 
 

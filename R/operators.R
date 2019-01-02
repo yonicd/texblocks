@@ -19,12 +19,10 @@
 #' 
 #' @details
 #'  
-#'  + : joins e1 to e2 horizontally
+#'  + : joins e1 to e2 horizontally (cbind)
 #'  
-#'  / : joins e1 to e2 vertically with no hline betweet them
+#'  / : joins e1 to e2 vertically with no hline betweet them (rbind)
 #'  
-#'  - : joins e1 to e2 vertically with an hline between them
-
 #' 
 #' @return texblock object
 #' @name operators
@@ -38,16 +36,23 @@
 #' @rdname texblocks_opts
 #' @export
 '/.tb' <- function(e1,e2){
+
+  d1 <- ncol(e1)
+  d2 <- ncol(e2)
+  
+  if(d1<d2){
+    e1 <- pad_col(e1,d2-d1)
+  }
+  
+  if(d2<d1){
+    e2 <- pad_col(e2,d1-d2)
+  }
+  
+  e1 <- gsub('\\\\\\\\$','',e1)
+    
   ret <- sprintf('%s\\\\\n%s',e1,e2)
   as.tb(ret)
 }
-
-# @rdname texblocks_opts
-# @export
-# '-.tb' <- function(e1,e2){
-#   ret <- sprintf('%s\\\\ \\hline\n%s',e1,e2)
-#   as.tb(ret)
-# }
 
 #' @inherit purrr::'%>%'
 #' @importFrom purrr %>%
@@ -55,11 +60,3 @@
 #' @rdname pipe
 #' @export
 NULL
-
-#' @export
-t.tb <- function (x) 
-{
-  x <- as.data.frame(x)
-  xt <- as.data.frame(t(x))
-  as.tb(xt)
-}
