@@ -40,7 +40,7 @@ strip_multicol <- function(x){
       x <- gsub(mc[[i]][ii],
                 sprintf('%s%s',
                         ns[[i]][4],
-                        strrep('& ',as.numeric(ns[[i]][2])-1)
+                        strrep('&',as.numeric(ns[[i]][2])-1)
                 ),
                 x,
                 fixed = TRUE)   
@@ -62,7 +62,6 @@ strip_multirow <- function(x){
     for(ii in seq_along(mr[[i]])){
     x <- gsub(mr[[i]][ii],
               ns[[i]][4],
-              #gsub('\\\\\\\\$','',as.tb(ns[[i]][4])%>%pad(ns[[i]][2],'b')%>%as.character()),
               x,
               fixed = TRUE)
     }
@@ -96,7 +95,7 @@ find_multicol <- function(x){
     start_col <- grep(sidy[[nm]],this,fixed = TRUE)
     c(row = as.numeric(nm),
       col = start_col,
-      ncol = as.numeric(ns[[nm]][2])-1,
+      n = as.numeric(ns[[nm]][2])-1,
       new_val = ns[[nm]][4],
       old_val = sidy[[nm]]
       ) 
@@ -129,11 +128,30 @@ find_multirow <- function(x){
     start_col <- grep(sidy[[nm]],this,fixed = TRUE)
     c(row = as.numeric(nm),
       col = start_col,
+      n = as.numeric(ns[[nm]][2]) - 1,
       new_val = ns[[nm]][4],
-      old_val = sidy[[nm]],
-      nr = ns[[nm]][2]
+      old_val = sidy[[nm]]
     )
   })
   
   data.frame(do.call('rbind',ret),stringsAsFactors = FALSE)
+}
+
+multi_t <- function(obj, f = multirow){
+  
+  if(nrow(obj)==0){
+    return(obj)  
+  }
+  
+  r_temp <- obj$row
+  c_temp <- obj$col
+  
+  obj$row <- c_temp
+  obj$col <- r_temp
+  
+  for(i in 1:nrow(obj)){
+    obj$old_val[i] <- f(obj$new_val[i],as.numeric(obj$n[i]) + 1)%>%as.character()  
+  }
+  
+  obj
 }

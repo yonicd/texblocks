@@ -93,7 +93,7 @@ as.tb.data.frame <- function(x){
     if(nrow(mc)>0){
       for(i in 1:nrow(mc)){
         nr <- as.numeric(mc$row[i])
-        ret$val[nr] <- gsub(sprintf('%s%s',mc$new_val[i],strrep('& ',mc$ncol[i])),
+        ret$val[nr] <- gsub(sprintf('%s%s',mc$new_val[i],strrep('&',mc$n[i])),
                                    mc$old_val[1],
                                    ret$val[nr],
                                    fixed = TRUE)
@@ -200,8 +200,7 @@ as.data.frame.tb <- function(x,...){
   ret <- l%>%
     purrr::set_names(seq_along(l))%>%
     dplyr::as_tibble()%>%
-    dplyr::mutate_all(purrr::flatten_chr)#%>%
-    #dplyr::mutate_all(.funs = function(x) gsub('^\\s+|\\s+$','',x))
+    dplyr::mutate_all(purrr::flatten_chr)
   
   if(convert){
     ret <- ret %>%
@@ -209,7 +208,6 @@ as.data.frame.tb <- function(x,...){
      dplyr::mutate_if(is.factor,as.character)    
   }
 
-  
   ret <- ret%>%
     restore(attr_env)
   
