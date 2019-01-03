@@ -29,6 +29,8 @@ rep.tb <- function(x,...){
 t.tb <- function(x) {
   x <- as.data.frame(x)
   xt <- as.data.frame(t(x))
+  attr(xt,'MULTICOL') <- multi_t(attributes(x)[['MULTIROW']],multicol)
+  attr(xt,'MULTIROW') <- multi_t(attributes(x)[['MULTICOL']],multirow)
   as.tb(xt)
 }
 
