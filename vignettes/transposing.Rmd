@@ -30,7 +30,7 @@ We show in this vignette that texblocks can be transposed while keeping aestheti
 
 Multicolumn and multirows are mapped to the transposed positions.
 
-## Building the example table
+## Example 1
 
 ### Column Header
 
@@ -98,4 +98,34 @@ tbl%>%
   hline(c(0,2,2,nrow(.)))%>%
   texblocks::tabular(align = '|c|ccccc|')%>%
   texPreview::tex_preview()
+```
+
+## Example 2
+
+Multiple merges across multiple rows/columns
+
+### Build Table
+
+```{r}
+dat <- dplyr::tibble(
+  Study    = c(1,1,1,1),
+  Variable = c('Age','Age','Sex','Sex'),
+  Category = c('$>=$ med','$<$ med','Male','Female'),
+  Value    = c(300,300,345,255) 
+)
+
+header <- names(dat)%>%tb_reduce(margin = 2)
+
+a1 <- dat$Study%>%tb_reduce(merge = TRUE)
+a2 <- dat$Variable%>%tb_reduce(merge = TRUE)
+
+a <- a1 + a2
+
+b <- dat[,-c(1,2)]%>%as.tb()
+
+tab <- header/((a1 + a2) + b)
+
+tab
+
+tab%>%t()
 ```

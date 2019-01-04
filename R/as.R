@@ -94,7 +94,7 @@ as.tb.data.frame <- function(x){
       for(i in 1:nrow(mc)){
         nr <- as.numeric(mc$row[i])
         ret$val[nr] <- gsub(sprintf('%s%s',mc$new_val[i],strrep('&',mc$n[i])),
-                                   mc$old_val[1],
+                                   mc$old_val[i],
                                    ret$val[nr],
                                    fixed = TRUE)
       }

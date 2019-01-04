@@ -60,3 +60,35 @@ tbl%>%
   texblocks::tabular(align = '|c|ccccc|')%>%
   texPreview::tex_preview()
 
+## ------------------------------------------------------------------------
+dat <- dplyr::tibble(
+  Study    = c(1,1,1,1),
+  Variable = c('Age','','Sex',''),
+  Category = c('$>=$ med','$<$ med','Male','Female'),
+  Value    = c(300,300,345,255) 
+)
+
+header <- names(dat)%>%tb_reduce(margin = 2)
+
+a1 <- dat$Study%>%tb_reduce(merge = TRUE)
+a2 <- dat$Variable%>%tb_reduce(merge = TRUE)
+
+a <- a1 + a2
+
+b <- dat[,-c(1,2)]%>%as.tb()
+
+tab <- ((a1 + a2) + b)
+
+tab
+
+## ------------------------------------------------------------------------
+tab%>%
+  texblocks::tabular()%>%
+  tex_preview()
+
+## ------------------------------------------------------------------------
+tab%>%
+  t()%>%
+  texblocks::tabular(c('l|l|cc'))%>%
+  tex_preview()
+
