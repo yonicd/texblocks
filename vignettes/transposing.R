@@ -63,7 +63,7 @@ tbl%>%
 ## ------------------------------------------------------------------------
 dat <- dplyr::tibble(
   Study    = c(1,1,1,1),
-  Variable = c('Age','','Sex',''),
+  Variable = c('Age','Age','Sex','Sex'),
   Category = c('$>=$ med','$<$ med','Male','Female'),
   Value    = c(300,300,345,255) 
 )
@@ -77,18 +77,9 @@ a <- a1 + a2
 
 b <- dat[,-c(1,2)]%>%as.tb()
 
-tab <- ((a1 + a2) + b)
+tab <- header/((a1 + a2) + b)
 
 tab
 
-## ------------------------------------------------------------------------
-tab%>%
-  texblocks::tabular()%>%
-  tex_preview()
-
-## ------------------------------------------------------------------------
-tab%>%
-  t()%>%
-  texblocks::tabular(c('l|l|cc'))%>%
-  tex_preview()
+tab%>%t()
 
