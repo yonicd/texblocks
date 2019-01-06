@@ -93,6 +93,12 @@ find_multicol <- function(x){
       if(identical(idx, integer(0)))
         return(NULL)
       
+      if(length(idx)==0)
+        return(NULL)
+      
+      if(idx[[1]][1]==-1)
+        return(NULL)
+      
       midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
       sidx <- purrr::set_names(midx,seq_along(sx))
       found <- sapply(sidx,function(x)!identical(x,character(0)))
@@ -134,6 +140,12 @@ find_multirow <- function(x){
       sx <- strsplit(y,split = '\\&')[[1]]
       idx <- gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', sx)
       if(identical(idx, integer(0)))
+        return(NULL)
+      
+      if(length(idx)==0)
+        return(NULL)
+      
+      if(idx[[1]][1]==-1)
         return(NULL)
       
       midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
