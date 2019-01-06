@@ -73,6 +73,17 @@ strip_multirow <- function(x){
   x
 }
 
+#' @title Find multirow or multicolumn
+#' @description Returns indicies of multirow or multicolumn in a texblocks
+#' @param x texblock
+#' @return data.frame
+#' @examples 
+#' x <- multicol('a',2)
+#' y <- multirow('a',2)
+#' x%>%find_multicol()
+#' y%>%find_multirow()
+#' 
+#' @rdname find_merge
 #' @importFrom purrr set_names map_df
 #' @export
 find_multicol <- function(x){
@@ -81,8 +92,9 @@ find_multicol <- function(x){
   if(!nzchar(x_char))
     return(NULL)
   
-  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]%>%
-    purrr::set_names(1:length(.))
+  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]
+  
+  x_list <- purrr::set_names(x_list,1:length(x_list))
   
   x_list <- purrr::map(x_list,gsub,pattern = '^\\n|^\\s+',replacement = '')
   
@@ -121,8 +133,9 @@ find_multicol <- function(x){
   
 }
 
-#' @importFrom purrr set_names map_df
-#' @export
+#' @rdname find_merge
+#' @export 
+#' @importFrom purrr set_names map map_df
 find_multirow <- function(x){
   
   x_char <- as.character(x)
@@ -130,8 +143,9 @@ find_multirow <- function(x){
   if(!nzchar(x_char))
     return(NULL)
   
-  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]%>%
-    purrr::set_names(1:length(.))
+  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]
+  
+  x_list <- purrr::set_names(x_list,1:length(x_list))
   
   x_list <- purrr::map(x_list,gsub,pattern = '^\\n|^\\s+',replacement = '')
   
