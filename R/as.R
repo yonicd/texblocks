@@ -55,8 +55,6 @@ as.tb.list <- function(x,...){
 # as.tb.data.frame function [sinew] ----
 as.tb.data.frame <- function(x){
 
-  mr <- attr(x,'MULTIROW')
-  mc <- attr(x,'MULTICOL')
   ah <- attr(x,'HLINE')
   ac <- attr(x,'CLINE')
   
@@ -72,77 +70,51 @@ as.tb.data.frame <- function(x){
     dplyr::ungroup()
   )
   
-  # multirows
+  # attach aes
   
-  if(!is.null(mr)){
-    if(nrow(mr)>0){
-      for(i in 1:nrow(mr)){
-        nr <- as.numeric(mr$row[i])
-        ret$val[nr] <- gsub(mr$new_val[i],
-                                 mr$old_val[i],
-                                 ret$val[nr],
-                                 fixed = TRUE)    
-      }
-    }
-  }
-  
-  
-  # multicols
-
-  if(!is.null(mc)){
-    if(nrow(mc)>0){
-      for(i in 1:nrow(mc)){
-        nr <- as.numeric(mc$row[i])
-        ret$val[nr] <- gsub(sprintf('%s%s',mc$new_val[i],strrep('&',mc$n[i])),
-                                   mc$old_val[i],
-                                   ret$val[nr],
-                                   fixed = TRUE)
-      }
-    }
-  }
-  
-  if(nrow(ret)==1){
-    line_end <- ''
-  }else{
-    line_end <- '\\\\'
-  }
-
-  ret <- ret%>%
-    mutate(line_end=line_end)
-  
-  if(!is.null(ah)){
-    for(i in seq_along(ah)){
-      ret$line_end[ah[i]] <- gsub(line_end,
-                               '\\\\ \\hline',
-                               ret$line_end[ah[i]],
-                               fixed = TRUE)   
-    }
-  }
-  
-  if(!is.null(ac)){
+    # multirows
     
-    for(i in seq_along(ac)){
-      ret$line_end[ac[[i]]['line']] <- gsub(line_end,sprintf('\\\\ \\cline{%s-%s}',
-                                                        ac[[i]]['i'],ac[[i]]['j']),
-                                       ret$line_end[ac[[i]]['line']],
-                                       fixed = TRUE)
-    }
-
-  }
+      ret <- ret%>%multirow_attach(attr(x,'MULTIROW'))
+    
+    # multicols
   
-   #ret$line_end[nrow(ret)] <- gsub('^\\\\\\\\','',ret$line_end[nrow(ret)])
+      ret <- ret%>%multicol_attach(attr(x,'MULTICOL'))
+    
+    # hline
+    
+      if(nrow(ret)==1){
+        line_end <- ''
+      }else{
+        line_end <- '\\\\'
+      }
+      
+      ret <- ret%>%hline_attach(attr(x,'HLINE'),line_end)
+    
+    # cline
+      
+      ret <- ret%>%cline_attach(attr(x,'CLINE'),line_end)
   
+  # convert dataframe to a string    
+      
    ret <- ret%>%
      dplyr::mutate(val = sprintf('%s%s',!!rlang::sym('val'),line_end))%>%
       dplyr::summarise(val=paste0(!!rlang::sym('val'),
                                 collapse = '\n'))%>%
       dplyr::pull(!!rlang::sym('val'))
   
+   # attach a hline to the top if needed
+   
    if(!is.null(ah)){
+     
      if(0%in%ah){
-       ret <- sprintf('\\hline\n%s',ret)
+       ret <- sprintf(
+         fmt = '\\hline\n%s',
+         ret
+         )
      }
    }
+   
+   # attach a cline to the top if needed
    
    if(!is.null(ac)){
 
@@ -150,8 +122,12 @@ as.tb.data.frame <- function(x){
      ac_idx0 <- which(ac_idx==0)
      
      if(length(ac_idx0)>0){
-       ret <- sprintf('\\cline{%s-%s}\n%s',ac[[ac_idx0]]['i'],ac[[ac_idx0]]['j'],ret)
+       ret <- sprintf(
+         fmt = '\\cline{%s-%s}\n%s',
+         ac[[ac_idx0]]['i'],ac[[ac_idx0]]['j'],ret
+         )
      }
+     
    }
    
   as.tb(ret)

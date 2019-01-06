@@ -74,14 +74,19 @@ strip_multirow <- function(x){
 }
 
 #' @importFrom purrr set_names map_df
+#' @export
 find_multicol <- function(x){
-  x <- as.character(x)
+  x_char <- as.character(x)
   
-  if(!nzchar(x))
+  if(!nzchar(x_char))
     return(NULL)
   
-  strsplit(x,split = '\\n')[[1]]%>%
-    purrr::set_names(1:length(.))%>%
+  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]%>%
+    purrr::set_names(1:length(.))
+  
+  x_list <- purrr::map(x_list,gsub,pattern = '^\\n|^\\s+',replacement = '')
+  
+  x_list%>%
     purrr::map_df(function(y){
       sx <- strsplit(y,split = '\\&')[[1]]
       idx <- gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', sx)
@@ -111,15 +116,20 @@ find_multicol <- function(x){
 }
 
 #' @importFrom purrr set_names map_df
+#' @export
 find_multirow <- function(x){
   
-  x <- as.character(x)
+  x_char <- as.character(x)
   
-  if(!nzchar(x))
+  if(!nzchar(x_char))
     return(NULL)
   
-  strsplit(x,split = '\\n')[[1]]%>%
-    purrr::set_names(1:length(.))%>%
+  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]%>%
+    purrr::set_names(1:length(.))
+  
+  x_list <- purrr::map(x_list,gsub,pattern = '^\\n|^\\s+',replacement = '')
+  
+  x_list%>%
     purrr::map_df(function(y){
       sx <- strsplit(y,split = '\\&')[[1]]
       idx <- gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', sx)

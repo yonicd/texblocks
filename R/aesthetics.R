@@ -130,3 +130,41 @@ find_cline <- function(x){
 strip_cline <- function(x){
   paste0(gsub(' \\\\cline(.*?)$','',strsplit(x,'\\n')[[1]]),collapse='\n')
 }
+
+cline_attach <- function(obj,aes,line_end){
+  
+  if(is.null(aes))
+    return(obj)
+
+    for(i in seq_along(aes)){
+      obj$line_end[aes[[i]]['line']] <- gsub(
+        pattern = line_end,
+        replacement = sprintf(
+          fmt = '\\\\ \\cline{%s-%s}',
+          aes[[i]]['i'],aes[[i]]['j']
+          ),
+        x = obj$line_end[aes[[i]]['line']],
+        fixed = TRUE)
+    }
+
+  obj
+}
+
+hline_attach <- function(obj,aes,line_end){
+  
+  obj$line_end <- line_end
+  
+  if(is.null(aes))
+    return(obj)
+  
+  for(i in seq_along(aes)){
+      obj$line_end[aes[i]] <- gsub(
+        pattern = line_end,
+        replacement = '\\\\ \\hline',
+        x = obj$line_end[aes[i]],
+        fixed = TRUE)   
+  }
+  
+  obj
+  
+}
