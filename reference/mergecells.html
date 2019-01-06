@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Merge texblocks — multirow • texblocks</title>
+<title>Merge texblocks — multicol • texblocks</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,7 +32,7 @@
 
 
 
-<meta property="og:title" content="Merge texblocks — multirow" />
+<meta property="og:title" content="Merge texblocks — multicol" />
 
 <meta property="og:description" content="Create multirow/multicol to texblock object" />
 <meta name="twitter:card" content="summary" />
@@ -64,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">texblocks</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9004</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9005</span>
       </span>
     </div>
 
@@ -128,7 +128,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Merge texblocks</h1>
-    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/merge.R'><code>R/merge.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/multi_column.R'><code>R/multi_column.R</code></a>, <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/multi_row.R'><code>R/multi_row.R</code></a></small>
     <div class="hidden name"><code>mergecells.Rd</code></div>
     </div>
 
@@ -138,9 +138,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>multirow</span>(<span class='no'>content</span>, <span class='no'>nrow</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"*"</span>)
+    <pre class="usage"><span class='fu'>multicol</span>(<span class='no'>content</span>, <span class='no'>ncol</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"c"</span>)
 
-<span class='fu'>multicol</span>(<span class='no'>content</span>, <span class='no'>ncol</span>, <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"c"</span>)</pre>
+<span class='fu'>multirow</span>(<span class='no'>content</span>, <span class='no'>nrow</span>, <span class='kw'>width</span> <span class='kw'>=</span> <span class='st'>"*"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,20 +150,20 @@
       <td><p>character, contents to display in the merged cell</p></td>
     </tr>
     <tr>
-      <th>nrow</th>
-      <td><p>numeric, number of rows to span in the multirow</p></td>
-    </tr>
-    <tr>
-      <th>width</th>
-      <td><p>character, width of the new element, Default: '*'</p></td>
-    </tr>
-    <tr>
       <th>ncol</th>
       <td><p>numeric, number of columns to span in the multicol</p></td>
     </tr>
     <tr>
       <th>align</th>
       <td><p>character, alignment of the merged column, Default: 'c'</p></td>
+    </tr>
+    <tr>
+      <th>nrow</th>
+      <td><p>numeric, number of rows to span in the multirow</p></td>
+    </tr>
+    <tr>
+      <th>width</th>
+      <td><p>character, width of the new element, Default: '*'</p></td>
     </tr>
     </table>
     
