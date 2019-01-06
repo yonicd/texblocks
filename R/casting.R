@@ -24,6 +24,20 @@ as.tb.tb <- function(x){
   return(x)
 }
 
+# as.tb.numeric roxy [sinew] ---- 
+#' @export
+# as.tb.numeric function [sinew] ----
+as.tb.numeric <- function(x){
+  matrix(x,ncol=1)%>%as.tb()
+}
+
+# as.tb.ineger roxy [sinew] ---- 
+#' @export
+# as.tb.ineger function [sinew] ----
+as.tb.integer <- function(x){
+  matrix(x,ncol=1)%>%as.tb()
+}
+
 # as.tb.matrix roxy [sinew] ---- 
 #' @export
 # as.tb.matrix function [sinew] ----
@@ -196,5 +210,6 @@ as.data.frame.tb <- function(x,...){
 as.matrix.tb <- function(x,...){
   ret <- x%>%as.data.frame(convert=TRUE)%>%as.matrix()
   ret[which(is.na(ret),arr.ind = TRUE)] <- 0
+  attr(ret,'dimnames') <- NULL
   ret
 }
