@@ -1,15 +1,3 @@
-modify_multirow <- function(tb,i,j,new){
-  
-  modify_multi(tb,i,j,new,'MULTIROW',find_multirow)
-  
-}
-
-modify_multicol <- function(tb,i,j,new){
-  
-  modify_multi(tb,i,j,new,'MULTICOL',find_multicol)
-  
-}
-
 modify_multi <- function(tb,i,j,new,type,f){
   
   new <- as.character(new)

@@ -32,6 +32,7 @@ strip <- function(x,env){
   x
 }
 
+#'@importFrom  purrr discard
 restore <- function(x,env){
   
   l <-   as.list(env)%>%
@@ -45,8 +46,4 @@ restore <- function(x,env){
     
   }
   x
-}
-
-strip_tabular <- function(x){
-  gsub('\\\\begin\\{tabular\\}(.*?)\\n|\\\\end\\{tabular\\}','',x)
 }
