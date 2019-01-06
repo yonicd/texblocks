@@ -1,24 +1,4 @@
-#' @title add hlines
-#' @description add hlines to texblock object
-#' @param x texblock
-#' @param lines lines to add hline, Default: NULL
-#' @return texblock
-#' @details if NULL then all lines have hline added to them
-#' @rdname hline
-#' @export 
-
-hline <- function(x,lines=NULL){
-
-  x1 <- as.data.frame(x)
-  
-  if(is.null(lines))
-    lines <- 0:nrow(x1)
-  
-  attr(x1,'HLINES') <- lines
-  
-  as.tb(x1)
-}
-
+# cline roxy [sinew] ---- 
 #' @title add clines to texblock
 #' @description add clines to texblock object using a list object containing specifications.
 #' @param x texblock
@@ -54,47 +34,23 @@ hline <- function(x,lines=NULL){
 #' @rdname cline
 #' @importFrom purrr set_names
 #' @export 
+# cline function [sinew] ----
 
 cline <- function(x,specs){
-
+  
   if(inherits(specs,'data.frame')){
     specs <- split(specs,specs$line)
     specs <- lapply(specs,function(y) purrr::set_names(as.numeric(y),names(y)))
   }
-    
+  
   x1 <- as.data.frame(x)
-
+  
   attr(x1,'CLINES') <- specs
   
   as.tb(x1)
 }
 
-#' @importFrom purrr set_names
-find_hline <- function(x){
-  sx <- strsplit(as.character(x),'\n')[[1]]
-  
-  hlines <- grep('\\\\hline',sx)
-  
-  if(identical(hlines, integer(0)))
-    return(NULL)
-  
-  if(1%in%hlines){
-    sx1 <- sx[[which(hlines==1)]]
-    if(grepl('^\\\\hline',sx1)){
-        hlines[which(hlines==1)] <- 0  
-        hlines[-1] <- hlines[-1] - 1
-    }
-  }else{
-    hlines <- hlines - 1
-  }
-
-  hlines
-}
-
-strip_hline <- function(x){
-  gsub('\\\\hline\\n| \\\\hline$','',x)
-}
-
+# find_cline function [sinew] ---- 
 find_cline <- function(x){
   sx <- strsplit(as.character(x),'\n')[[1]]
   
@@ -110,7 +66,7 @@ find_cline <- function(x){
   },x=l,y=clines,SIMPLIFY = FALSE)
   
   clines <- data.frame(do.call('rbind',clines))
-
+  
   if(1%in%clines$line){
     sx1 <- sx[[which(clines$line==1)]]
     if(grepl('^\\\\cline',sx1)){
@@ -127,44 +83,27 @@ find_cline <- function(x){
   specs
 }
 
+# strip_cline function [sinew] ---- 
 strip_cline <- function(x){
   paste0(gsub(' \\\\cline(.*?)$','',strsplit(x,'\\n')[[1]]),collapse='\n')
 }
 
+# cline_attach function [sinew] ---- 
 cline_attach <- function(obj,aes,line_end){
-  
-  if(is.null(aes))
-    return(obj)
-
-    for(i in seq_along(aes)){
-      obj$line_end[aes[[i]]['line']] <- gsub(
-        pattern = line_end,
-        replacement = sprintf(
-          fmt = '\\\\ \\cline{%s-%s}',
-          aes[[i]]['i'],aes[[i]]['j']
-          ),
-        x = obj$line_end[aes[[i]]['line']],
-        fixed = TRUE)
-    }
-
-  obj
-}
-
-hline_attach <- function(obj,aes,line_end){
-  
-  obj$line_end <- line_end
   
   if(is.null(aes))
     return(obj)
   
   for(i in seq_along(aes)){
-      obj$line_end[aes[i]] <- gsub(
-        pattern = line_end,
-        replacement = '\\\\ \\hline',
-        x = obj$line_end[aes[i]],
-        fixed = TRUE)   
+    obj$line_end[aes[[i]]['line']] <- gsub(
+      pattern = line_end,
+      replacement = sprintf(
+        fmt = '\\\\ \\cline{%s-%s}',
+        aes[[i]]['i'],aes[[i]]['j']
+      ),
+      x = obj$line_end[aes[[i]]['line']],
+      fixed = TRUE)
   }
   
   obj
-  
 }

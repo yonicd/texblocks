@@ -22,3 +22,7 @@ tabular <- function(x,align = NULL){
   as.tb(sprintf('\\begin{tabular}{%s}\n%s\n\\end{tabular}',align,x))
 
 }
+
+strip_tabular <- function(x){
+  gsub('\\\\begin\\{tabular\\}(.*?)\\n|\\\\end\\{tabular\\}','',x)
+}

@@ -46,7 +46,3 @@ restore <- function(x,env){
   }
   x
 }
-
-strip_tabular <- function(x){
-  gsub('\\\\begin\\{tabular\\}(.*?)\\n|\\\\end\\{tabular\\}','',x)
-}
