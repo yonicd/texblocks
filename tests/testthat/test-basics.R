@@ -10,6 +10,10 @@ testthat::describe('as.tb',{
     expect_class(as.tb(as.tb('a')),'tb')
   })
   
+  it('as.integer.tb',{
+    expect_class(as.tb(1L),'tb')
+  })
+  
   it('as.matrix.tb',{
     expect_class(as.tb(matrix(c(1,1,1,1))),'tb')
   })
@@ -18,6 +22,21 @@ testthat::describe('as.tb',{
     expect_class(as.tb(iris),'tb')
   })
 
+  it('bdiag',{
+    mat <- Matrix::bdiag(
+      Matrix::Diagonal(2), 
+      matrix(1:3, 3,4), 
+      diag(3:2)
+    )
+    
+    expect_class(mat%>%as.tb,'tb')
+  })
+  
+  it('list',{
+    x <- rep(1,4)%>%as.list()%>%as.tb()
+    expect_class(x,'list')
+    testthat::expect_true(sapply(x,inherits,what = 'tb')%>%all)
+  })
 })
 
 testthat::describe('from tb',{
