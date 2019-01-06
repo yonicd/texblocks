@@ -90,7 +90,14 @@ find_multicol <- function(x){
     purrr::map_df(function(y){
       sx <- strsplit(y,split = '\\&')[[1]]
       idx <- gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', sx)
+      
       if(identical(idx, integer(0)))
+        return(NULL)
+      
+      if(length(idx)==0)
+        return(NULL)
+      
+      if(idx[[1]][1]==-1)
         return(NULL)
       
       midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
@@ -134,6 +141,12 @@ find_multirow <- function(x){
       sx <- strsplit(y,split = '\\&')[[1]]
       idx <- gregexpr('\\\\multirow\\{(.*?)\\}\\{(.*?)\\}', sx)
       if(identical(idx, integer(0)))
+        return(NULL)
+      
+      if(length(idx)==0)
+        return(NULL)
+      
+      if(idx[[1]][1]==-1)
         return(NULL)
       
       midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)

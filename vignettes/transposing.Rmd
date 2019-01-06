@@ -80,10 +80,7 @@ tbl <- (tbl_col_header / (tbl_row_header + tbl_body))
 
 ```{r remedy005}
 
-tbl%>%
-  hline(c(0,1,1,nrow(.)))%>%
-  texblocks::tabular(align = '|cc|cccc|')%>%
-  texPreview::tex_preview()
+tbl
 
 ```
 
@@ -93,11 +90,7 @@ Notice that the multirow has been also mapped to the appropriate multicolumn
 
 ```{r remedy006}
 
-tbl%>%
-  t()%>% # <------
-  hline(c(0,2,2,nrow(.)))%>%
-  texblocks::tabular(align = '|c|ccccc|')%>%
-  texPreview::tex_preview()
+tbl%>%t()
 ```
 
 ## Example 2

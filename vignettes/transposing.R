@@ -46,19 +46,12 @@ tbl <- (tbl_col_header / (tbl_row_header + tbl_body))
 
 ## ----remedy005-----------------------------------------------------------
 
-tbl%>%
-  hline(c(0,1,1,nrow(.)))%>%
-  texblocks::tabular(align = '|cc|cccc|')%>%
-  texPreview::tex_preview()
+tbl
 
 
 ## ----remedy006-----------------------------------------------------------
 
-tbl%>%
-  t()%>% # <------
-  hline(c(0,2,2,nrow(.)))%>%
-  texblocks::tabular(align = '|c|ccccc|')%>%
-  texPreview::tex_preview()
+tbl%>%t()
 
 ## ------------------------------------------------------------------------
 dat <- dplyr::tibble(
