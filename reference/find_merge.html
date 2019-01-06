@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • texblocks</title>
+<title>Find multirow or multicolumn — find_multicol • texblocks</title>
 
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
@@ -32,7 +32,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Find multirow or multicolumn — find_multicol" />
+
+<meta property="og:description" content="Returns indicies of multirow or multicolumn in a texblocks" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -48,7 +51,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -122,120 +125,55 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Find multirow or multicolumn</h1>
+    <small class="dont-index">Source: <a href='https://github.com/metrumresearchgroup/texblocks/blob/master/R/merge.R'><code>R/merge.R</code></a></small>
+    <div class="hidden name"><code>find_merge.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Returns indicies of multirow or multicolumn in a texblocks</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>find_multicol</span>(<span class='no'>x</span>)
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="as.data.frame.tb.html">as.data.frame(<i>&lt;tb&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>convert texblock to data.frame</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as.tb.html">as.tb()</a></code> </p>
-        </td>
-        <td><p>Try to coerce an object into a texblock object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="cline.html">cline()</a></code> </p>
-        </td>
-        <td><p>add clines to texblock</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="crop.html">crop()</a></code> </p>
-        </td>
-        <td><p>Crop texblocks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_merge.html">find_multicol()</a></code> <code><a href="find_merge.html">find_multirow()</a></code> </p>
-        </td>
-        <td><p>Find multirow or multicolumn</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="harvest.html">harvest()</a></code> </p>
-        </td>
-        <td><p>Extract subsets of texblocks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="hline.html">hline()</a></code> </p>
-        </td>
-        <td><p>add hlines</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="is.tb.html">is.tb()</a></code> </p>
-        </td>
-        <td><p>Is the object of class tb</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mergecells.html">multirow()</a></code> <code><a href="mergecells.html">multicol()</a></code> </p>
-        </td>
-        <td><p>Merge texblocks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pad.html">pad()</a></code> </p>
-        </td>
-        <td><p>pad texblock</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pipe.html">%>%</a></code> </p>
-        </td>
-        <td><p>Pipe operator</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tabular.html">tabular()</a></code> </p>
-        </td>
-        <td><p>TeX tabular object</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="tb_reduce.html">tb_reduce()</a></code> </p>
-        </td>
-        <td><p>reduce dimension of list of texblocks</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="texblocks_opts.html">`+`(<i>&lt;tb&gt;</i>)</a></code> <code><a href="texblocks_opts.html">`/`(<i>&lt;tb&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>texblock operators</p></td>
-      </tr>
-    </tbody>
+<span class='fu'>find_multirow</span>(<span class='no'>x</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>texblock</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>data.frame</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mergecells.html'>multicol</a></span>(<span class='st'>'a'</span>,<span class='fl'>2</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mergecells.html'>multirow</a></span>(<span class='st'>'a'</span>,<span class='fl'>2</span>)
+<span class='no'>x</span><span class='kw'>%&gt;%</span><span class='fu'>find_multicol</span>()</div><div class='output co'>#&gt;   row col n new_val                old_val
+#&gt; 1   1   1 1       a \\multicolumn{2}{c}{a}</div><div class='input'><span class='no'>y</span><span class='kw'>%&gt;%</span><span class='fu'>find_multirow</span>()</div><div class='output co'>#&gt;   row col n new_val             old_val
+#&gt; 1   1   1 1       a \\multirow{2}{*}{a}</div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
