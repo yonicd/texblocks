@@ -16,10 +16,11 @@ addons:
     packages:
     - libmagick++-dev
 r_github_packages:
+- metrumresearchgroup/covrpage
 - metrumresearchgroup/texPreview
 - metrumresearchgroup/pkgdown
 after_success:
-- Rscript -e 'devtools::install()'
+- Rscript -e 'devtools::install(); covrpage::covrpage_ci()'
 - Rscript -e 'pkgdown::build_site()'
 deploy:
   provider: pages
