@@ -59,3 +59,32 @@ testthat::describe('from tb',{
   })
   
 })
+
+testthat::describe('tabular',{
+  
+  x <- as.tb(c(1,2))
+  
+  it('basic',{
+    expect_class(x%>%tabular(),'tb')
+  })
+  
+  it('align right',{
+    expect_class(x%>%tabular(align = 'r'),'tb')
+  })
+  
+  it('align center',{
+    expect_class(x%>%tabular(align = 'c'),'tb')
+  })
+  
+  it('align left',{
+    expect_class(x%>%tabular(align = 'l'),'tb')
+  })
+  
+  it('align 2 columns',{
+    expect_class(x%>%t()%>%tabular(align = 'cr'),'tb')
+  })
+  
+  it('wrong align length',{
+    expect_error(x%>%tabular(align = 'cr'),'align has wrong number')
+  })
+})
