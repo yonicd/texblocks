@@ -53,12 +53,16 @@ strip_hline <- function(x){
 # hline_attach function [sinew] ---- 
 hline_attach <- function(obj,aes,line_end){
   
+  if(!nzchar(line_end))
+    line_end<- ' '
+  
   obj$line_end <- line_end
   
   if(is.null(aes))
     return(obj)
   
   for(i in seq_along(aes)){
+    
     obj$line_end[aes[i]] <- gsub(
       pattern = line_end,
       replacement = '\\\\ \\hline',

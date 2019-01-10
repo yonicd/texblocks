@@ -97,7 +97,7 @@ as.tb.data.frame <- function(x){
     # hline
     
       if(nrow(ret)==1){
-        line_end <- ' '
+        line_end <- ''
       }else{
         line_end <- '\\\\'
       }

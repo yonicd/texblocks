@@ -6,6 +6,7 @@
 #' @return tb
 #' @rdname tb_reduce
 #' @export
+#' @importFrom purrr reduce
 tb_reduce <- function(...,margin=1,merge = FALSE){
   
   x <- as.list(...)
@@ -16,8 +17,8 @@ tb_reduce <- function(...,margin=1,merge = FALSE){
   }
   
   ret <- switch(margin,
-                '1' = Reduce(`/`,as.tb(x)),
-                '2' = Reduce(`+`,as.tb(x))
+                '1' = x%>%as.tb()%>%purrr::reduce(`/`),
+                '2' = x%>%as.tb()%>%purrr::reduce(`+`)
   )
   
   return(ret)

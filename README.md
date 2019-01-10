@@ -5,7 +5,7 @@
 Status](https://travis-ci.org/metrumresearchgroup/texblocks.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texblocks)
 ![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)
 [![Covrpage
-Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_07-brightgreen.svg)](http://tinyurl.com/yd46jbnl)
+Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_09-brightgreen.svg)](http://tinyurl.com/yd46jbnl)
 
 # texblocks
 

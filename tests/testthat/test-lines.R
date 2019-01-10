@@ -4,9 +4,15 @@ a <- as.tb(1)
 a2 <- as.tb(c(1,2))
 
 testthat::describe('hline',{
+
   it('default',{
-    hx <- a2%>%hline()
+    hx <- a%>%hline()
     testthat::expect_true(grepl('^\\\\hline|\\\\hline$',hx))
+  })
+
+  it('top row singleton',{
+    hx <- a%>%hline(0)
+    testthat::expect_true(find_hline(hx)==0)
   })
   
   it('top row',{
@@ -16,15 +22,13 @@ testthat::describe('hline',{
   })
   
   it('first row',{
-    hx <- a%>%hline(1)
-    
-    testthat::expect_true(grepl('\\hline$',hx))
+    hx <- a2%>%hline(1)
     testthat::expect_true(find_hline(hx)==1)
   })
 
   it('not 0 not 1',{
     hx <- a2%>%hline(2)
-    testthat::expect_true(all(find_hline(hx)==1))
+    testthat::expect_true(find_hline(hx)==1)
   })
     
   it('multirow',{
@@ -33,9 +37,9 @@ testthat::describe('hline',{
   })
   
   it('strip',{
-    hx <- a%>%hline(1)%>%strip_hline()
+    hx <- a2%>%hline(1)%>%strip_hline()
     
-    testthat::expect_true(grepl('^1 \\\\',hx))
+    testthat::expect_false(grepl('hline',hx))
   })
 })
 
@@ -48,6 +52,7 @@ d2 <- data.frame(line=2,i=c(1),j=c(2))
 testthat::describe('cline',{
   it('top row list',{
     cx <- a%>%cline(specs = l0)
+    
     testthat::expect_true(grepl('^\\\\cline',cx))
     
     fcx <- find_cline(cx)
@@ -59,7 +64,7 @@ testthat::describe('cline',{
   })
   
   it('top row data.frame',{
-    cx <- a2%>%cline(specs = d0)
+    cx <- a%>%cline(specs = d0)
     testthat::expect_true(grepl('^\\\\cline',cx))
   })
   

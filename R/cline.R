@@ -91,6 +91,9 @@ strip_cline <- function(x){
 # cline_attach function [sinew] ---- 
 cline_attach <- function(obj,aes,line_end){
   
+  if(!nzchar(line_end))
+    line_end<- ' '
+  
   if(is.null(aes))
     return(obj)
   

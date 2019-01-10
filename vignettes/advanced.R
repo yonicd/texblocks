@@ -15,15 +15,10 @@ tex_opts$set(returnType = 'html')
 tex_opts$append(list(cleanup='tex'))
 
 ## ------------------------------------------------------------------------
-k1 <- lapply(1:3,as.tb)
-k2 <- lapply(4:6,as.tb)
+k1 <- 1:3%>%as.tb()%>%t()
+k2 <- 4:6%>%as.tb()%>%t()
 
-k <- purrr::reduce(k1,`+`) / purrr::reduce(k2,`+`)
-
-title <- c('param',sprintf('col%s',1:5))%>%
-  purrr::map(as.tb)%>%
-  purrr::reduce(`+`)
-
+k <- k1 / k2
 
 ## ----adv1----------------------------------------------------------------
 title <- as.tb('param') + multicol('vals',3,'c|')
@@ -38,18 +33,17 @@ tab%>%
 
 
 ## ----adv2----------------------------------------------------------------
-title <- as.tb('param') + multicol('vals',3,'c')
+title <- as.tb('param') + multicol('vals',3,'c|')
 
-tab <- list(
-  purrr::reduce(k1,`+`)%>%rep(3)%>%purrr::reduce(`/`),
-  purrr::reduce(k2,`+`))
+tab <- list(rep(k1,3)%>%tb_reduce(),k2)
 
 tab <- purrr::map2(1:2,tab,function(x,y){
  multirow(sprintf('$\\beta_%s$',x),nrow(y)) + y 
-})
+})%>%tb_reduce()
 
-(title / purrr::reduce(tab,`/`))%>%
-  tabular()%>%
+(title / tab)%>%
+  hline(c(0,1,nrow(.)))%>%
+  tabular(align='|c|ccc|')%>%
   texPreview::tex_preview()
 
 

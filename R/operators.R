@@ -29,6 +29,7 @@
 #' @rdname texblocks_opts
 #' @export
 '+.tb' <- function(e1,e2){
+  
   ret <- join(e1,e2)
   as.tb(ret)
 }

@@ -45,7 +45,7 @@ strip_multicol <- function(x){
 #' y%>%find_multirow()
 #' 
 #' @rdname find_merge
-#' @importFrom purrr set_names map_df
+#' @importFrom purrr set_names map_df map_lgl
 #' @export
 # find_multicol function [sinew] ----
 find_multicol <- function(x){
@@ -70,7 +70,7 @@ find_multicol <- function(x){
       if(length(idx)==0)
         return(NULL)
       
-      if(idx[[1]][1]==-1)
+      if(purrr::map_lgl(idx,function(x) as.numeric(x)==-1)%>%all())
         return(NULL)
       
       midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)

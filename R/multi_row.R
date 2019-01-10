@@ -47,7 +47,7 @@ strip_multirow <- function(x){
 # find_multirow roxy [sinew] ---- 
 #' @rdname find_merge
 #' @export 
-#' @importFrom purrr set_names map map_df
+#' @importFrom purrr set_names map map_df map_lgl
 # find_multirow function [sinew] ----
 find_multirow <- function(x){
   
@@ -72,7 +72,7 @@ find_multirow <- function(x){
       if(length(idx)==0)
         return(NULL)
       
-      if(idx[[1]][1]==-1)
+      if(purrr::map_lgl(idx,function(x) as.numeric(x)==-1)%>%all())
         return(NULL)
       
       midx <- mapply(regmatches,sx,idx,USE.NAMES = FALSE)
