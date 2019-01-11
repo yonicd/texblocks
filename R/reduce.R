@@ -6,28 +6,36 @@
 #' @return tb
 #' @rdname tb_reduce
 #' @export
-tb_reduce <- function(...,margin=1,merge = FALSE){
-  
-  x <- as.list(...)
+#' @importFrom purrr reduce
+tb_reduce <- function(..., margin = 1, merge = FALSE){
   
   if(merge){
-    ret <- tb_reduce_merge(unlist(x),margin = margin)
+    ret <- tb_reduce_merge(..., margin = margin)
     return(ret)
   }
   
+  x <- list(...)
+  
+  if(x%>%purrr::map_lgl(inherits,what='list')%>%all()){
+    x <- x%>%purrr::flatten()
+  }
+  
   ret <- switch(margin,
-                '1' = Reduce(`/`,as.tb(x)),
-                '2' = Reduce(`+`,as.tb(x))
+                '1' = x%>%as.tb()%>%purrr::reduce(`/`),
+                '2' = x%>%as.tb()%>%purrr::reduce(`+`)
   )
   
   return(ret)
   
 }
 
-tb_reduce_merge <- function(x,margin = 1){
+tb_reduce_merge <- function(..., margin = 1){
+  
+  x <- list(...)%>%unlist()
+  
   xrle <- x%>%rle()
   
-  purrr::map2(xrle$values,xrle$lengths,function(x,y,margin){
+  ret <- purrr::map2(xrle$values,xrle$lengths,function(x, y, margin){
     if(y>1){
       if(margin==1){
         ret <- multirow(x,y)%>%pad(y-1,'b')
@@ -42,7 +50,9 @@ tb_reduce_merge <- function(x,margin = 1){
     }
     
     ret
-  },margin=margin)%>%
-    tb_reduce(margin=margin)
+  },margin=margin)
+  
+  
+  ret <- ret %>% tb_reduce( margin = margin )
   
 }

@@ -4,6 +4,8 @@
 [![Travis-CI Build
 Status](https://travis-ci.org/metrumresearchgroup/texblocks.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texblocks)
 ![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)
+[![Covrpage
+Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_10-brightgreen.svg)](http://tinyurl.com/yd46jbnl)
 
 # texblocks
 
@@ -83,7 +85,7 @@ Converting to `tb`
 
 texblocks can also be converted back into
 [`tibbles`](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#as-data-frame)
-for further data manipulation.
+and matrices for further data manipulation.
 
 ### Vectorizing
 
