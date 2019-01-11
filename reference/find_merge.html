@@ -102,6 +102,9 @@
       <a href="../articles/recasting.html">Recasting texblocks</a>
     </li>
     <li>
+      <a href="../articles/tests_and_coverage.html">Tests and Coverage</a>
+    </li>
+    <li>
       <a href="../articles/transposing.html">Transposing texblocks</a>
     </li>
   </ul>
@@ -159,9 +162,13 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mergecells.html'>multicol</a></span>(<span class='st'>'a'</span>,<span class='fl'>2</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mergecells.html'>multirow</a></span>(<span class='st'>'a'</span>,<span class='fl'>2</span>)
-<span class='no'>x</span><span class='kw'>%&gt;%</span><span class='fu'>find_multicol</span>()</div><div class='output co'>#&gt;   row col n new_val                old_val
-#&gt; 1   1   1 1       a \\multicolumn{2}{c}{a}</div><div class='input'><span class='no'>y</span><span class='kw'>%&gt;%</span><span class='fu'>find_multirow</span>()</div><div class='output co'>#&gt;   row col n new_val             old_val
-#&gt; 1   1   1 1       a \\multirow{2}{*}{a}</div><div class='input'>
+<span class='no'>x</span><span class='kw'>%&gt;%</span><span class='fu'>find_multicol</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 5
+#&gt;     row   col     n value call                    
+#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                   
+#&gt; 1     1     1     2 a     "\\multicolumn{2}{c}{a}"</div><div class='input'><span class='no'>y</span><span class='kw'>%&gt;%</span><span class='fu'>find_multirow</span>()</div><div class='output co'>#&gt; # A tibble: 1 x 5
+#&gt;     row   col     n value call                 
+#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;                
+#&gt; 1     1     1     2 a     "\\multirow{2}{*}{a}"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
