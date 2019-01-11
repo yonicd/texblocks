@@ -60,7 +60,7 @@ find_multicol <- function(x){
   
   x_list <- purrr::map(x_list,gsub,pattern = '^\\n|^\\s+',replacement = '')
   
-  x_list%>%
+  ret <- x_list%>%
     purrr::map_df(function(y){
       sx <- strsplit(y,split = '\\&')[[1]]
       idx <- gregexpr('\\\\multicolumn\\{(.*?)\\}\\{(.*?)\\}', sx)
@@ -83,15 +83,18 @@ find_multicol <- function(x){
       purrr::map_df(names(ns),function(nm){
         this <- strsplit(sx[as.numeric(nm)],'&')[[1]]
         start_col <- grep(sidy[[nm]],this,fixed = TRUE)
-        data.frame(
-          col = nm,
-          n = as.numeric(ns[[nm]][2]) - 1,
-          new_val = ns[[nm]][4],
-          old_val = sidy[[nm]],
-          stringsAsFactors = FALSE
+        dplyr::data_frame(
+          col = as.numeric(nm),
+          n = as.numeric(ns[[nm]][2]),
+          value = ns[[nm]][4],
+          call = sidy[[nm]]
         )
       })
     },.id='row')
+  
+  ret$row <- as.numeric(ret$row)
+  
+  ret
   
 }
 
@@ -106,11 +109,11 @@ multicol_attach <- function(obj,aes){
   
   for(i in 1:nrow(aes)){
     
-    nr <- as.numeric(aes$row[i])
+    nr <- aes$row[i]
     
     obj$val[nr] <- gsub(
-      pattern = sprintf('%s%s',aes$new_val[i],strrep('&',aes$n[i])),
-      replacement = aes$old_val[i],
+      pattern = sprintf('%s%s',aes$value[i],strrep('&',aes$n[i] - 1 )),
+      replacement = aes$call[i],
       x = obj$val[nr],
       fixed = TRUE)
     

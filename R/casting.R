@@ -77,6 +77,7 @@ as.tb.data.frame <- function(x){
     dplyr::mutate(r=1:n())%>%
     dplyr::mutate_if(is.character, dplyr::coalesce, ... = '')%>%
     tidyr::gather(key='c',value='val',-!!rlang::sym('r'))%>%
+    dplyr::mutate(c = gsub('^V','',c))%>%
     dplyr::mutate_at(dplyr::vars(!!rlang::sym('r'),c),dplyr::funs(as.numeric))%>%
     dplyr::arrange(!!rlang::sym('r'),c)%>%
     dplyr::group_by(!!rlang::sym('r'))%>%

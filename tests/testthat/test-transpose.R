@@ -15,7 +15,7 @@ testthat::describe('vector',{
       xx <- x/x
       xxt <- xx%>%t()
       fx <- find_multirow(xxt)
-      testthat::expect_equal(fx$col,c('1','2'))
+      testthat::expect_equal(fx$col,c(1,2))
       
   })
      
@@ -25,7 +25,7 @@ testthat::describe('vector',{
     xx <- multirow('val',3) + x
     xxt <- xx%>%t()
     fx <- find_multicol(xxt)
-    testthat::expect_equal(fx$row,'1')
+    testthat::expect_equal(fx$row,1)
     
   })
 })

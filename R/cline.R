@@ -91,11 +91,13 @@ strip_cline <- function(x){
 # cline_attach function [sinew] ---- 
 cline_attach <- function(obj,aes,line_end){
   
+  if(is.null(aes))
+    return(obj)
+  
   if(!nzchar(line_end))
     line_end<- ' '
   
-  if(is.null(aes))
-    return(obj)
+  obj$line_end <- line_end
   
   for(i in seq_along(aes)){
     obj$line_end[aes[[i]]['line']] <- gsub(
@@ -107,6 +109,11 @@ cline_attach <- function(obj,aes,line_end){
       x = obj$line_end[aes[[i]]['line']],
       fixed = TRUE)
   }
+  
+  if(line_end == ' '){
+    obj$line_end <- ''
+  }
+  
   
   obj
 }
