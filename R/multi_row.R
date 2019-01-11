@@ -56,7 +56,7 @@ find_multirow <- function(x){
   if(!nzchar(x_char))
     return(NULL)
   
-  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]
+  x_list <- strsplit(x_char,split = strrep(tex_line,2))[[1]]
   
   x_list <- purrr::set_names(x_list,1:length(x_list))
   

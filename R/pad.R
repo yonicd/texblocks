@@ -38,7 +38,7 @@ pad_col <- function(x, cols = 1, side = 'l'){
   
   old_text <- strsplit(x,'\n')[[1]]
   idx <- grepl('\\\\$',old_text)
-  new_text <- gsub('\\\\','',old_text)
+  new_text <- gsub(tex_line,'',old_text)
   
   if(side=='l'){
     new_text <- sprintf('%s%s',

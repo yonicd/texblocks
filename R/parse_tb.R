@@ -5,7 +5,7 @@ parse_tb <- function(x,skip){
             '_NEWCOL_',
             gsub('\\n',
                  '',
-                 gsub('\\\\',
+                 gsub(tex_line,
                       '_NEWROW_',
                       x,
                       fixed=TRUE)

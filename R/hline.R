@@ -27,14 +27,15 @@ hline <- function(x,lines=NULL){
 find_hline <- function(x){
   sx <- strsplit(as.character(x),'\n')[[1]]
   
-  hlines <- grep('\\\\hline',sx)
+  
+  hlines <- grep(paste0(tex_slash,hline_),sx)
   
   if(identical(hlines, integer(0)))
     return(NULL)
   
   if(1%in%hlines){
     sx1 <- sx[[which(hlines==1)]]
-    if(grepl('^\\\\hline',sx1)){
+    if(grepl(sprintf('^%s%s',tex_slash,hline_),sx1)){
         hlines[which(hlines==1)] <- 0  
         hlines[-1] <- hlines[-1] - 1
     }
@@ -47,7 +48,9 @@ find_hline <- function(x){
 
 # strip_hline function [sinew] ---- 
 strip_hline <- function(x){
-  gsub('\\\\hline\\n| \\\\hline$','',x)
+  y     <- paste0(tex_slash,hline_)
+  query <- sprintf('%s\\n| %s$', y, y)
+  gsub(query,'',x)
 }
 
 # hline_attach function [sinew] ---- 
@@ -56,25 +59,22 @@ hline_attach <- function(obj,aes,line_end){
   if(is.null(aes))
     return(obj)
   
-  if(!nzchar(line_end))
+  if(!nzchar(line_end)){
     line_end<- ' '
+  }
   
-  obj$line_end <- line_end
+  if( ! ( 'line_end' %in% names(obj) ) )
+    obj$line_end <- line_end
   
   for(i in seq_along(aes)){
     
     obj$line_end[aes[i]] <- gsub(
       pattern = line_end,
-      replacement = '\\\\ \\hline',
+      replacement = sprintf('%s %s',tex_line,hline_),
       x = obj$line_end[aes[i]],
       fixed = TRUE)   
-  }
-  
-  if(line_end == ' '){
-    obj$line_end <- ''
   }
   
   obj
   
 }
-
