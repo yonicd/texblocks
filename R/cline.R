@@ -59,7 +59,11 @@ find_cline <- function(x){
   if(identical(clines, integer(0)))
     return(NULL)
   
-  l <- strsplit(gsub('^(.*?)cline|[\\{\\}]','',sx[clines]),'-')
+  clines_ <- gsub('^(.*?)cline','',sx[clines])
+  clines_ <- gsub('\\}(.*?)$','',clines_)
+  clines_ <- gsub('[\\{\\}]','',clines_)
+  
+  l <- strsplit(clines_,'-')
   
   clines <- mapply(function(x,y){
     purrr::set_names(c(y,as.numeric(x)),c('line','i','j'))
