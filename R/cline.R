@@ -54,12 +54,16 @@ cline <- function(x,specs){
 find_cline <- function(x){
   sx <- strsplit(as.character(x),'\n')[[1]]
   
-  clines <- grep('\\\\cline',sx)
+  clines <- grep(paste0(tex_slash,cline_),sx)
   
   if(identical(clines, integer(0)))
     return(NULL)
   
-  l <- strsplit(gsub('^(.*?)cline|[\\{\\}]','',sx[clines]),'-')
+  clines_ <- gsub('^(.*?)cline','',sx[clines])
+  clines_ <- gsub('\\}(.*?)$','',clines_)
+  clines_ <- gsub('[\\{\\}]','',clines_)
+  
+  l <- strsplit(clines_,'-')
   
   clines <- mapply(function(x,y){
     purrr::set_names(c(y,as.numeric(x)),c('line','i','j'))
@@ -69,7 +73,7 @@ find_cline <- function(x){
   
   if(1%in%clines$line){
     sx1 <- sx[[which(clines$line==1)]]
-    if(grepl('^\\\\cline',sx1)){
+    if(grepl(sprintf('^%s%s',tex_slash,cline_),sx1)){
       clines$line[which(clines$line==1)] <- 0  
       clines$line[-1] <- clines$line[-1] - 1
     }
@@ -85,7 +89,12 @@ find_cline <- function(x){
 
 # strip_cline function [sinew] ---- 
 strip_cline <- function(x){
-  paste0(gsub(' \\\\cline(.*?)$','',strsplit(x,'\\n')[[1]]),collapse='\n')
+  
+  lines <- strsplit(x,'\\n')[[1]]
+  
+  query <- sprintf(' %s%s(.*?)$',tex_slash,cline_)
+  
+  gsub(query,'',lines)%>%paste0(collapse='\n')
 }
 
 # cline_attach function [sinew] ---- 
@@ -93,27 +102,25 @@ cline_attach <- function(obj,aes,line_end){
   
   if(is.null(aes))
     return(obj)
+
   
-  if(!nzchar(line_end))
+  if(!nzchar(line_end)){
     line_end<- ' '
-  
-  obj$line_end <- line_end
+  }
+    
+  if( ! ( 'line_end' %in% names(obj) ) )
+    obj$line_end <- line_end
   
   for(i in seq_along(aes)){
     obj$line_end[aes[[i]]['line']] <- gsub(
       pattern = line_end,
       replacement = sprintf(
-        fmt = '\\\\ \\cline{%s-%s}',
-        aes[[i]]['i'],aes[[i]]['j']
+        fmt = '%s %s{%s-%s}',
+        tex_line,cline_,aes[[i]]['i'],aes[[i]]['j']
       ),
       x = obj$line_end[aes[[i]]['line']],
       fixed = TRUE)
   }
-  
-  if(line_end == ' '){
-    obj$line_end <- ''
-  }
-  
-  
+
   obj
 }

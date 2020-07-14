@@ -15,7 +15,7 @@ strip_multicol <- function(x){
   if(length(mc[[1]])==0)
     return(x)
   
-  ns <- lapply(mc,function(x) strsplit(gsub('[\\}|]','',x),'\\{'))
+  ns <- lapply(mc,function(x) strsplit(gsub('[}|]','',x),'\\{'))
   mc <- lapply(mc,as.list)
   
   for(i in seq_along(ns)){
@@ -54,7 +54,7 @@ find_multicol <- function(x){
   if(!nzchar(x_char))
     return(NULL)
   
-  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]
+  x_list <- strsplit(x_char,split = strrep(tex_line,2))[[1]]
   
   x_list <- purrr::set_names(x_list,1:length(x_list))
   
@@ -78,7 +78,7 @@ find_multicol <- function(x){
       found <- sapply(sidx,function(x)!identical(x,character(0)))
       sidy <- sidx[found]
       
-      ns <- lapply(sidy,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]]) 
+      ns <- lapply(sidy,function(x) strsplit(gsub('[}|]','',x),'\\{')[[1]]) 
       
       purrr::map_df(names(ns),function(nm){
         this <- strsplit(sx[as.numeric(nm)],'&')[[1]]

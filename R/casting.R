@@ -100,7 +100,7 @@ as.tb.data.frame <- function(x){
       if(nrow(ret)==1){
         line_end <- ''
       }else{
-        line_end <- '\\\\'
+        line_end <- tex_line
       }
       
       ret <- ret%>%hline_attach(attr(x,'HLINE'),line_end)
@@ -122,11 +122,9 @@ as.tb.data.frame <- function(x){
    if(!is.null(ah)){
      
      if(0%in%ah){
-       ret <- sprintf(
-         fmt = '\\hline\n%s',
-         ret
-         )
+       ret <- sprintf('%s\n%s',hline_,ret)
      }
+     
    }
    
    # attach a cline to the top if needed
@@ -138,8 +136,8 @@ as.tb.data.frame <- function(x){
      
      if(length(ac_idx0)>0){
        ret <- sprintf(
-         fmt = '\\cline{%s-%s}\n%s',
-         ac[[ac_idx0]]['i'],ac[[ac_idx0]]['j'],ret
+         fmt = '%s{%s-%s}\n%s',
+         cline_, ac[[ac_idx0]]['i'], ac[[ac_idx0]]['j'], ret
          )
      }
      

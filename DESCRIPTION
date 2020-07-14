@@ -1,17 +1,16 @@
 Package: texblocks
 Title: Simple language to build TeX tables
-Version: 0.0.0.9005
-Authors@R: person("Jonathan", "Sidi", email = "yonis@metrumrg.com", role = c("aut", "cre"))
+Version: 0.0.0.9006
+Authors@R: person("Jonathan", "Sidi", email = "yonicd@gmail.com", role = c("aut", "cre"))
 Description: Build TeX tables using simple mathematical operators. 
 Depends: R (>= 3.2.0)
 Imports: dplyr,tidyr,rlang,purrr,utils
-License: GPL-3 + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/metrumresearchgroup/texblocks
-BugReports: https://github.com/metrumresearchgroup/texblocks/issues
+URL: https://github.com/yonicd/texblocks
+BugReports: https://github.com/yonicd/texblocks/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
 Suggests: 
     knitr,
     rmarkdown,
@@ -19,5 +18,6 @@ Suggests:
     texPreview,
     testthat
 Remotes:
-  metrumresearchgroup/texPreview
+  yonicd/texPreview
 VignetteBuilder: knitr
+License: MIT + file LICENSE

@@ -30,7 +30,7 @@ strip_multirow <- function(x){
   if(length(mr[[1]])==0)
     return(x)
   
-  ns <- lapply(mr,function(x) strsplit(gsub('[\\}|]','',x),'\\{'))
+  ns <- lapply(mr,function(x) strsplit(gsub('[}|]','',x),'\\{'))
   mr <- lapply(mr,as.list)
   
   for(i in seq_along(ns)){
@@ -56,7 +56,7 @@ find_multirow <- function(x){
   if(!nzchar(x_char))
     return(NULL)
   
-  x_list <- strsplit(x_char,split = '\\\\\\\\')[[1]]
+  x_list <- strsplit(x_char,split = strrep(tex_line,2))[[1]]
   
   x_list <- purrr::set_names(x_list,1:length(x_list))
   
@@ -80,7 +80,7 @@ find_multirow <- function(x){
       found <- sapply(sidx,function(x)!identical(x,character(0)))
       sidy <- sidx[found]
       
-      ns <- lapply(sidy,function(x) strsplit(gsub('[\\}|]','',x),'\\{')[[1]]) 
+      ns <- lapply(sidy,function(x) strsplit(gsub('[}|]','',x),'\\{')[[1]]) 
       
       purrr::map_df(names(ns),function(nm){
         this <- strsplit(sx[as.numeric(nm)],'&')[[1]]
