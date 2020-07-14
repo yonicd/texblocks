@@ -5,7 +5,7 @@
 Status](https://travis-ci.org/metrumresearchgroup/texblocks.svg?branch=master)](https://travis-ci.org/metrumresearchgroup/texblocks)
 [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)]()
 [![Covrpage
-Summary](https://img.shields.io/badge/covrpage-Last_Build_2019_01_10-brightgreen.svg)](http://tinyurl.com/y7xnwx67)
+Summary](https://img.shields.io/badge/covrpage-Last_Build_2020_07_14-yellowgreen.svg)](http://tinyurl.com/y7xnwx67)
 
 # texblocks
 
@@ -73,8 +73,7 @@ would translate to
 
 ### Recasting
 
-Converting to `tb`
-    class
+Converting to `tb` class
 
   - [numeric](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#single-blocks)
   - [character](https://metrumresearchgroup.github.io/texblocks/articles/basics.html#single-blocks)
